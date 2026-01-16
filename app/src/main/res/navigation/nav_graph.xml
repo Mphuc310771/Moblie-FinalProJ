@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.smartbudget.app.presentation.dashboard.DashboardFragment"
+        android:label="@string/nav_dashboard"
+        tools:layout="@layout/fragment_dashboard">
+        
+        <action
+            android:id="@+id/action_dashboard_to_addExpense"
+            app:destination="@id/addExpenseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reportsFragment"
+        android:name="com.smartbudget.app.presentation.reports.ReportsFragment"
+        android:label="@string/nav_reports"
+        tools:layout="@layout/fragment_reports" />
+
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="com.smartbudget.app.presentation.budget.BudgetFragment"
+        android:label="@string/nav_budget"
+        tools:layout="@layout/fragment_budget" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.smartbudget.app.presentation.settings.SettingsFragment"
+        android:label="@string/nav_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/addExpenseFragment"
+        android:name="com.smartbudget.app.presentation.addexpense.AddExpenseFragment"
+        android:label="@string/add_expense"
+        tools:layout="@layout/fragment_add_expense">
+        
+        <argument
+            android:name="expenseId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/savingsGoalFragment"
+        android:name="com.smartbudget.app.presentation.savings.SavingsGoalFragment"
+        android:label="Mục tiêu tiết kiệm"
+        tools:layout="@layout/fragment_savings_goal" />
+
+    <fragment
+        android:id="@+id/recurringExpenseFragment"
+        android:name="com.smartbudget.app.presentation.recurring.RecurringExpenseFragment"
+        android:label="Chi tiêu định kỳ"
+        tools:layout="@layout/fragment_recurring_expense" />
+
+</navigation>

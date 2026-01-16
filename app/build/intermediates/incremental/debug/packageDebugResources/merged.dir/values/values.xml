@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="accent">#FFAB00</color>
+    <color name="accent_light">#FFF6E0</color>
+    <color name="background">#F4F6F8</color>
+    <color name="bg_ai_chat">#E8F0FE</color>
+    <color name="bg_expense">#FFEBEE</color>
+    <color name="bg_savings">#FFF8E1</color>
+    <color name="bg_scan">#E6FAEA</color>
+    <color name="border">#DEE2E6</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_shadow">#1A1A2E</color>
+    <color name="cat_education">#00B8D4</color>
+    <color name="cat_entertainment">#FF4081</color>
+    <color name="cat_food">#FF5252</color>
+    <color name="cat_gift">#FF4081</color>
+    <color name="cat_health">#00C853</color>
+    <color name="cat_housing">#2962FF</color>
+    <color name="cat_investment">#6200EA</color>
+    <color name="cat_other">#9E9E9E</color>
+    <color name="cat_salary">#00C853</color>
+    <color name="cat_shopping">#6200EA</color>
+    <color name="cat_transport">#0057FF</color>
+    <color name="cat_utilities">#FFAB00</color>
+    <color name="chart_1">#0057FF</color>
+    <color name="chart_2">#00C853</color>
+    <color name="chart_3">#FFAB00</color>
+    <color name="chart_4">#FF5252</color>
+    <color name="chart_5">#6200EA</color>
+    <color name="chart_6">#00B8D4</color>
+    <color name="chart_7">#FF4081</color>
+    <color name="chart_8">#2962FF</color>
+    <color name="divider">#E9ECEF</color>
+    <color name="error">#FF5252</color>
+    <color name="expense_color">#FF5252</color>
+    <color name="gradient_end">#00A8FF</color>
+    <color name="gradient_start">#0057FF</color>
+    <color name="income_color">#00C853</color>
+    <color name="on_background">#1A1A2E</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="on_surface">#1A1A2E</color>
+    <color name="primary">#0057FF</color>
+    <color name="primary_light">#E6F0FF</color>
+    <color name="primary_variant">#003ECB</color>
+    <color name="secondary">#00C853</color>
+    <color name="secondary_light">#E6FAEA</color>
+    <color name="secondary_variant">#009624</color>
+    <color name="status_bar">#F4F6F8</color>
+    <color name="success">#00C853</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_hint">#ADB5BD</color>
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#6C757D</color>
+    <color name="warning_color">#FFAB00</color>
+    <dimen name="balance_card_height">180dp</dimen>
+    <dimen name="bottom_nav_height">64dp</dimen>
+    <dimen name="button_corner_radius">12dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="category_icon_size">48dp</dimen>
+    <dimen name="chart_bar_height">300dp</dimen>
+    <dimen name="chart_pie_height">200dp</dimen>
+    <dimen name="elevation_bottom_nav">16dp</dimen>
+    <dimen name="elevation_card">4dp</dimen>
+    <dimen name="elevation_fab">8dp</dimen>
+    <dimen name="fab_size">56dp</dimen>
+    <dimen name="margin_between_cards">12dp</dimen>
+    <dimen name="margin_between_items">8dp</dimen>
+    <dimen name="margin_screen">16dp</dimen>
+    <dimen name="padding_card">16dp</dimen>
+    <dimen name="padding_item">12dp</dimen>
+    <dimen name="padding_screen">16dp</dimen>
+    <dimen name="radius_large">16dp</dimen>
+    <dimen name="radius_medium">12dp</dimen>
+    <dimen name="radius_small">8dp</dimen>
+    <dimen name="radius_xlarge">24dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="text_amount_large">32sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_headline">28sp</dimen>
+    <dimen name="text_subtitle">16sp</dimen>
+    <dimen name="text_title">20sp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <string name="about">Về ứng dụng</string>
+    <string name="account">Tài khoản</string>
+    <string name="add_expense">Thêm chi tiêu</string>
+    <string name="add_income">Thêm thu nhập</string>
+    <string name="amount">Số tiền</string>
+    <string name="app_name">SmartBudget</string>
+    <string name="budget_limit">Giới hạn ngân sách</string>
+    <string name="budget_not_set">Chưa thiết lập</string>
+    <string name="budget_remaining_fmt">Còn: %s</string>
+    <string name="budget_spent_fmt">Đã chi: %s</string>
+    <string name="budget_title">Quản lý ngân sách</string>
+    <string name="budget_warning">Sắp hết ngân sách</string>
+    <string name="by_category">Theo danh mục</string>
+    <string name="cancel">Hủy</string>
+    <string name="cat_education">Học tập</string>
+    <string name="cat_entertainment">Giải trí</string>
+    <string name="cat_food">Ăn uống</string>
+    <string name="cat_gift">Quà tặng</string>
+    <string name="cat_health">Sức khỏe</string>
+    <string name="cat_housing">Nhà cửa</string>
+    <string name="cat_investment">Đầu tư</string>
+    <string name="cat_other">Khác</string>
+    <string name="cat_salary">Lương</string>
+    <string name="cat_shopping">Mua sắm</string>
+    <string name="cat_transport">Di chuyển</string>
+    <string name="cat_utilities">Điện nước</string>
+    <string name="category">Danh mục</string>
+    <string name="chat_clear_message">Bạn có muốn xóa toàn bộ đoạn chat không?</string>
+    <string name="chat_clear_title">Xóa lịch sử?</string>
+    <string name="chat_error">Xin lỗi, tôi đang gặp sự cố. Vui lòng thử lại sau.</string>
+    <string name="chat_suggestion_analyze">Phân tích chi tiêu của tôi và đưa ra lời khuyên</string>
+    <string name="chat_suggestion_budget">Làm thế nào để lập ngân sách hiệu quả?</string>
+    <string name="chat_suggestion_save">Cho tôi mẹo tiết kiệm tiền hàng tháng</string>
+    <string name="chat_title">Trợ lý AI</string>
+    <string name="chat_welcome">Xin chào! 👋 Tôi là trợ lý tài chính AI của bạn.\n\nTôi có thể giúp bạn:\n• 📊 Phân tích chi tiêu\n• 💡 Đưa ra lời khuyên tiết kiệm\n• 📈 Lập kế hoạch ngân sách\n• 🎯 Đặt mục tiêu tài chính\n\nHãy hỏi tôi bất cứ điều gì về quản lý tài chính nhé!</string>
+    <string name="confirm_delete">Xác nhận xóa</string>
+    <string name="currency">Đơn vị tiền tệ</string>
+    <string name="currency_format">%,.0f ₫</string>
+    <string name="currency_vnd">₫</string>
+    <string name="custom">Tùy chọn</string>
+    <string name="daily_reminder">Nhắc nhở hàng ngày</string>
+    <string name="dark_mode">Chế độ tối</string>
+    <string name="date">Ngày</string>
+    <string name="date_range_display">%s - %s</string>
+    <string name="delete">Xóa</string>
+    <string name="delete_message">Bạn có chắc muốn xóa giao dịch này?</string>
+    <string name="delete_success">Đã xóa thành công</string>
+    <string name="edit">Sửa</string>
+    <string name="enter_amount">Nhập số tiền</string>
+    <string name="enter_note">Nhập ghi chú (tùy chọn)</string>
+    <string name="error_input_required">Vui lòng nhập đầy đủ thông tin</string>
+    <string name="error_invalid_amount">Vui lòng nhập số tiền hợp lệ</string>
+    <string name="error_occurred">Có lỗi xảy ra</string>
+    <string name="error_prefix">Lỗi: </string>
+    <string name="expense">Chi tiêu</string>
+    <string name="export_data">Xuất dữ liệu</string>
+    <string name="from_date">Từ ngày</string>
+    <string name="gcm_defaultSenderId" translatable="false">120163515055</string>
+    <string name="google_api_key" translatable="false">AIzaSyBXzuIEQSk2XJcbF2AP3Qjdj5s0Wg6Zj8s</string>
+    <string name="google_app_id" translatable="false">1:120163515055:android:5bda466d37bd256d82325a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBXzuIEQSk2XJcbF2AP3Qjdj5s0Wg6Zj8s</string>
+    <string name="google_storage_bucket" translatable="false">smartbudget-26f5f.firebasestorage.app</string>
+    <string name="import_data">Nhập dữ liệu</string>
+    <string name="income">Thu nhập</string>
+    <string name="insight_equal_spending">Chi tiêu tương đương với tháng trước.</string>
+    <string name="insight_higher_spending">Chi tiêu tháng này cao hơn %s so với tháng trước. ⚠️</string>
+    <string name="insight_lower_spending">Chi tiêu tháng này thấp hơn %s so với tháng trước! 📉</string>
+    <string name="insight_start_spending">Hãy bắt đầu chi tiêu thông minh ngay hôm nay! 🚀</string>
+    <string name="login">Đăng nhập</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="monthly">Tháng</string>
+    <string name="nav_budget">Ngân sách</string>
+    <string name="nav_dashboard">Tổng quan</string>
+    <string name="nav_reports">Báo cáo</string>
+    <string name="nav_settings">Cài đặt</string>
+    <string name="no_transactions">Chưa có giao dịch nào</string>
+    <string name="note">Ghi chú</string>
+    <string name="notifications">Thông báo</string>
+    <string name="over_budget">Vượt ngân sách!</string>
+    <string name="please_enter_amount">Vui lòng nhập số tiền</string>
+    <string name="please_select_category">Vui lòng chọn danh mục</string>
+    <string name="project_id" translatable="false">smartbudget-26f5f</string>
+    <string name="recent_transactions">Giao dịch gần đây</string>
+    <string name="remaining">Còn lại</string>
+    <string name="reports_title">Báo cáo chi tiêu</string>
+    <string name="save">Lưu</string>
+    <string name="save_success">Đã lưu thành công</string>
+    <string name="scan_error_camera_permission">Cần quyền camera để chụp hóa đơn</string>
+    <string name="scan_error_no_image">Vui lòng chụp hoặc chọn ảnh hóa đơn</string>
+    <string name="scan_error_no_text">Không tìm thấy văn bản trong ảnh</string>
+    <string name="scan_error_recognition_prefix">Lỗi nhận dạng văn bản: </string>
+    <string name="scan_receipt">Quét hóa đơn</string>
+    <string name="scan_success">Đã nhập từ hóa đơn!</string>
+    <string name="see_all">Xem tất cả</string>
+    <string name="select_date_range">Chọn khoảng thời gian</string>
+    <string name="set_budget">Thiết lập ngân sách</string>
+    <string name="settings_title">Cài đặt</string>
+    <string name="spent">Đã chi</string>
+    <string name="status_active">Đang hoạt động</string>
+    <string name="status_paused">Tạm dừng</string>
+    <string name="success_added">Đã thêm!</string>
+    <string name="success_deleted">Đã xóa!</string>
+    <string name="success_logged_out">Đã đăng xuất</string>
+    <string name="success_saved">Đã lưu!</string>
+    <string name="sync">Đồng bộ dữ liệu</string>
+    <string name="sync_not_synced">Chưa đồng bộ</string>
+    <string name="sync_synced">Đã đồng bộ</string>
+    <string name="syncing">Đang đồng bộ…</string>
+    <string name="this_month">Tháng này</string>
+    <string name="to_date">Đến ngày</string>
+    <string name="today">Hôm nay</string>
+    <string name="total_balance">Tổng số dư</string>
+    <string name="total_spent">Tổng chi tiêu</string>
+    <string name="trend">Xu hướng</string>
+    <string name="unknown">Không xác định</string>
+    <string name="version">Phiên bản</string>
+    <string name="weekly">Tuần</string>
+    <string name="yearly">Năm</string>
+    <style name="BottomNavStyle" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/surface</item>
+        <item name="itemIconTint">@color/primary</item>
+        <item name="itemTextColor">@color/primary</item>
+        <item name="itemRippleColor">@color/primary_light</item>
+        <item name="elevation">16dp</item>
+    </style>
+    <style name="CardStyle" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+        <item name="cardElevation">@dimen/elevation_card</item>
+        <item name="strokeColor">@android:color/transparent</item>
+    </style>
+    <style name="FabStyle" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="tint">@color/on_primary</item>
+        <item name="elevation">@dimen/elevation_fab</item>
+        <item name="pressedTranslationZ">6dp</item>
+    </style>
+    <style name="HeroCardStyle" parent="CardStyle">
+        <item name="cardBackgroundColor">@color/primary</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+    <style name="InputStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/primary</item>
+    </style>
+    <style name="PrimaryButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:paddingVertical">12dp</item>
+    </style>
+    <style name="SecondaryButton" parent="Widget.Material3.Button.TonalButton">
+        <item name="backgroundTint">@color/bg_ai_chat</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+    </style>
+    <style name="TextAmount" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextBody" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="TextHeadline" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextTitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Theme.SmartBudget" parent="Theme.Material3.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_variant</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/on_error</item>
+        
+        
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        
+        
+        <item name="android:statusBarColor">@color/background</item> 
+        <item name="android:windowLightStatusBar" ns1:targetApi="23">true</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:windowLightNavigationBar" ns1:targetApi="27">true</item>
+
+        
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+</resources>

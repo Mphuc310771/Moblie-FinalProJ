@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_screen">
+
+    <!-- Profile Hero Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_lg"
+        app:cardCornerRadius="@dimen/radius_xlarge"
+        app:cardElevation="@dimen/elevation_card"
+        app:cardBackgroundColor="@color/card_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_card">
+
+            <!-- Guest View -->
+            <LinearLayout
+                android:id="@+id/layout_guest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/ic_dashboard"
+                    app:tint="@color/text_secondary"
+                    android:layout_marginBottom="@dimen/spacing_md"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chào bạn!"
+                    android:textSize="@dimen/text_headline"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="@dimen/spacing_xs"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đăng nhập để đồng bộ dữ liệu"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="@dimen/spacing_lg"/>
+
+                <Button
+                    android:id="@+id/btn_login"
+                    style="@style/PrimaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Đăng nhập / Đăng ký" />
+            </LinearLayout>
+
+            <!-- User View -->
+            <LinearLayout
+                android:id="@+id/layout_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/ic_dashboard"
+                    app:tint="@color/primary"
+                    android:background="@drawable/bg_circle_secondary"
+                    android:padding="12dp"
+                    android:layout_marginBottom="@dimen/spacing_md"/>
+
+                <TextView
+                    android:id="@+id/tv_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="user@email.com"
+                    android:textSize="@dimen/text_title"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thành viên SmartBudget"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/primary"
+                    android:background="@drawable/bg_pill_primary_light"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:layout_marginBottom="@dimen/spacing_lg"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_logout"
+                    style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Đăng xuất"
+                    android:textColor="#FF5252"
+                    app:strokeColor="#FF5252"
+                    app:iconTint="#FF5252"
+                    app:rippleColor="#20FF5252"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Header (Original) -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_lg"
+        android:text="@string/settings_title"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_headline"
+        android:textStyle="bold"
+        android:visibility="gone"/>
+
+    <!-- AI Tools -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginBottom="@dimen/spacing_sm"
+        android:text="🤖 Công cụ AI"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        android:textAllCaps="true" />
+
+    <!-- Scan Receipt -->
+    <LinearLayout
+        android:id="@+id/setting_scan_receipt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="📸 Quét hóa đơn"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ML Kit"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_caption" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- AI Chat -->
+    <LinearLayout
+        android:id="@+id/setting_ai_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="💬 Trợ lý tài chính AI"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mở"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_caption" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- AI Model Selection -->
+    <LinearLayout
+        android:id="@+id/setting_ai_model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🧠 Chọn AI Model"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <TextView
+            android:id="@+id/tv_ai_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tự động"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_body" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- General Settings -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginBottom="@dimen/spacing_sm"
+        android:text="⚙️ Cài đặt chung"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        android:textAllCaps="true" />
+
+    <!-- Dark Mode -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chế độ tối"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_dark_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- Reminder -->
+    <LinearLayout
+        android:id="@+id/setting_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/tv_reminder_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nhắc nhở hàng ngày (20:00)"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- Currency -->
+    <LinearLayout
+        android:id="@+id/setting_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đơn vị tiền tệ"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VND"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_body" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+
+    <!-- Data Management -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginBottom="@dimen/spacing_sm"
+        android:text="💾 Dữ liệu"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        android:textAllCaps="true" />
+
+    <!-- Data Sync -->
+    <LinearLayout
+        android:id="@+id/setting_sync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đồng bộ đám mây"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_body" />
+
+            <TextView
+                android:id="@+id/tv_sync_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa đồng bộ"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_sync"
+            app:tint="@color/text_secondary" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- Export -->
+    <LinearLayout
+        android:id="@+id/setting_export"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Xuất dữ liệu (CSV)"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+    
+    <!-- Import -->
+    <LinearLayout
+        android:id="@+id/setting_import"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nhập dữ liệu (CSV)"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- Backup -->
+    <LinearLayout
+        android:id="@+id/setting_backup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sao lưu nhanh"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- Extra Features -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginBottom="@dimen/spacing_sm"
+        android:text="🎯 Tính năng khác"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        android:textAllCaps="true" />
+    
+    <!-- Recurring Expense -->
+    <LinearLayout
+        android:id="@+id/setting_recurring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="📅 Chi tiêu định kỳ"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+            
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xem →"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_caption" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- Savings Goals -->
+    <LinearLayout
+        android:id="@+id/setting_savings_goals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🎯 Mục tiêu tiết kiệm"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xem →"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_caption" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- About -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginBottom="@dimen/spacing_sm"
+        android:text="@string/about"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        android:textAllCaps="true" />
+
+    <!-- Version -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/version"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.0.0"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_body" />
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

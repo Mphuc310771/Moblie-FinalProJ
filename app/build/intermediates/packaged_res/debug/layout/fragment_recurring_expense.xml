@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_md"
+        android:background="@color/surface">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔄 Chi tiêu định kỳ"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="Quản lý các khoản chi hàng tháng, hóa đơn tự động"
+            android:textSize="@dimen/text_caption"
+            android:textColor="@color/text_secondary" />
+    </LinearLayout>
+
+    <!-- Summary Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_md"
+        app:cardCornerRadius="@dimen/radius_medium"
+        app:cardElevation="@dimen/elevation_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md"
+            android:background="@drawable/bg_gradient_primary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng chi định kỳ / tháng"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_caption"
+                android:alpha="0.8" />
+
+            <TextView
+                android:id="@+id/tv_monthly_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="0 ₫"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_amount_large"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_active_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 khoản đang hoạt động"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_caption" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Recurring List -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:text="Danh sách chi tiêu định kỳ"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_subtitle"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recurring"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/spacing_md"
+        android:paddingBottom="80dp" />
+
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/layout_empty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📋"
+            android:textSize="48sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:text="Chưa có chi tiêu định kỳ"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_subtitle"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="Thêm hóa đơn hàng tháng như điện, nước, internet..."
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_body"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- Add Button -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_add_recurring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/spacing_md"
+        android:text="Thêm mới"
+        app:icon="@drawable/ic_add"
+        style="@style/FabStyle" />
+
+</LinearLayout>

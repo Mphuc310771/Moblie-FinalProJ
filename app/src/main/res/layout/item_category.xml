@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/spacing_sm">
+
+    <FrameLayout
+        android:id="@+id/fl_icon_bg"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_category_circle">
+
+        <TextView
+            android:id="@+id/tv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            tools:text="🍔" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:gravity="center"
+        android:maxWidth="80dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_caption"
+        tools:text="Ăn uống" />
+
+</LinearLayout>

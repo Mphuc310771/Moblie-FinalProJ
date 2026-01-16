@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartBudget</string>
+    
+    <!-- Navigation -->
+    <string name="nav_dashboard">Tổng quan</string>
+    <string name="nav_reports">Báo cáo</string>
+    <string name="nav_budget">Ngân sách</string>
+    <string name="nav_settings">Cài đặt</string>
+    
+    <!-- Dashboard -->
+    <string name="total_balance">Tổng số dư</string>
+    <string name="income">Thu nhập</string>
+    <string name="expense">Chi tiêu</string>
+    <string name="recent_transactions">Giao dịch gần đây</string>
+    <string name="see_all">Xem tất cả</string>
+    <string name="this_month">Tháng này</string>
+    <string name="no_transactions">Chưa có giao dịch nào</string>
+    
+    <!-- Add Expense -->
+    <string name="add_expense">Thêm chi tiêu</string>
+    <string name="add_income">Thêm thu nhập</string>
+    <string name="amount">Số tiền</string>
+    <string name="category">Danh mục</string>
+    <string name="date">Ngày</string>
+    <string name="note">Ghi chú</string>
+    <string name="save">Lưu</string>
+    <string name="cancel">Hủy</string>
+    <string name="scan_receipt">Quét hóa đơn</string>
+    <string name="enter_amount">Nhập số tiền</string>
+    <string name="enter_note">Nhập ghi chú (tùy chọn)</string>
+    
+    <!-- Categories -->
+    <string name="cat_food">Ăn uống</string>
+    <string name="cat_transport">Di chuyển</string>
+    <string name="cat_shopping">Mua sắm</string>
+    <string name="cat_health">Sức khỏe</string>
+    <string name="cat_entertainment">Giải trí</string>
+    <string name="cat_education">Học tập</string>
+    <string name="cat_housing">Nhà cửa</string>
+    <string name="cat_utilities">Điện nước</string>
+    <string name="cat_salary">Lương</string>
+    <string name="cat_gift">Quà tặng</string>
+    <string name="cat_investment">Đầu tư</string>
+    <string name="cat_other">Khác</string>
+    
+    <!-- Reports -->
+    <string name="reports_title">Báo cáo chi tiêu</string>
+    <string name="weekly">Tuần</string>
+    <string name="monthly">Tháng</string>
+    <string name="yearly">Năm</string>
+    <string name="total_spent">Tổng chi tiêu</string>
+    <string name="by_category">Theo danh mục</string>
+    <string name="trend">Xu hướng</string>
+    <string name="custom">Tùy chọn</string>
+    <string name="from_date">Từ ngày</string>
+    <string name="to_date">Đến ngày</string>
+    <string name="select_date_range">Chọn khoảng thời gian</string>
+    <string name="date_range_display">%s - %s</string>
+    
+    <!-- Budget -->
+    <string name="budget_title">Quản lý ngân sách</string>
+    <string name="set_budget">Thiết lập ngân sách</string>
+    <string name="budget_limit">Giới hạn ngân sách</string>
+    <string name="spent">Đã chi</string>
+    <string name="remaining">Còn lại</string>
+    <string name="over_budget">Vượt ngân sách!</string>
+    <string name="budget_warning">Sắp hết ngân sách</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Cài đặt</string>
+    <string name="currency">Đơn vị tiền tệ</string>
+    <string name="notifications">Thông báo</string>
+    <string name="daily_reminder">Nhắc nhở hàng ngày</string>
+    <string name="sync">Đồng bộ dữ liệu</string>
+    <string name="account">Tài khoản</string>
+    <string name="login">Đăng nhập</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="dark_mode">Chế độ tối</string>
+    <string name="about">Về ứng dụng</string>
+    <string name="version">Phiên bản</string>
+    <string name="export_data">Xuất dữ liệu</string>
+    <string name="import_data">Nhập dữ liệu</string>
+    
+    <!-- Dialogs -->
+    <string name="confirm_delete">Xác nhận xóa</string>
+    <string name="delete_message">Bạn có chắc muốn xóa giao dịch này?</string>
+    <string name="delete">Xóa</string>
+    <string name="edit">Sửa</string>
+    
+    <!-- Messages -->
+    <string name="save_success">Đã lưu thành công</string>
+    <string name="delete_success">Đã xóa thành công</string>
+    <string name="error_occurred">Có lỗi xảy ra</string>
+    <string name="please_enter_amount">Vui lòng nhập số tiền</string>
+    <string name="please_select_category">Vui lòng chọn danh mục</string>
+    
+    <!-- Currency -->
+    <string name="currency_vnd">₫</string>
+    <string name="currency_format">%,.0f ₫</string>
+    
+    <!-- Chat -->
+    <string name="chat_title">Trợ lý AI</string>
+    <string name="chat_suggestion_budget">Làm thế nào để lập ngân sách hiệu quả?</string>
+    <string name="chat_suggestion_save">Cho tôi mẹo tiết kiệm tiền hàng tháng</string>
+    <string name="chat_suggestion_analyze">Phân tích chi tiêu của tôi và đưa ra lời khuyên</string>
+    <string name="chat_clear_title">Xóa lịch sử?</string>
+    <string name="chat_clear_message">Bạn có muốn xóa toàn bộ đoạn chat không?</string>
+    <string name="chat_welcome">Xin chào! 👋 Tôi là trợ lý tài chính AI của bạn.\n\nTôi có thể giúp bạn:\n• 📊 Phân tích chi tiêu\n• 💡 Đưa ra lời khuyên tiết kiệm\n• 📈 Lập kế hoạch ngân sách\n• 🎯 Đặt mục tiêu tài chính\n\nHãy hỏi tôi bất cứ điều gì về quản lý tài chính nhé!</string>
+    <string name="chat_error">Xin lỗi, tôi đang gặp sự cố. Vui lòng thử lại sau.</string>
+    
+    <!-- Common Messages -->
+    <string name="error_prefix">Lỗi: </string>
+    <string name="error_input_required">Vui lòng nhập đầy đủ thông tin</string>
+    <string name="error_invalid_amount">Vui lòng nhập số tiền hợp lệ</string>
+    <string name="success_saved">Đã lưu!</string>
+    <string name="success_deleted">Đã xóa!</string>
+    <string name="success_added">Đã thêm!</string>
+    <string name="success_logged_out">Đã đăng xuất</string>
+    <string name="syncing">Đang đồng bộ…</string>
+    
+    <!-- Scan Receipt -->
+    <string name="scan_error_no_image">Vui lòng chụp hoặc chọn ảnh hóa đơn</string>
+    <string name="scan_error_camera_permission">Cần quyền camera để chụp hóa đơn</string>
+    <string name="scan_success">Đã nhập từ hóa đơn!</string>
+    <!-- Dynamic Insights -->
+    <string name="insight_start_spending">Hãy bắt đầu chi tiêu thông minh ngay hôm nay! 🚀</string>
+    <string name="insight_lower_spending">Chi tiêu tháng này thấp hơn %s so với tháng trước! 📉</string>
+    <string name="insight_higher_spending">Chi tiêu tháng này cao hơn %s so với tháng trước. ⚠️</string>
+    <string name="insight_equal_spending">Chi tiêu tương đương với tháng trước.</string>
+
+    <!-- Sync Status -->
+    <string name="sync_synced">Đã đồng bộ</string>
+    <string name="sync_not_synced">Chưa đồng bộ</string>
+    
+    <!-- Recurring Status -->
+    <string name="status_active">Đang hoạt động</string>
+    <string name="status_paused">Tạm dừng</string>
+    
+    <!-- Scan Errors -->
+    <string name="scan_error_no_text">Không tìm thấy văn bản trong ảnh</string>
+    <string name="scan_error_recognition_prefix">Lỗi nhận dạng văn bản: </string>
+    
+    <!-- Budget Status -->
+    <string name="budget_not_set">Chưa thiết lập</string>
+    <string name="budget_spent_fmt">Đã chi: %s</string>
+    <string name="budget_remaining_fmt">Còn: %s</string>
+    
+    <!-- Validation/Common -->
+    <string name="unknown">Không xác định</string>
+    <string name="today">Hôm nay</string>
+</resources>

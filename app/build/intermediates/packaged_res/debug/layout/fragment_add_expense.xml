@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_screen">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/spacing_lg">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back"
+                android:contentDescription="@string/cancel"
+                app:tint="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/spacing_md"
+                android:text="@string/add_expense"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_title"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_receipt"
+                app:icon="@drawable/ic_scan"
+                style="@style/SecondaryButton" />
+        </LinearLayout>
+
+        <!-- Toggle Income/Expense -->
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggle_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_lg"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_expense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/expense"
+                style="@style/Widget.Material3.Button.OutlinedButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_income"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/income"
+                style="@style/Widget.Material3.Button.OutlinedButton" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <!-- Amount Input (Hero Style) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/spacing_lg"
+            android:background="@drawable/gradient_balance_card"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SỐ TIỀN"
+                android:textColor="@color/on_primary"
+                android:alpha="0.7"
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="200dp"
+                android:textColorHint="@color/on_primary"
+                app:hintEnabled="false"
+                app:boxBackgroundMode="none"
+                app:boxStrokeWidth="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textSize="48sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/on_primary"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:textColorHint="#80FFFFFF"
+                    android:background="@android:color/transparent" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Category Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_sm"
+            android:text="@string/category"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_body"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:nestedScrollingEnabled="false"
+            tools:listitem="@layout/item_category" />
+
+        <!-- Date Selection -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:hint="@string/date"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_dashboard">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:clickable="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Note -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:hint="@string/note"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:maxLines="4" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Tags -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_lg"
+            android:hint="🏷️ Tags (phân cách bằng dấu phẩy)"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:helperText="Ví dụ: cafe, công việc, giải trí">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Save Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/save"
+            style="@style/PrimaryButton" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
