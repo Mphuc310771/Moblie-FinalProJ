@@ -287,10 +287,9 @@
                 android:gravity="center_vertical">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_stars"
-                    app:tint="@color/primary"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_gemini_mascot"
                     android:contentDescription="AI" />
 
                 <TextView
@@ -335,11 +334,12 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🤖"
-                        android:textSize="24sp" />
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/ic_gemini_mascot"
+                        android:scaleType="fitCenter" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -375,11 +375,12 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📸"
-                        android:textSize="24sp" />
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/ic_scan_3d"
+                        android:scaleType="fitCenter" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -415,11 +416,12 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🎯"
-                        android:textSize="24sp" />
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/ic_savings_3d"
+                        android:scaleType="fitCenter" />
 
                     <TextView
                         android:layout_width="wrap_content"

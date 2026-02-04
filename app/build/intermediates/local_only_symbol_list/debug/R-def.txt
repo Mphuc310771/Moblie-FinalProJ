@@ -144,12 +144,15 @@ drawable ic_budget
 drawable ic_calendar
 drawable ic_dashboard
 drawable ic_delete
+drawable ic_gemini_mascot
 drawable ic_help
 drawable ic_launcher_foreground
 drawable ic_notification
 drawable ic_receipt
 drawable ic_reports
+drawable ic_savings_3d
 drawable ic_scan
+drawable ic_scan_3d
 drawable ic_search
 drawable ic_send
 drawable ic_settings

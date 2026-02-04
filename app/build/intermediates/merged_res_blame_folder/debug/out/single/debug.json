@@ -1,9 +1,5 @@
 [
     {
-        "merged": "com.smartbudget.app-merged_res-55:/drawable_img_balance_card_adaptive.png.flat",
-        "source": "com.smartbudget.app-main-57:/drawable/img_balance_card_adaptive.png"
-    },
-    {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_gradient_card_expense.xml.flat",
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable\\gradient_card_expense.xml"
     },
@@ -56,6 +52,10 @@
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\layout\\activity_splash.xml"
     },
     {
+        "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_ic_gemini_mascot.png.flat",
+        "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable\\ic_gemini_mascot.png"
+    },
+    {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_bg_chart_bar.xml.flat",
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable\\bg_chart_bar.xml"
     },
@@ -96,6 +96,10 @@
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable\\ic_receipt.xml"
     },
     {
+        "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable-night_img_balance_card_adaptive.png.flat",
+        "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable-night\\img_balance_card_adaptive.png"
+    },
+    {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_ring_fingerprint_outer.xml.flat",
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable\\ring_fingerprint_outer.xml"
     },
@@ -122,6 +126,10 @@
     {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\layout_fragment_savings_goal.xml.flat",
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\layout\\fragment_savings_goal.xml"
+    },
+    {
+        "merged": "com.smartbudget.app-merged_res-55:/drawable_ic_scan_3d.png.flat",
+        "source": "com.smartbudget.app-main-57:/drawable/ic_scan_3d.png"
     },
     {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_ic_back.xml.flat",
@@ -328,6 +336,10 @@
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\layout\\layout_expandable_fab.xml"
     },
     {
+        "merged": "com.smartbudget.app-merged_res-55:/drawable_ic_savings_3d.png.flat",
+        "source": "com.smartbudget.app-main-57:/drawable/ic_savings_3d.png"
+    },
+    {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_bg_neon_glow.xml.flat",
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable\\bg_neon_glow.xml"
     },
@@ -350,10 +362,6 @@
     {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\layout_fragment_add_expense.xml.flat",
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\layout\\fragment_add_expense.xml"
-    },
-    {
-        "merged": "com.smartbudget.app-merged_res-55:/drawable-night_img_balance_card_adaptive.png.flat",
-        "source": "com.smartbudget.app-main-57:/drawable-night/img_balance_card_adaptive.png"
     },
     {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_bg_surface_rounded.xml.flat",
@@ -406,6 +414,10 @@
     {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_bottom_nav_item_color.xml.flat",
         "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable\\bottom_nav_item_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_img_balance_card_adaptive.png.flat",
+        "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-main-57:\\drawable\\img_balance_card_adaptive.png"
     },
     {
         "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.5\\com.smartbudget.app-merged_res-55:\\drawable_gradient_card_income.xml.flat",

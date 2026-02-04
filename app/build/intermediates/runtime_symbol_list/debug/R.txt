@@ -3255,6 +3255,7 @@ int drawable ic_clear_black_24 0x7f0800d2
 int drawable ic_clock_black_24dp 0x7f0800d3
 int drawable ic_dashboard 0x7f0800d4
 int drawable ic_delete 0x7f0800d5
+int drawable ic_gemini_mascot 0x7f080146
 int drawable ic_help 0x7f0800d6
 int drawable ic_keyboard_black_24dp 0x7f0800d7
 int drawable ic_launcher_foreground 0x7f0800d8
@@ -3268,7 +3269,9 @@ int drawable ic_mtrl_chip_close_circle 0x7f0800df
 int drawable ic_notification 0x7f0800e0
 int drawable ic_receipt 0x7f0800e1
 int drawable ic_reports 0x7f0800e2
+int drawable ic_savings_3d 0x7f080147
 int drawable ic_scan 0x7f0800e3
+int drawable ic_scan_3d 0x7f080148
 int drawable ic_search 0x7f0800e4
 int drawable ic_search_black_24 0x7f0800e5
 int drawable ic_send 0x7f0800e6

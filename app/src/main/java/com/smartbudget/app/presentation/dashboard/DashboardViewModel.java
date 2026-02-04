@@ -122,21 +122,51 @@ public class DashboardViewModel extends AndroidViewModel {
         if (current == null) current = 0.0;
         if (previous == null) previous = 0.0;
 
+        // 1. Basic Math Insight (Immediate fallback)
+        String basicInsight;
         if (previous == 0) {
-            spendingInsight.setValue(getApplication().getString(com.smartbudget.app.R.string.insight_start_spending));
-            return;
-        }
-
-        double diff = current - previous;
-        double percent = (Math.abs(diff) / previous) * 100;
-        String formattedPercent = String.format("%.0f%%", percent);
-
-        if (diff < 0) {
-            spendingInsight.setValue(getApplication().getString(com.smartbudget.app.R.string.insight_lower_spending, formattedPercent));
-        } else if (diff > 0) {
-            spendingInsight.setValue(getApplication().getString(com.smartbudget.app.R.string.insight_higher_spending, formattedPercent));
+            basicInsight = getApplication().getString(com.smartbudget.app.R.string.insight_start_spending);
         } else {
-            spendingInsight.setValue(getApplication().getString(com.smartbudget.app.R.string.insight_equal_spending));
+            double diff = current - previous;
+            double percent = (Math.abs(diff) / previous) * 100;
+            String formattedPercent = String.format("%.0f%%", percent);
+
+            if (diff < 0) {
+                basicInsight = getApplication().getString(com.smartbudget.app.R.string.insight_lower_spending, formattedPercent);
+            } else if (diff > 0) {
+                basicInsight = getApplication().getString(com.smartbudget.app.R.string.insight_higher_spending, formattedPercent);
+            } else {
+                basicInsight = getApplication().getString(com.smartbudget.app.R.string.insight_equal_spending);
+            }
+        }
+        
+        // Show basic insight immediately
+        spendingInsight.setValue(basicInsight);
+        
+        // 2. Call AI for Premium Insight (Async)
+        com.smartbudget.app.ai.AIProviderManager aiManager = 
+            com.smartbudget.app.ai.AIProviderManager.getInstance(getApplication());
+            
+        if (aiManager.isAnyProviderAvailable()) {
+            String prompt = String.format(
+                "So sánh chi tiêu tháng này (%,.0f) với tháng trước (%,.0f). " +
+                "Hãy đưa ra một nhận xét ngắn gọn (dưới 15 từ), thú vị, có emoji, động viên người dùng tiết kiệm. " +
+                "Không lặp lại câu cũ.", 
+                current, previous
+            );
+            
+            aiManager.chat(prompt, new com.smartbudget.app.ai.AICallback() {
+                @Override
+                public void onSuccess(String response) {
+                    // Update with AI text
+                    spendingInsight.postValue(response);
+                }
+                
+                @Override
+                public void onError(String error, int code) {
+                    // Keep basic insight
+                }
+            });
         }
     }
 

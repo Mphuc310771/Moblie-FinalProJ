@@ -3256,6 +3256,7 @@ drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_dashboard
 drawable ic_delete
+drawable ic_gemini_mascot
 drawable ic_help
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_foreground
@@ -3269,7 +3270,9 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_notification
 drawable ic_receipt
 drawable ic_reports
+drawable ic_savings_3d
 drawable ic_scan
+drawable ic_scan_3d
 drawable ic_search
 drawable ic_search_black_24
 drawable ic_send

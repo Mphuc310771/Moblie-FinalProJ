@@ -413,10 +413,29 @@ public class SettingsFragment extends Fragment {
         new AlertDialog.Builder(requireContext())
                 .setTitle("Chọn Model AI 🧠")
                 .setSingleChoiceItems(models, selectedIndex, (dialog, which) -> {
-                    // Model selection - currently just display
-                    updateModelDisplay();
+                    String selectedModel = models[which];
+                    
+                    // Logic to map Model Name back to Provider/Config
+                    // Currently simplified: If model contains "gemini", switch to GEMINI provider
+                    // If model contains "llama" or "groq", switch to GROQ provider
+                    // In a full implementation, AIProviderManager should handle specific model string setting
+                    
+                    com.smartbudget.app.ai.AIProviderManager.AIProvider newProvider;
+                    if (selectedModel.toLowerCase().contains("gemini")) {
+                        newProvider = com.smartbudget.app.ai.AIProviderManager.AIProvider.GEMINI;
+                        // Ideally set specific model on the service if supported
+                    } else {
+                        newProvider = com.smartbudget.app.ai.AIProviderManager.AIProvider.GROQ;
+                    }
+                    
+                    if (manager.setProvider(newProvider)) {
+                         updateModelDisplay();
+                         Toast.makeText(requireContext(), "Đã chuyển sang: " + selectedModel, Toast.LENGTH_SHORT).show();
+                    } else {
+                         Toast.makeText(requireContext(), "Lỗi khi chuyển model", Toast.LENGTH_SHORT).show();
+                    }
+                    
                     dialog.dismiss();
-                    Toast.makeText(requireContext(), "Đang dùng: " + models[which], Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton("Hủy", null)
                 .show();
@@ -425,9 +444,13 @@ public class SettingsFragment extends Fragment {
     private void updateModelDisplay() {
         com.smartbudget.app.ai.AIProviderManager manager = 
             com.smartbudget.app.ai.AIProviderManager.getInstance(requireContext());
-        String name = manager.getCurrentModel();
+        
+        // Show Provider Name + Model Name for clarity
+        String providerName = manager.getCurrentProvider().getDisplayName();
+        String modelName = manager.getCurrentModel();
+        
         if (binding != null && binding.tvAiModel != null) {
-            binding.tvAiModel.setText(name);
+            binding.tvAiModel.setText(providerName + " (" + modelName + ")");
         }
     }
 
