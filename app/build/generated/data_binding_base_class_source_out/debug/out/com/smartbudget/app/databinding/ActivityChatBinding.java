@@ -29,6 +29,9 @@ public final class ActivityChatBinding implements ViewBinding {
   public final ImageButton btnBack;
 
   @NonNull
+  public final ImageButton btnHelp;
+
+  @NonNull
   public final FloatingActionButton btnSend;
 
   @NonNull
@@ -53,11 +56,13 @@ public final class ActivityChatBinding implements ViewBinding {
   public final RecyclerView rvMessages;
 
   private ActivityChatBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
-      @NonNull FloatingActionButton btnSend, @NonNull Chip chipAnalyze, @NonNull Chip chipBudget,
-      @NonNull ChipGroup chipGroup, @NonNull Chip chipSave, @NonNull TextInputEditText etMessage,
+      @NonNull ImageButton btnHelp, @NonNull FloatingActionButton btnSend,
+      @NonNull Chip chipAnalyze, @NonNull Chip chipBudget, @NonNull ChipGroup chipGroup,
+      @NonNull Chip chipSave, @NonNull TextInputEditText etMessage,
       @NonNull ProgressBar progressBar, @NonNull RecyclerView rvMessages) {
     this.rootView = rootView;
     this.btnBack = btnBack;
+    this.btnHelp = btnHelp;
     this.btnSend = btnSend;
     this.chipAnalyze = chipAnalyze;
     this.chipBudget = chipBudget;
@@ -98,6 +103,12 @@ public final class ActivityChatBinding implements ViewBinding {
       id = R.id.btn_back;
       ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
       if (btnBack == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_help;
+      ImageButton btnHelp = ViewBindings.findChildViewById(rootView, id);
+      if (btnHelp == null) {
         break missingId;
       }
 
@@ -149,8 +160,8 @@ public final class ActivityChatBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityChatBinding((LinearLayout) rootView, btnBack, btnSend, chipAnalyze,
-          chipBudget, chipGroup, chipSave, etMessage, progressBar, rvMessages);
+      return new ActivityChatBinding((LinearLayout) rootView, btnBack, btnHelp, btnSend,
+          chipAnalyze, chipBudget, chipGroup, chipSave, etMessage, progressBar, rvMessages);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

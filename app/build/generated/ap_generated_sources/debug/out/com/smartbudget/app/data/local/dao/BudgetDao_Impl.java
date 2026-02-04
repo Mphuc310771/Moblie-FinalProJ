@@ -30,6 +30,8 @@ public final class BudgetDao_Impl implements BudgetDao {
 
   private final EntityInsertionAdapter<BudgetEntity> __insertionAdapterOfBudgetEntity;
 
+  private final EntityInsertionAdapter<BudgetEntity> __insertionAdapterOfBudgetEntity_1;
+
   private final EntityDeletionOrUpdateAdapter<BudgetEntity> __deletionAdapterOfBudgetEntity;
 
   private final EntityDeletionOrUpdateAdapter<BudgetEntity> __updateAdapterOfBudgetEntity;
@@ -47,6 +49,28 @@ public final class BudgetDao_Impl implements BudgetDao {
       @NonNull
       protected String createQuery() {
         return "INSERT OR REPLACE INTO `budgets` (`id`,`categoryId`,`limitAmount`,`month`,`year`,`spentAmount`) VALUES (nullif(?, 0),?,?,?,?,?)";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement,
+          final BudgetEntity entity) {
+        statement.bindLong(1, entity.getId());
+        if (entity.getCategoryId() == null) {
+          statement.bindNull(2);
+        } else {
+          statement.bindLong(2, entity.getCategoryId());
+        }
+        statement.bindDouble(3, entity.getLimitAmount());
+        statement.bindLong(4, entity.getMonth());
+        statement.bindLong(5, entity.getYear());
+        statement.bindDouble(6, entity.getSpentAmount());
+      }
+    };
+    this.__insertionAdapterOfBudgetEntity_1 = new EntityInsertionAdapter<BudgetEntity>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "INSERT OR IGNORE INTO `budgets` (`id`,`categoryId`,`limitAmount`,`month`,`year`,`spentAmount`) VALUES (nullif(?, 0),?,?,?,?,?)";
       }
 
       @Override
@@ -140,6 +164,19 @@ public final class BudgetDao_Impl implements BudgetDao {
   }
 
   @Override
+  public long insertIfNotExists(final BudgetEntity budget) {
+    __db.assertNotSuspendingTransaction();
+    __db.beginTransaction();
+    try {
+      final long _result = __insertionAdapterOfBudgetEntity_1.insertAndReturnId(budget);
+      __db.setTransactionSuccessful();
+      return _result;
+    } finally {
+      __db.endTransaction();
+    }
+  }
+
+  @Override
   public void delete(final BudgetEntity budget) {
     __db.assertNotSuspendingTransaction();
     __db.beginTransaction();
@@ -223,6 +260,46 @@ public final class BudgetDao_Impl implements BudgetDao {
   }
 
   @Override
+  public Long findBudgetId(final Long categoryId, final int month, final int year) {
+    final String _sql = "SELECT id FROM budgets WHERE (categoryId IS NULL AND ? IS NULL OR categoryId = ?) AND month = ? AND year = ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 4);
+    int _argIndex = 1;
+    if (categoryId == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindLong(_argIndex, categoryId);
+    }
+    _argIndex = 2;
+    if (categoryId == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindLong(_argIndex, categoryId);
+    }
+    _argIndex = 3;
+    _statement.bindLong(_argIndex, month);
+    _argIndex = 4;
+    _statement.bindLong(_argIndex, year);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final Long _result;
+      if (_cursor.moveToFirst()) {
+        if (_cursor.isNull(0)) {
+          _result = null;
+        } else {
+          _result = _cursor.getLong(0);
+        }
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
   public LiveData<List<BudgetEntity>> getBudgetsByMonthYear(final int month, final int year) {
     final String _sql = "SELECT b.*, (SELECT COALESCE(SUM(amount), 0) FROM expenses e WHERE e.categoryId = b.categoryId AND strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', ?) AND strftime('%Y', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%d', ?)) as spentAmount FROM budgets b WHERE b.categoryId IS NOT NULL AND b.month = ? AND b.year = ? ORDER BY b.categoryId";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 4);
@@ -290,7 +367,7 @@ public final class BudgetDao_Impl implements BudgetDao {
 
   @Override
   public BudgetEntity getTotalBudget(final int month, final int year) {
-    final String _sql = "SELECT b.id, b.categoryId, b.limitAmount, b.month, b.year, (SELECT COALESCE(SUM(amount), 0) FROM expenses e WHERE strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', ?) AND strftime('%Y', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%d', ?)) as spentAmount FROM budgets b WHERE b.categoryId IS NULL AND b.month = ? AND b.year = ?";
+    final String _sql = "SELECT b.id, b.categoryId, b.limitAmount, b.month, b.year, (SELECT COALESCE(SUM(e.amount), 0) FROM expenses e INNER JOIN categories c ON e.categoryId = c.id WHERE c.type = 0 AND strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', ?) AND strftime('%Y', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%d', ?)) as spentAmount FROM budgets b WHERE b.categoryId IS NULL AND b.month = ? AND b.year = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 4);
     int _argIndex = 1;
     _statement.bindLong(_argIndex, month);
@@ -346,7 +423,7 @@ public final class BudgetDao_Impl implements BudgetDao {
 
   @Override
   public LiveData<BudgetEntity> getTotalBudgetLive(final int month, final int year) {
-    final String _sql = "SELECT b.id, b.categoryId, b.limitAmount, b.month, b.year, (SELECT COALESCE(SUM(amount), 0) FROM expenses e WHERE strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', ?) AND strftime('%Y', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%d', ?)) as spentAmount FROM budgets b WHERE b.categoryId IS NULL AND b.month = ? AND b.year = ?";
+    final String _sql = "SELECT b.id, b.categoryId, b.limitAmount, b.month, b.year, (SELECT COALESCE(SUM(e.amount), 0) FROM expenses e INNER JOIN categories c ON e.categoryId = c.id WHERE c.type = 0 AND strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', ?) AND strftime('%Y', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%d', ?)) as spentAmount FROM budgets b WHERE b.categoryId IS NULL AND b.month = ? AND b.year = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 4);
     int _argIndex = 1;
     _statement.bindLong(_argIndex, month);
@@ -356,7 +433,7 @@ public final class BudgetDao_Impl implements BudgetDao {
     _statement.bindLong(_argIndex, month);
     _argIndex = 4;
     _statement.bindLong(_argIndex, year);
-    return __db.getInvalidationTracker().createLiveData(new String[] {"expenses",
+    return __db.getInvalidationTracker().createLiveData(new String[] {"expenses", "categories",
         "budgets"}, false, new Callable<BudgetEntity>() {
       @Override
       @Nullable

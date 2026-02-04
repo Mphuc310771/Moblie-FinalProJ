@@ -18,7 +18,7 @@ public class SmartBudgetApp extends Application {
         super.onCreate();
 
         // Apply saved theme (Dark Mode)
-        ThemeManager.init(this);
+        ThemeManager.applyTheme(this);
 
         // Initialize database
         AppDatabase.getDatabase(this);

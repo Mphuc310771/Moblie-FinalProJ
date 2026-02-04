@@ -44,18 +44,36 @@ public interface ExpenseDao {
     @Query("SELECT * FROM expenses ORDER BY date DESC LIMIT :limit")
     LiveData<List<ExpenseEntity>> getRecentExpenses(int limit);
 
-    // Aggregation queries
-    @Query("SELECT SUM(amount) FROM expenses WHERE date >= :startDate AND date <= :endDate")
+    // Aggregation queries - only count EXPENSE categories (type=0), not income
+    @Query("SELECT SUM(e.amount) FROM expenses e " +
+           "INNER JOIN categories c ON e.categoryId = c.id " +
+           "WHERE c.type = 0 AND e.date >= :startDate AND e.date <= :endDate")
     LiveData<Double> getTotalExpenseByDateRange(long startDate, long endDate);
+
+    // Total INCOME (category type=1)
+    @Query("SELECT SUM(e.amount) FROM expenses e " +
+           "INNER JOIN categories c ON e.categoryId = c.id " +
+           "WHERE c.type = 1 AND e.date >= :startDate AND e.date <= :endDate")
+    LiveData<Double> getTotalIncomeByDateRange(long startDate, long endDate);
 
     @Query("SELECT SUM(amount) FROM expenses WHERE categoryId = :categoryId AND date >= :startDate AND date <= :endDate")
     double getTotalByCategoryAndDateRange(long categoryId, long startDate, long endDate);
 
-    @Query("SELECT SUM(amount) FROM expenses WHERE date >= :startDate AND date <= :endDate")
+    @Query("SELECT SUM(e.amount) FROM expenses e " +
+           "INNER JOIN categories c ON e.categoryId = c.id " +
+           "WHERE c.type = 0 AND e.date >= :startDate AND e.date <= :endDate")
     double getTotalByDateRange(long startDate, long endDate);
 
-    // For chart data - group by category
-    @Query("SELECT categoryId, SUM(amount) as total FROM expenses WHERE date >= :startDate AND date <= :endDate GROUP BY categoryId")
+    // Sync version of income query (for background thread)
+    @Query("SELECT COALESCE(SUM(e.amount), 0) FROM expenses e " +
+           "INNER JOIN categories c ON e.categoryId = c.id " +
+           "WHERE c.type = 1 AND e.date >= :startDate AND e.date <= :endDate")
+    double getTotalIncomeSync(long startDate, long endDate);
+
+    // For chart data - group by EXPENSE categories only
+    @Query("SELECT e.categoryId, SUM(e.amount) as total FROM expenses e " +
+           "INNER JOIN categories c ON e.categoryId = c.id " +
+           "WHERE c.type = 0 AND e.date >= :startDate AND e.date <= :endDate GROUP BY e.categoryId")
     LiveData<List<CategoryTotal>> getExpenseTotalsByCategory(long startDate, long endDate);
 
     @Query("SELECT * FROM expenses ORDER BY date DESC, createdAt DESC")

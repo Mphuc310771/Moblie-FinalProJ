@@ -32,9 +32,9 @@ public class SettingsFragment extends Fragment {
             result -> {
                 if (result.getResultCode() == android.app.Activity.RESULT_OK && result.getData() != null) {
                     android.net.Uri uri = result.getData().getData();
-                    // Handle import logic here (TODO: Implement actual CSV parsing)
                     if (uri != null) {
-                        Toast.makeText(requireContext(), "Đã chọn file: " + uri.getPath(), Toast.LENGTH_SHORT).show();
+                        // Call actual CSV import
+                        com.smartbudget.app.utils.CsvImporter.quickImport(requireContext(), uri);
                     }
                 }
             }
@@ -96,9 +96,8 @@ public class SettingsFragment extends Fragment {
     private void setupInitialState() {
         if (binding == null) return;
         
-        com.smartbudget.app.utils.ThemeManager themeManager = new com.smartbudget.app.utils.ThemeManager(requireContext());
         if (binding.switchDarkMode != null) {
-            binding.switchDarkMode.setChecked(themeManager.isDarkModeEnabled());
+             binding.switchDarkMode.setChecked(com.smartbudget.app.utils.ThemeManager.getStoredTheme(requireContext()) == com.smartbudget.app.utils.ThemeManager.THEME_DARK);
         }
         
         if (binding.switchReminder != null) {
@@ -115,14 +114,36 @@ public class SettingsFragment extends Fragment {
     }
 
     private void exportCsv() {
-        // TODO: Implement full CSV export
-        // For now, use the BackupManager or show a toast
-        try {
-             com.smartbudget.app.utils.BackupManager.quickBackup(requireContext());
-             Toast.makeText(requireContext(), "Đã xuất dữ liệu (Backup)", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-             Toast.makeText(requireContext(), "Lỗi xuất dữ liệu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(requireContext(), "Đang xuất dữ liệu CSV...", Toast.LENGTH_SHORT).show();
+        
+        // Observe expenses and categories to build the export
+        viewModel.getAllExpenses().observe(getViewLifecycleOwner(), expenses -> {
+            if (expenses == null || expenses.isEmpty()) {
+                Toast.makeText(requireContext(), "Không có dữ liệu để xuất", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
+            viewModel.getAllCategories().observe(getViewLifecycleOwner(), categories -> {
+                if (categories == null) return;
+                
+                // Build category map
+                java.util.Map<Long, com.smartbudget.app.data.local.entity.CategoryEntity> categoryMap = new java.util.HashMap<>();
+                for (com.smartbudget.app.data.local.entity.CategoryEntity cat : categories) {
+                    categoryMap.put(cat.getId(), cat);
+                }
+                
+                // Call CsvExporter
+                try {
+                    com.smartbudget.app.utils.CsvExporter.exportDataToCsv(requireContext(), expenses, categoryMap);
+                } catch (Exception e) {
+                    Toast.makeText(requireContext(), "Lỗi xuất CSV: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                
+                // Remove observers after export to avoid multiple calls
+                viewModel.getAllExpenses().removeObservers(getViewLifecycleOwner());
+                viewModel.getAllCategories().removeObservers(getViewLifecycleOwner());
+            });
+        });
     }
 
     @Override
@@ -144,14 +165,51 @@ public class SettingsFragment extends Fragment {
         // ... (Theme and Reminder listeners remain same) ...
         
         // Dark mode toggle - REAL implementation
-        com.smartbudget.app.utils.ThemeManager themeManager = new com.smartbudget.app.utils.ThemeManager(requireContext());
-        binding.switchDarkMode.setChecked(themeManager.isDarkModeEnabled());
+        com.smartbudget.app.utils.ThemeManager themeManager = new com.smartbudget.app.utils.ThemeManager(); // Static methods used, instance not needed but kept for structure if changed
+        binding.switchDarkMode.setChecked(com.smartbudget.app.utils.ThemeManager.getStoredTheme(requireContext()) == com.smartbudget.app.utils.ThemeManager.THEME_DARK);
         
         binding.switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            themeManager.setDarkModeEnabled(isChecked);
+            int theme = isChecked ? com.smartbudget.app.utils.ThemeManager.THEME_DARK : com.smartbudget.app.utils.ThemeManager.THEME_LIGHT;
+            com.smartbudget.app.utils.ThemeManager.saveThemePreference(requireContext(), theme);
             // Recreate activity to apply theme
-             requireActivity().recreate();
+            requireActivity().recreate();
         });
+
+        // Biometric lock toggle
+        com.smartbudget.app.utils.BiometricHelper biometricHelper = new com.smartbudget.app.utils.BiometricHelper(requireContext());
+        
+        // Initialize biometric switch state
+        if (binding.switchBiometric != null) {
+            binding.switchBiometric.setChecked(biometricHelper.isBiometricEnabled());
+            
+            // Update status text
+            if (binding.tvBiometricStatus != null) {
+                if (!biometricHelper.canAuthenticate()) {
+                    binding.tvBiometricStatus.setText(biometricHelper.getUnavailableReason());
+                    binding.switchBiometric.setEnabled(false);
+                } else {
+                    binding.tvBiometricStatus.setText(biometricHelper.isBiometricEnabled() ? 
+                        "Đã bật khóa sinh trắc học" : "Mở khóa bằng sinh trắc học");
+                }
+            }
+            
+            binding.switchBiometric.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked && !biometricHelper.canAuthenticate()) {
+                    Toast.makeText(requireContext(), biometricHelper.getUnavailableReason(), Toast.LENGTH_LONG).show();
+                    binding.switchBiometric.setChecked(false);
+                    return;
+                }
+                
+                biometricHelper.setBiometricEnabled(isChecked);
+                if (binding.tvBiometricStatus != null) {
+                    binding.tvBiometricStatus.setText(isChecked ? 
+                        "Đã bật khóa sinh trắc học" : "Mở khóa bằng sinh trắc học");
+                }
+                Toast.makeText(requireContext(), 
+                    isChecked ? "Đã bật khóa vân tay 🔐" : "Đã tắt khóa vân tay", 
+                    Toast.LENGTH_SHORT).show();
+            });
+        }
 
         // Daily reminder toggle
         binding.switchReminder.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -289,7 +347,10 @@ public class SettingsFragment extends Fragment {
             binding.settingImport.setOnClickListener(v -> {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("text/csv");
+                // Use broader MIME types for better compatibility
+                intent.setType("*/*");
+                String[] mimeTypes = {"text/csv", "text/comma-separated-values", "application/csv", "text/plain"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
                 importLauncher.launch(intent);
             });
         }

@@ -1,0 +1,1171 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{vntex}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{multicol}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+\geometry{left=3cm, right=2cm, top=2cm, bottom=2cm}
+\definecolor{smartgreen}{RGB}{40, 167, 69}
+\definecolor{primaryblue}{RGB}{0, 123, 255}
+\definecolor{darkblue}{RGB}{0, 82, 155}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\leftmark}
+\fancyhead[R]{\small\textbf{SmartBudget}}
+\fancyfoot[C]{\thepage}
+
+\titleformat{\section}{\normalfont\LARGE\bfseries\color{darkblue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\Large\bfseries\color{smartgreen}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\large\bfseries}{\thesubsubsection}{1em}{}
+
+\hypersetup{colorlinks=true, linkcolor=smartgreen, urlcolor=primaryblue}
+
+\begin{document}
+
+% TRANG BÌA
+\begin{titlepage}
+\centering
+\vspace*{1cm}
+{\large \textbf{TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN}}\\[0.1cm]
+{\large \textbf{ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH}}\\[0.3cm]
+{\large KHOA CÔNG NGHỆ THÔNG TIN}\\[2cm]
+
+\rule{\linewidth}{0.5mm}\\[0.4cm]
+{\Huge \textbf{BÁO CÁO ĐỒ ÁN CUỐI KỲ}}\\[0.2cm]
+{\Large \textbf{Phát Triển Ứng Dụng Di Động}}\\[0.4cm]
+\rule{\linewidth}{0.5mm}\\[1.5cm]
+
+{\fontsize{30}{36}\selectfont\bfseries\color{smartgreen} SmartBudget}\\[0.5cm]
+{\Large Ứng dụng Quản lý Chi tiêu Cá nhân Thông minh}\\[0.2cm]
+{\large với tích hợp Trí tuệ Nhân tạo (AI)}\\[2cm]
+
+\begin{minipage}{0.48\textwidth}
+\begin{flushleft}
+\textbf{\large SINH VIÊN THỰC HIỆN:}\\[0.3cm]
+Đỗ Trần Minh Phúc - 23120156\\
+Hoàng Kim Trí - 23120098\\[0.2cm]
+Lớp: 23CNTN
+\end{flushleft}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{flushright}
+\textbf{\large GIẢNG VIÊN HƯỚNG DẪN:}\\[0.3cm]
+ThS. Trần Minh Triết\\
+ThS. Đỗ Trọng Lễ\\
+ThS. Huỳnh Viết Thám
+\end{flushright}
+\end{minipage}
+
+\vfill
+{\large TP. Hồ Chí Minh, Tháng 01/2026}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%==============================================================
+\section{Giới thiệu tổng quan}
+%==============================================================
+
+\subsection{Đặt vấn đề}
+
+Trong bối cảnh xã hội hiện đại, việc quản lý tài chính cá nhân ngày càng trở nên quan trọng. Nhiều người, đặc biệt là sinh viên và người mới đi làm, gặp khó khăn trong việc theo dõi các khoản thu chi hàng ngày. Điều này dẫn đến tình trạng chi tiêu vượt quá khả năng tài chính, không thể tiết kiệm được, hoặc không biết tiền đã đi đâu.
+
+Các phương pháp truyền thống như ghi chép sổ tay hoặc Excel tỏ ra bất tiện và tốn thời gian. Người dùng cần một giải pháp hiện đại - ứng dụng di động có thể sử dụng mọi lúc mọi nơi, tự động hóa việc nhập liệu, và cung cấp các phân tích thông minh giúp hiểu rõ hơn về thói quen chi tiêu của mình.
+
+Bên cạnh đó, sự phát triển của công nghệ Trí tuệ Nhân tạo (AI) mở ra cơ hội để xây dựng các tính năng tư vấn tài chính cá nhân hóa, tự động trích xuất thông tin từ hóa đơn, giúp tiết kiệm thời gian và nâng cao trải nghiệm người dùng.
+
+\subsection{Mục tiêu dự án}
+
+Dự án SmartBudget được phát triển nhằm đạt được các mục tiêu sau:
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Xây dựng ứng dụng quản lý chi tiêu toàn diện:} Cho phép người dùng ghi chép, phân loại và theo dõi các khoản thu chi một cách dễ dàng thông qua giao diện trực quan, thân thiện.
+
+\item \textbf{Tích hợp trí tuệ nhân tạo:} Sử dụng các mô hình AI tiên tiến (Google Gemini, Groq Llama) để cung cấp tính năng tư vấn tài chính, phân tích thói quen chi tiêu, và tự động trích xuất thông tin từ hóa đơn bằng công nghệ OCR.
+
+\item \textbf{Trực quan hóa dữ liệu:} Hiển thị báo cáo thống kê bằng biểu đồ Pie Chart và Bar Chart giúp người dùng nhanh chóng nắm bắt tình hình tài chính.
+
+\item \textbf{Hỗ trợ lập kế hoạch tài chính:} Cung cấp tính năng thiết lập ngân sách và mục tiêu tiết kiệm, theo dõi tiến độ và cảnh báo khi gần vượt ngân sách.
+
+\item \textbf{Đồng bộ đa thiết bị:} Tích hợp Firebase để người dùng có thể truy cập dữ liệu từ nhiều thiết bị và không lo mất dữ liệu.
+
+\item \textbf{Thiết kế giao diện hiện đại:} Áp dụng Material Design 3 với hỗ trợ Dark Mode, mang đến trải nghiệm mượt mà.
+\end{enumerate}
+
+\subsection{Đối tượng sử dụng}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Sinh viên:} Quản lý chi tiêu hàng tháng với nguồn tài chính hạn hẹp từ trợ cấp gia đình hoặc làm thêm, đặt mục tiêu tiết kiệm cho các nhu cầu như du lịch, mua sắm thiết bị.
+
+\item \textbf{Người đi làm:} Theo dõi các khoản chi cố định (nhà ở, điện nước, xăng xe) và biến động, phân tích xu hướng chi tiêu để điều chỉnh hành vi tài chính.
+
+\item \textbf{Hộ gia đình:} Quản lý ngân sách gia đình, theo dõi chi tiêu theo các danh mục như thực phẩm, giáo dục, y tế, giải trí.
+
+\item \textbf{Freelancer:} Theo dõi thu nhập từ nhiều nguồn khác nhau, quản lý dòng tiền không ổn định.
+\end{itemize}
+
+\subsection{Phạm vi và tính năng}
+
+Ứng dụng SmartBudget bao gồm 11 tính năng chính được chia thành các nhóm:
+
+\subsubsection{Nhóm tính năng cốt lõi}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Ghi chép thu chi:} Cho phép thêm, sửa, xóa các giao dịch. Mỗi giao dịch bao gồm: số tiền, danh mục (14 danh mục mặc định với emoji icon và màu sắc riêng), ngày tháng (DatePicker), ghi chú tùy chọn, và có thể đính kèm ảnh hóa đơn. Hỗ trợ phân biệt rõ ràng giữa chi tiêu (9 danh mục: Ăn uống, Di chuyển, Mua sắm, Sức khỏe, Giải trí, Học tập, Nhà cửa, Điện nước, Khác) và thu nhập (5 danh mục: Lương, Quà tặng, Đầu tư, Thưởng, Khác).
+
+\item \textbf{Dashboard tổng quan:} Màn hình chính hiển thị lời chào động theo thời gian trong ngày (Chào buổi sáng/trưa/chiều/tối) kèm tên người dùng. Biểu đồ Pie Chart dạng donut hiển thị phân bổ chi tiêu theo danh mục với màu sắc tương ứng, tâm biểu đồ hiển thị tổng chi tiêu trong tháng. Danh sách 5 giao dịch gần nhất được hiển thị bên dưới. Ba nút hành động nhanh dẫn đến: Chat AI, Quét hóa đơn, Mục tiêu tiết kiệm.
+
+\item \textbf{Báo cáo thống kê chi tiết:} Cung cấp bốn tùy chọn khoảng thời gian: Tuần này, Tháng này, Năm nay, và Tùy chọn (cho phép chọn ngày bắt đầu và kết thúc bằng DatePickerDialog). Biểu đồ Pie Chart hiển thị tỷ lệ phân bổ chi tiêu theo danh mục với legend chi tiết. Biểu đồ Bar Chart so sánh chi tiêu theo các khoảng thời gian với animation mượt mà (EaseInOutQuad). Sử dụng thư viện MPAndroidChart với khả năng tùy biến màu sắc cao.
+\end{enumerate}
+
+\subsubsection{Nhóm tính năng lập kế hoạch}
+
+\begin{enumerate}[leftmargin=*]
+\setcounter{enumi}{3}
+\item \textbf{Quản lý ngân sách:} Cho phép thiết lập hạn mức chi tiêu tổng cho tháng thông qua AlertDialog. Hiển thị thẻ tổng quan với: tổng hạn mức, số đã chi, số còn lại, và ProgressBar trực quan hóa mức độ sử dụng. Màu sắc thay đổi theo tình trạng: xanh khi dưới 80\%, vàng từ 80-100\%, đỏ khi vượt quá. Hỗ trợ ngân sách theo từng danh mục riêng biệt, hiển thị trong RecyclerView.
+
+\item \textbf{Mục tiêu tiết kiệm:} Màn hình SavingsGoalFragment cho phép tạo các mục tiêu tiết kiệm với tên, số tiền mục tiêu, và thời hạn mặc định 1 năm. Mỗi mục tiêu có icon và màu riêng. Màn hình tổng quan hiển thị: tổng số tiền đã tiết kiệm, số mục tiêu đang thực hiện, số mục tiêu đã hoàn thành. Người dùng có thể thêm tiền vào từng mục tiêu thông qua dialog, khi đạt 100\% sẽ hiển thị thông báo chúc mừng.
+
+\item \textbf{Chi tiêu định kỳ:} RecurringExpenseFragment quản lý các khoản chi tự động lặp lại hàng tháng (tiền thuê nhà, điện thoại, internet...). Mỗi khoản định kỳ có: tên, số tiền, ngày thu trong tháng (1-28). Hệ thống tự động tính ngày đến hạn tiếp theo. Hỗ trợ tạm dừng/kích hoạt lại từng khoản. Màn hình tổng quan hiển thị tổng chi phí định kỳ hàng tháng và số khoản đang hoạt động.
+\end{enumerate}
+
+\subsubsection{Nhóm tính năng AI}
+
+\begin{enumerate}[leftmargin=*]
+\setcounter{enumi}{6}
+\item \textbf{Trợ lý AI tư vấn tài chính:} ChatActivity cung cấp giao diện chat với trợ lý AI. RecyclerView hiển thị tin nhắn dạng bubble: tin nhắn người dùng bên phải với nền xanh, tin nhắn AI bên trái với nền xám. Ba chip gợi ý câu hỏi mẫu: ``Tư vấn ngân sách'', ``Phân tích chi tiêu'', ``Cách tiết kiệm''. 
+
+Hệ thống tích hợp hai nhà cung cấp AI theo Strategy Pattern: Google Gemini (primary) với multi-model fallback (gemini-2.0-flash → gemini-1.5-flash → gemini-pro), và Groq API (backup) sử dụng model Llama 3.3 70B. AIProviderManager tự động chuyển đổi khi provider chính gặp lỗi rate limit hoặc network timeout, đảm bảo dịch vụ luôn sẵn sàng.
+
+AI có thể thực hiện các tác vụ: chat tự do về tài chính, phân tích thói quen chi tiêu dựa trên dữ liệu người dùng, đề xuất ngân sách phù hợp với thu nhập, và trích xuất thông tin từ hóa đơn. Lịch sử chat được lưu trong Room database (ChatMessageEntity) để hiển thị lại khi mở ứng dụng.
+
+\item \textbf{Quét hóa đơn OCR thông minh:} ScanReceiptActivity kết hợp ML Kit Text Recognition và AI parsing. Người dùng có thể chụp ảnh mới bằng camera (sử dụng FileProvider) hoặc chọn ảnh từ thư viện. 
+
+Quy trình xử lý: (1) Ảnh được load thành Bitmap và tạo InputImage cho ML Kit; (2) TextRecognizer nhận dạng văn bản, trả về raw text; (3) Raw text được gửi đến AI với prompt yêu cầu trích xuất JSON chứa: amount (số tiền tổng), merchant (tên cửa hàng), date (ngày mua), items (danh sách món hàng); (4) Ứng dụng parse JSON và tự động điền vào form thêm giao dịch.
+
+Nếu AI không parse được JSON hợp lệ, hệ thống fallback về ReceiptParser sử dụng regex để tìm các số có định dạng tiền tệ và chọn số lớn nhất. Kết quả được trả về AddExpenseFragment qua ActivityResultLauncher, tự động điền số tiền và ghi chú.
+\end{enumerate}
+
+\subsubsection{Nhóm tính năng hệ thống}
+
+\begin{enumerate}[leftmargin=*]
+\setcounter{enumi}{8}
+\item \textbf{Đăng nhập và đồng bộ Firebase:} LoginActivity và RegisterActivity hỗ trợ đăng ký/đăng nhập bằng Email và Password thông qua Firebase Authentication. Sau khi đăng nhập thành công, FirebaseSyncHelper.downloadData() tự động được gọi để tải dữ liệu từ cloud về thiết bị.
+
+FirebaseSyncHelper quản lý đồng bộ hai chiều: uploadData() sử dụng WriteBatch để gom nhiều giao dịch chưa đồng bộ (isSynced = false) và upload lên Firestore trong một lần commit, sau đó đánh dấu đã đồng bộ. downloadData() query tất cả documents từ collection của user và merge với local database, tránh duplicate bằng cách kiểm tra ID. syncAll() thực hiện upload trước rồi download.
+
+Cấu trúc Firestore: users/\{userId\}/expenses, users/\{userId\}/categories, users/\{userId\}/budgets.
+
+\item \textbf{Nhắc nhở hàng ngày:} ReminderReceiver sử dụng AlarmManager để đặt lịch thông báo nhắc ghi chép chi tiêu. Người dùng có thể cài đặt giờ nhắc trong SettingsFragment bằng TimePickerDialog. Thông báo sử dụng NotificationCompat với nội dung ``Đừng quên ghi chép! Bạn đã chi tiêu gì hôm nay?''. Hỗ trợ Android 13+ với runtime permission POST\_NOTIFICATIONS. AlarmManager.setRepeating() đảm bảo thông báo lặp lại mỗi ngày.
+
+\item \textbf{Chế độ tối (Dark Mode):} ThemeManager quản lý chế độ hiển thị sáng/tối. Preference được lưu trong SharedPreferences với key ``dark\_mode\_enabled''. Khi bật/tắt, ThemeManager gọi AppCompatDelegate.setDefaultNightMode() để áp dụng theme tương ứng (MODE\_NIGHT\_YES hoặc MODE\_NIGHT\_NO). ThemeManager.init() được gọi trong Application.onCreate() để áp dụng theme đã lưu ngay từ khi khởi động. Giao diện tự động thay đổi màu sắc nhờ sử dụng theme attributes thay vì hardcoded colors.
+\end{enumerate}
+
+\subsection{Giao diện ứng dụng}
+
+Ứng dụng SmartBudget được thiết kế theo nguyên tắc Material Design 3 với giao diện hiện đại, thân thiện và dễ sử dụng. Dưới đây là mô tả các màn hình chính:
+
+\subsubsection{Cấu trúc Navigation}
+
+Ứng dụng sử dụng Bottom Navigation Bar với 4 tab chính:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Tab} & \textbf{Tên màn hình} & \textbf{Mô tả} \\
+\hline
+Home & Dashboard & Màn hình chính, tổng quan tài chính \\
+\hline
+Report & Báo cáo & Thống kê chi tiêu theo thời gian \\
+\hline
+Budget & Ngân sách & Quản lý hạn mức chi tiêu \\
+\hline
+Settings & Cài đặt & Tùy chỉnh ứng dụng \\
+\hline
+\end{tabular}
+\caption{Cấu trúc Bottom Navigation}
+\end{table}
+
+\subsubsection{Màn hình Dashboard (Trang chủ)}
+
+\begin{itemize}
+\item \textbf{Header:} Lời chào động theo thời gian (``Chào buổi sáng, [Tên]!'') với avatar người dùng
+\item \textbf{Pie Chart:} Biểu đồ tròn dạng donut hiển thị phân bổ chi tiêu theo danh mục. Tâm biểu đồ hiển thị tổng chi tiêu tháng. Màu sắc tương ứng với từng danh mục. Có animation khi load.
+\item \textbf{Quick Actions:} 3 nút tròn: Chat AI, Quét hóa đơn, Mục tiêu tiết kiệm
+\item \textbf{Recent Transactions:} Danh sách 5 giao dịch gần nhất với icon danh mục, tên, số tiền (màu đỏ cho chi, xanh cho thu), và ngày
+\item \textbf{FAB:} Nút (+) ở góc phải dưới để thêm giao dịch mới
+\end{itemize}
+
+\subsubsection{Màn hình Thêm giao dịch}
+
+\begin{itemize}
+\item \textbf{Tab chuyển đổi:} 2 tab ``Chi tiêu'' và ``Thu nhập'' với màu sắc khác nhau
+\item \textbf{Ô nhập số tiền:} NumberPad lớn, hiển thị số tiền với định dạng VND
+\item \textbf{Grid danh mục:} 9 danh mục chi tiêu hoặc 5 danh mục thu nhập, mỗi danh mục có emoji icon và tên
+\item \textbf{Date Picker:} Hiển thị ngày hiện tại, nhấn để mở DatePickerDialog
+\item \textbf{Ghi chú:} TextInput cho ghi chú tùy chọn
+\item \textbf{Camera button:} Nút chụp ảnh hóa đơn để OCR
+\item \textbf{Nút Lưu:} Button màu xanh lá cây ở cuối màn hình
+\end{itemize}
+
+\subsubsection{Màn hình Báo cáo thống kê}
+
+\begin{itemize}
+\item \textbf{Time Range Selector:} 4 chip: Tuần, Tháng, Năm, Tùy chọn. Chip được chọn có màu primary.
+\item \textbf{Summary Cards:} 2 card hiển thị Tổng chi và Tổng thu với màu sắc tương ứng
+\item \textbf{Pie Chart:} Biểu đồ phân bổ chi tiêu theo danh mục với legend bên dưới
+\item \textbf{Bar Chart:} Biểu đồ cột so sánh chi tiêu theo ngày/tuần/tháng, có animation EaseInOutQuad
+\item \textbf{Category List:} Danh sách chi tiết từng danh mục với số tiền và phần trăm
+\end{itemize}
+
+\subsubsection{Màn hình Chat AI}
+
+\begin{itemize}
+\item \textbf{Header:} Avatar AI và tên ``SmartBudget Assistant''
+\item \textbf{Chat Bubbles:} Tin nhắn người dùng bên phải (nền xanh), AI bên trái (nền xám). Hỗ trợ Markdown rendering.
+\item \textbf{Suggestion Chips:} 3 chip gợi ý: ``Tư vấn ngân sách'', ``Phân tích chi tiêu'', ``Cách tiết kiệm''
+\item \textbf{Input Area:} TextInput với nút gửi, hiển thị typing indicator khi AI đang trả lời
+\item \textbf{Provider Indicator:} Badge nhỏ hiển thị provider đang dùng (Gemini/Groq)
+\item \textbf{Smart Fallback:} Tự động chuyển đổi linh hoạt giữa Gemini (mặc định) và Groq nếu gặp lỗi giới hạn hoặc mất kết nối
+\end{itemize}
+
+\subsubsection{Màn hình Quét hóa đơn}
+
+\begin{itemize}
+\item \textbf{Camera Preview:} Hiển thị camera với overlay hướng dẫn căn chỉnh hóa đơn
+\item \textbf{Capture Button:} Nút chụp lớn ở giữa dưới
+\item \textbf{Gallery Button:} Nút chọn ảnh từ thư viện ở góc trái
+\item \textbf{Processing Screen:} Hiển thị progress với text ``Đang nhận dạng...'' và ``Đang trích xuất thông tin...''
+\item \textbf{Result Preview:} Hiển thị ảnh đã chụp và thông tin được trích xuất (số tiền, cửa hàng, ngày) với nút xác nhận
+\item \textbf{AI Parser:} Sử dụng AI (Gemini/Groq) để phân tích hóa đơn phức tạp, tự động fallback về Regex nếu AI không phản hồi
+\end{itemize}
+
+\subsubsection{Màn hình Cài đặt}
+
+\begin{itemize}
+\item \textbf{Profile Section:} Avatar, tên, email người dùng với nút Edit
+\item \textbf{Appearance:} Toggle Dark Mode với animation chuyển đổi mượt mà
+\item \textbf{Notifications:} Toggle nhắc nhở hàng ngày, Time Picker chọn giờ nhắc
+\item \textbf{Data:} Nút Đồng bộ với Firebase, Xuất dữ liệu
+\item \textbf{About:} Version app, link GitHub, thông tin nhóm phát triển
+\item \textbf{Logout:} Nút đăng xuất màu đỏ ở cuối
+\end{itemize}
+
+\subsubsection{Hỗ trợ Dark Mode}
+
+Ứng dụng hỗ trợ đầy đủ Dark Mode với:
+\begin{itemize}
+\item Nền tối (\#121212) thay vì nền trắng
+\item Text sáng với contrast cao để dễ đọc
+\item Các màu accent được điều chỉnh để phù hợp với nền tối
+\item Card shadows được thay bằng subtle borders
+\item Biểu đồ tự động chuyển màu legend và labels
+\end{itemize}
+
+%==============================================================
+\section{Công nghệ sử dụng}
+%==============================================================
+
+\subsection{Nền tảng phát triển}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|p{6cm}|}
+\hline
+\textbf{Thành phần} & \textbf{Công nghệ} & \textbf{Chi tiết} \\
+\hline
+Ngôn ngữ & Java 8 & Sử dụng Desugaring Library 2.0.4 để hỗ trợ Java 8+ APIs trên thiết bị cũ (LocalDate, Optional, Stream...) \\
+\hline
+Platform & Android SDK & compileSdk 34 (Android 14), minSdk 24 (Android 7.0 Nougat - tương thích 95\%+ thiết bị) \\
+\hline
+Build System & Gradle 8.2.0 & Android Gradle Plugin, quản lý dependencies tự động \\
+\hline
+IDE & Android Studio & Phiên bản Hedgehog 2023.1.1 hoặc mới hơn \\
+\hline
+Version Control & Git \& GitHub & Repository: Mphuc310771/Moblie-FinalProJ \\
+\hline
+\end{tabular}
+\caption{Môi trường phát triển}
+\end{table}
+
+\subsection{Kiến trúc ứng dụng}
+
+Dự án áp dụng mô hình \textbf{MVVM (Model-View-ViewModel)} kết hợp \textbf{Repository Pattern}, được Google khuyến nghị cho ứng dụng Android hiện đại.
+
+\textbf{Lý do chọn MVVM:}
+\begin{itemize}
+\item \textbf{Separation of Concerns:} Tách biệt rõ ràng giữa logic UI (View), logic xử lý dữ liệu (ViewModel), và nguồn dữ liệu (Repository/Model).
+\item \textbf{Lifecycle Awareness:} ViewModel tồn tại qua configuration changes (xoay màn hình), tránh mất dữ liệu và memory leaks.
+\item \textbf{Reactive Programming:} Sử dụng LiveData để tự động cập nhật UI khi dữ liệu thay đổi, không cần callback phức tạp.
+\item \textbf{Testability:} Dễ dàng viết unit test cho ViewModel và Repository riêng biệt.
+\end{itemize}
+
+\textbf{Các thành phần:}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Presentation Layer (24 files):} Bao gồm Activities (MainActivity, LoginActivity, RegisterActivity, ChatActivity, ScanReceiptActivity) và Fragments (DashboardFragment, AddExpenseFragment, ReportsFragment, BudgetFragment, SavingsGoalFragment, RecurringExpenseFragment, SettingsFragment). Mỗi màn hình sử dụng ViewBinding để truy cập UI elements type-safe. Các Adapters (ExpenseAdapter, CategoryAdapter, BudgetAdapter, ChatAdapter...) quản lý hiển thị RecyclerView.
+
+\item \textbf{ViewModel Layer (8 ViewModels):} Mỗi màn hình có ViewModel riêng chứa MutableLiveData cho trạng thái UI và xử lý logic nghiệp vụ. ViewModel gọi Repository để lấy/lưu dữ liệu và expose kết quả qua LiveData để View observe.
+
+\item \textbf{Repository Layer (5 Repositories):} ExpenseRepository, BudgetRepository, CategoryRepository, SavingsRepository, ChatRepository. Đóng vai trò trung gian, tổng hợp dữ liệu từ Local (Room) và Remote (Firebase), cung cấp API đơn giản cho ViewModel.
+
+\item \textbf{Data Layer (23 files):} Local Database sử dụng Room với 6 Entities và 6 DAOs. Remote Services bao gồm Firebase Auth/Firestore và AI APIs (Gemini, Groq).
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=1.5cm,
+box/.style={rectangle, draw, rounded corners, minimum width=5.5cm, minimum height=1.2cm, align=center}]
+\node[box, fill=blue!15] (view) {\textbf{View Layer}\\ Activities, Fragments, Adapters};
+\node[box, fill=green!15, below=of view] (vm) {\textbf{ViewModel Layer}\\ ViewModels + LiveData};
+\node[box, fill=yellow!20, below=of vm] (repo) {\textbf{Repository Layer}\\ Data Aggregation};
+\node[box, fill=red!15, below left=1.2cm and -1cm of repo] (local) {\textbf{Room Database}\\ SQLite + DAOs};
+\node[box, fill=purple!15, below right=1.2cm and -1cm of repo] (remote) {\textbf{Remote APIs}\\ Firebase, Gemini, Groq};
+\draw[->, thick] (view) -- (vm);
+\draw[->, thick] (vm) -- (repo);
+\draw[->, thick] (repo) -- (local);
+\draw[->, thick] (repo) -- (remote);
+\end{tikzpicture}
+\caption{Kiến trúc MVVM của SmartBudget}
+\end{figure}
+
+\subsection{Cơ sở dữ liệu Room}
+
+Room là thư viện ORM của Android Jetpack, cung cấp lớp trừu tượng trên SQLite với compile-time verification.
+
+\textbf{Database Configuration:} AppDatabase extends RoomDatabase, version 4, sử dụng fallbackToDestructiveMigration() cho development. Singleton pattern đảm bảo chỉ có một instance. ExecutorService với 4 threads xử lý database operations trên background.
+
+\textbf{6 Entities:}
+\begin{enumerate}
+\item \textbf{ExpenseEntity (expenses):} id (PK, auto-generate), amount (double), categoryId (FK to categories), date (long - timestamp), note (String), receiptImagePath (String), isSynced (boolean), tags (String - comma-separated), createdAt, updatedAt.
+
+\item \textbf{CategoryEntity (categories):} id, name, icon (emoji String), color (hex String như ``\#FF6B6B''), type (0=expense, 1=income), isCustom (boolean). Có Builder Pattern để tạo objects dễ dàng.
+
+\item \textbf{BudgetEntity (budgets):} id, categoryId, limitAmount, spentAmount, month, year.
+
+\item \textbf{SavingsGoalEntity (savings\_goals):} id, name, targetAmount, currentAmount, deadline (timestamp), icon, color, isCompleted.
+
+\item \textbf{RecurringExpenseEntity (recurring\_expenses):} id, name, amount, categoryId, dayOfMonth (1-28), nextDueDate, isActive.
+
+\item \textbf{ChatMessageEntity (chat\_messages):} id, content, isUser (boolean), timestamp.
+\end{enumerate}
+
+\textbf{DAO Queries:} Mỗi Entity có DAO với các queries cần thiết. ExpenseDao nổi bật với 15 methods: CRUD cơ bản, getExpensesByDateRange() với LiveData, getTotalExpenseByDateRange() cho aggregation, getExpenseTotalsByCategory() trả về List<CategoryTotal> cho Pie Chart, getUnsyncedExpenses() và markAsSynced() cho sync.
+
+\subsection{Thư viện và Dependencies}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|p{5.5cm}|}
+\hline
+\textbf{Thư viện} & \textbf{Phiên bản} & \textbf{Mục đích} \\
+\hline
+Room & 2.6.1 & ORM cho SQLite, compile-time queries \\
+\hline
+Firebase BOM & 32.7.0 & Authentication, Cloud Firestore \\
+\hline
+Gemini SDK & 0.1.2 & Google Generative AI cho Android \\
+\hline
+Retrofit & 2.9.0 & HTTP client cho Groq API \\
+\hline
+ML Kit & 16.0.0 & Text Recognition (OCR) \\
+\hline
+MPAndroidChart & 3.1.0 & Pie Chart, Bar Chart \\
+\hline
+Material & 1.11.0 & Material Design 3 components \\
+\hline
+Navigation & 2.7.6 & Fragment navigation, Safe Args \\
+\hline
+Glide & 4.16.0 & Image loading và caching \\
+\hline
+LiveData \& ViewModel & 2.7.0 & Android Architecture Components \\
+\hline
+\end{tabular}
+\caption{Các thư viện chính}
+\end{table}
+
+%==============================================================
+\section{Thiết kế AI Services}
+%==============================================================
+
+\subsection{Strategy Pattern Implementation}
+
+Việc tích hợp AI được thiết kế theo Strategy Pattern để đảm bảo tính linh hoạt:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=1.5cm,
+box/.style={rectangle, draw, rounded corners, minimum width=4cm, minimum height=1.3cm, align=center, font=\small}]
+\node[box, fill=blue!15] (manager) {\textbf{AIProviderManager}\\ Singleton, Context class};
+\node[box, fill=yellow!20, below=1.5cm of manager] (interface) {\textbf{<<interface>> AIService}\\ chat(), parseReceipt()...};
+\node[box, fill=green!15, below left=1.5cm and 0cm of interface] (gemini) {\textbf{GeminiServiceImpl}\\ 351 dòng, multi-model};
+\node[box, fill=red!15, below right=1.5cm and 0cm of interface] (groq) {\textbf{GroqServiceImpl}\\ 326 dòng, Retrofit};
+\draw[->, thick] (manager) -- (interface);
+\draw[->, dashed] (interface) -- (gemini);
+\draw[->, dashed] (interface) -- (groq);
+\end{tikzpicture}
+\caption{Strategy Pattern cho AI Services}
+\end{figure}
+
+\textbf{AIService Interface} định nghĩa contract chung:
+\begin{itemize}
+\item chat(String message, AICallback callback) - Chat tự do
+\item getFinancialAdvice(String query, AICallback callback) - Tư vấn tài chính
+\item analyzeSpending(String spendingData, AICallback callback) - Phân tích chi tiêu
+\item suggestBudget(double monthlyIncome, AICallback callback) - Đề xuất ngân sách
+\item parseReceipt(String rawText, AICallback callback) - Parse hóa đơn OCR
+\item clearHistory() - Xóa lịch sử hội thoại
+\end{itemize}
+
+\textbf{AIProviderManager} (411 dòng) là Singleton quản lý providers:
+\begin{itemize}
+\item Khởi tạo các providers dựa trên AIConfig (kiểm tra API keys)
+\item Duy trì currentProvider và Map<String, AIService> chứa tất cả providers
+\item Khi gọi chat(), sử dụng FallbackCallback để tự động chuyển provider nếu lỗi
+\item Hỗ trợ switchProvider() để người dùng chọn thủ công
+\end{itemize}
+
+\textbf{AIConfig} (249 dòng) là Singleton quản lý cấu hình:
+\begin{itemize}
+\item BASE URLs cho Gemini và Groq
+\item API keys lấy từ BuildConfig (bảo mật, không hardcode)
+\item Timeout settings: CONNECT\_TIMEOUT = 30s, READ\_TIMEOUT = 60s
+\item Retry configuration: MAX\_RETRY\_ATTEMPTS = 3, exponential backoff
+\item getRetryDelay(attempt): 1s → 2s → 4s, cap tại 10s
+\item shouldRetry(httpCode): true nếu 429, 503, 504, hoặc >= 500
+\end{itemize}
+
+\subsection{GeminiServiceImpl}
+
+Implementation sử dụng Google Gemini SDK với các đặc điểm:
+\begin{itemize}
+\item Model mặc định: gemini-2.0-flash (nhanh, miễn phí)
+\item Multi-model fallback: Nếu model chính lỗi, tự động thử gemini-1.5-flash, gemini-1.5-flash-001, gemini-pro
+\item Duy trì chatHistory để có context đa lượt
+\item System prompt được tùy chỉnh cho context tài chính Việt Nam
+\end{itemize}
+
+\subsection{GroqServiceImpl}
+
+Implementation sử dụng Groq API qua Retrofit:
+\begin{itemize}
+\item Model: llama-3.3-70b-versatile (tốc độ phản hồi rất nhanh)
+\item Các models backup: llama-3.1-70b-versatile, mixtral-8x7b-32768, gemma2-9b-it
+\item Sử dụng OkHttpClient với interceptor thêm Authorization header
+\item Request body theo format OpenAI-compatible
+\end{itemize}
+
+%==============================================================
+\section{Hướng dẫn cài đặt}
+%==============================================================
+
+\subsection{Yêu cầu hệ thống}
+
+\textbf{Môi trường phát triển:}
+\begin{itemize}
+\item Android Studio Hedgehog (2023.1.1) hoặc mới hơn
+\item JDK 17 (bundled với Android Studio)
+\item Android SDK với API 24-34
+\item Kết nối Internet để download dependencies
+\item RAM tối thiểu 8GB (khuyến nghị 16GB)
+\end{itemize}
+
+\textbf{Thiết bị chạy ứng dụng:}
+\begin{itemize}
+\item Android 7.0 (API 24) trở lên
+\item Kết nối Internet cho tính năng AI và đồng bộ
+\item Camera để sử dụng tính năng quét hóa đơn
+\end{itemize}
+
+\subsection{Các bước cài đặt}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Clone source code:} Mở terminal và clone repository từ GitHub.
+
+\item \textbf{Cấu hình Firebase:}
+\begin{itemize}
+\item Truy cập Firebase Console (console.firebase.google.com)
+\item Tạo project mới hoặc sử dụng project có sẵn
+\item Thêm Android app với package: com.smartbudget.app
+\item Download google-services.json vào thư mục app/
+\item Trong Authentication, bật Email/Password và Google Sign-In
+\item Trong Firestore Database, tạo database ở production mode
+\end{itemize}
+
+\item \textbf{Cấu hình API Keys:} Trong file gradle.properties (hoặc local.properties), thêm:
+\begin{itemize}
+\item GEMINI\_API\_KEY=your\_key (lấy từ makersuite.google.com)
+\item GROQ\_API\_KEY=your\_key (lấy từ console.groq.com)
+\end{itemize}
+
+\item \textbf{Build:} Mở project trong Android Studio, đợi Gradle sync, nhấn Run.
+\end{enumerate}
+
+%==============================================================
+\section{Phân tích và Thiết kế UML}
+%==============================================================
+
+\subsection{Sơ đồ Use Case}
+
+Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ góc nhìn người dùng.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.75, transform shape,
+    actor/.style={circle, draw, minimum size=1cm},
+    usecase/.style={ellipse, draw, minimum width=4cm, minimum height=1.3cm, align=center, font=\small},
+    node distance=1.5cm
+]
+% Actor
+\node[actor, label=below:Người dùng] (user) at (-1,0) {};
+
+% System boundary - mở rộng hơn
+\draw[rounded corners, dashed] (2.5,-7) rectangle (13,6);
+\node at (7.75,5.5) {\textbf{SmartBudget System}};
+
+% Use cases - Quản lý giao dịch (tăng khoảng cách y)
+\node[usecase, fill=green!10] (uc1) at (5.5,4) {Thêm giao dịch};
+\node[usecase, fill=green!10] (uc2) at (10.5,4) {Sửa/Xóa giao dịch};
+\node[usecase, fill=green!10] (uc3) at (5.5,2.3) {Quét hóa đơn OCR};
+
+% Use cases - Xem báo cáo
+\node[usecase, fill=blue!10] (uc4) at (5.5,0.6) {Xem Dashboard};
+\node[usecase, fill=blue!10] (uc5) at (10.5,0.6) {Xem báo cáo};
+
+% Use cases - Lập kế hoạch
+\node[usecase, fill=yellow!15] (uc6) at (5.5,-1.1) {Quản lý ngân sách};
+\node[usecase, fill=yellow!15] (uc7) at (10.5,-1.1) {Mục tiêu tiết kiệm};
+\node[usecase, fill=yellow!15] (uc8) at (7.75,-2.8) {Chi tiêu định kỳ};
+
+% Use cases - AI
+\node[usecase, fill=red!10] (uc9) at (5.5,-4.3) {Chat với AI};
+\node[usecase, fill=red!10] (uc10) at (10.5,-4.3) {Tư vấn tài chính};
+
+% Use cases - Hệ thống
+\node[usecase, fill=purple!10] (uc11) at (5.5,-5.8) {Đăng nhập/Đăng ký};
+\node[usecase, fill=purple!10] (uc12) at (10.5,-5.8) {Đồng bộ dữ liệu};
+
+% Connections
+\draw (user) -- (uc1);
+\draw (user) -- (uc2);
+\draw (user) -- (uc3);
+\draw (user) -- (uc4);
+\draw (user) -- (uc5);
+\draw (user) -- (uc6);
+\draw (user) -- (uc7);
+\draw (user) -- (uc8);
+\draw (user) -- (uc9);
+\draw (user) -- (uc11);
+\draw (user) -- (uc12);
+
+% Include relationships
+\draw[->, dashed] (uc3) -- node[right, font=\tiny] {<<include>>} (uc1);
+\draw[->, dashed] (uc10) -- node[above, font=\tiny] {<<extend>>} (uc9);
+\end{tikzpicture}
+\caption{Sơ đồ Use Case của SmartBudget}
+\end{figure}
+
+\textbf{Mô tả các Use Case chính:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Use Case} & \textbf{Mô tả} \\
+\hline
+UC01: Thêm giao dịch & Người dùng nhập số tiền, chọn danh mục, ngày, ghi chú để tạo giao dịch thu/chi mới \\
+\hline
+UC02: Quét hóa đơn OCR & Camera chụp ảnh hóa đơn, ML Kit nhận dạng văn bản, AI trích xuất thông tin tự động \\
+\hline
+UC03: Xem Dashboard & Hiển thị tổng quan tài chính: Pie Chart chi tiêu, giao dịch gần đây \\
+\hline
+UC04: Xem báo cáo & Thống kê chi tiêu theo tuần/tháng/năm với biểu đồ Pie và Bar \\
+\hline
+UC05: Chat với AI & Hỏi đáp tài chính với trợ lý AI (Gemini/Groq) \\
+\hline
+UC06: Đồng bộ dữ liệu & Upload/Download dữ liệu giữa thiết bị và Firebase Cloud \\
+\hline
+\end{tabular}
+\caption{Mô tả các Use Case chính}
+\end{table}
+
+\subsection{Sơ đồ Class}
+
+Sơ đồ Class thể hiện cấu trúc các lớp chính trong hệ thống theo kiến trúc MVVM.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    class/.style={rectangle, draw, rounded corners, minimum width=3.5cm, minimum height=2cm, align=left, font=\scriptsize},
+    node distance=1cm
+]
+% Entities
+\node[class, fill=red!10] (expense) at (0,0) {
+    \textbf{ExpenseEntity}\\
+    \rule{3cm}{0.3pt}\\
+    -id: long\\
+    -amount: double\\
+    -categoryId: long\\
+    -date: long\\
+    -note: String\\
+    -isSynced: boolean
+};
+
+\node[class, fill=red!10] (category) at (4.5,0) {
+    \textbf{CategoryEntity}\\
+    \rule{3cm}{0.3pt}\\
+    -id: long\\
+    -name: String\\
+    -icon: String\\
+    -color: String\\
+    -type: int
+};
+
+% DAOs
+\node[class, fill=yellow!15] (expenseDao) at (0,-3.5) {
+    \textbf{<<interface>>}\\
+    \textbf{ExpenseDao}\\
+    \rule{3cm}{0.3pt}\\
+    +insert()\\
+    +update()\\
+    +delete()\\
+    +getByDateRange()
+};
+
+% Repository
+\node[class, fill=green!15] (repo) at (4.5,-3.5) {
+    \textbf{ExpenseRepository}\\
+    \rule{3cm}{0.3pt}\\
+    -expenseDao\\
+    -firebaseSync\\
+    \rule{3cm}{0.3pt}\\
+    +getAllExpenses()\\
+    +insert()\\
+    +syncToCloud()
+};
+
+% ViewModel
+\node[class, fill=blue!15] (viewmodel) at (9,-1.75) {
+    \textbf{DashboardViewModel}\\
+    \rule{3cm}{0.3pt}\\
+    -repository\\
+    -expenses: LiveData\\
+    -totalAmount: LiveData\\
+    \rule{3cm}{0.3pt}\\
+    +loadMonthlyData()\\
+    +getExpenses()
+};
+
+% Fragment
+\node[class, fill=purple!10] (fragment) at (9,1.5) {
+    \textbf{DashboardFragment}\\
+    \rule{3cm}{0.3pt}\\
+    -binding\\
+    -viewModel\\
+    -adapter\\
+    \rule{3cm}{0.3pt}\\
+    +setupPieChart()\\
+    +observeData()
+};
+
+% Relationships
+\draw[->, thick] (expense) -- (expenseDao);
+\draw[->, thick] (expenseDao) -- (repo);
+\draw[->, thick] (repo) -- (viewmodel);
+\draw[->, thick] (viewmodel) -- (fragment);
+\draw[-, dashed] (expense) -- node[above, font=\tiny] {N:1} (category);
+\end{tikzpicture}
+\caption{Sơ đồ Class chính (MVVM Pattern)}
+\end{figure}
+
+\subsection{Sơ đồ Sequence: Quét hóa đơn OCR}
+
+Sơ đồ Sequence mô tả luồng xử lý khi người dùng quét hóa đơn.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    box/.style={rectangle, draw, minimum width=2cm, minimum height=0.7cm, align=center, font=\small},
+    arrow/.style={->, >=stealth},
+    note/.style={font=\scriptsize}
+]
+% Actors/Components
+\node[box] (user) at (0,0) {User};
+\node[box] (scan) at (3,0) {ScanActivity};
+\node[box] (mlkit) at (6,0) {ML Kit};
+\node[box] (ai) at (9,0) {AI Service};
+\node[box] (add) at (12,0) {AddExpense};
+
+% Lifelines
+\draw[dashed] (0,-0.5) -- (0,-8);
+\draw[dashed] (3,-0.5) -- (3,-8);
+\draw[dashed] (6,-0.5) -- (6,-8);
+\draw[dashed] (9,-0.5) -- (9,-8);
+\draw[dashed] (12,-0.5) -- (12,-8);
+
+% Messages
+\draw[arrow] (0,-1) -- node[above, note] {1. Chụp ảnh} (3,-1);
+\draw[arrow] (3,-1.8) -- node[above, note] {2. processImage()} (6,-1.8);
+\draw[arrow] (6,-2.6) -- node[above, note] {3. rawText} (3,-2.6);
+\draw[arrow] (3,-3.4) -- node[above, note] {4. parseReceipt(text)} (9,-3.4);
+\draw[arrow] (9,-4.2) -- node[above, note] {5. JSON result} (3,-4.2);
+\draw[arrow] (3,-5) -- node[above, note] {6. setResult(data)} (12,-5);
+\draw[arrow] (12,-5.8) -- node[above, note] {7. Auto-fill form} (0,-5.8);
+
+% Activation boxes
+\draw[fill=gray!20] (2.8,-1) rectangle (3.2,-5.5);
+\draw[fill=gray!20] (5.8,-1.8) rectangle (6.2,-2.6);
+\draw[fill=gray!20] (8.8,-3.4) rectangle (9.2,-4.2);
+\end{tikzpicture}
+\caption{Sequence Diagram: Luồng quét hóa đơn OCR}
+\end{figure}
+
+\subsection{Sơ đồ ERD (Entity Relationship Diagram)}
+
+Sơ đồ ERD thể hiện cấu trúc các bảng trong Room Database và mối quan hệ giữa chúng.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    entity/.style={rectangle, draw, fill=blue!10, minimum width=3.8cm, minimum height=0.8cm, font=\small\bfseries},
+    attribute/.style={rectangle, draw, fill=white, minimum width=3.8cm, align=left, font=\scriptsize},
+    node distance=0.3cm
+]
+% ExpenseEntity
+\node[entity] (expense) at (0,0) {expenses};
+\node[attribute, below=of expense] (expense_attr) {
+    \underline{id}: LONG (PK)\\
+    amount: DOUBLE\\
+    categoryId: LONG (FK)\\
+    date: LONG\\
+    note: TEXT\\
+    receiptImagePath: TEXT\\
+    isSynced: BOOLEAN\\
+    tags: TEXT\\
+    createdAt: LONG\\
+    updatedAt: LONG
+};
+
+% CategoryEntity
+\node[entity] (category) at (5.5,0) {categories};
+\node[attribute, below=of category] (category_attr) {
+    \underline{id}: LONG (PK)\\
+    name: TEXT\\
+    icon: TEXT\\
+    color: TEXT\\
+    type: INTEGER\\
+    isCustom: BOOLEAN
+};
+
+% BudgetEntity
+\node[entity] (budget) at (11,0) {budgets};
+\node[attribute, below=of budget] (budget_attr) {
+    \underline{id}: LONG (PK)\\
+    categoryId: LONG (FK)\\
+    limitAmount: DOUBLE\\
+    spentAmount: DOUBLE\\
+    month: INTEGER\\
+    year: INTEGER
+};
+
+% SavingsGoalEntity
+\node[entity] (savings) at (0,-5.5) {savings\_goals};
+\node[attribute, below=of savings] (savings_attr) {
+    \underline{id}: LONG (PK)\\
+    name: TEXT\\
+    targetAmount: DOUBLE\\
+    currentAmount: DOUBLE\\
+    deadline: LONG\\
+    icon: TEXT\\
+    color: TEXT\\
+    isCompleted: BOOLEAN
+};
+
+% RecurringExpenseEntity
+\node[entity] (recurring) at (5.5,-5.5) {recurring\_expenses};
+\node[attribute, below=of recurring] (recurring_attr) {
+    \underline{id}: LONG (PK)\\
+    name: TEXT\\
+    amount: DOUBLE\\
+    categoryId: LONG (FK)\\
+    dayOfMonth: INTEGER\\
+    frequency: INTEGER\\
+    note: TEXT\\
+    isActive: BOOLEAN\\
+    nextDueDate: LONG\\
+    createdAt: LONG
+};
+
+% ChatMessageEntity
+\node[entity] (chat) at (11,-5.5) {chat\_messages};
+\node[attribute, below=of chat] (chat_attr) {
+    \underline{id}: LONG (PK)\\
+    content: TEXT\\
+    role: TEXT\\
+    timestamp: LONG
+};
+
+% Relationships
+\draw[->, thick] (expense_attr.east) -- ++(0.5,0) |- node[pos=0.25, above, font=\tiny] {N:1} (category_attr.west);
+\draw[->, thick] (budget_attr.west) -- ++(-0.5,0) |- node[pos=0.25, above, font=\tiny] {N:1} (category_attr.east);
+\draw[->, thick] (recurring_attr.north) -- ++(0,0.5) -- node[pos=0.5, above, font=\tiny] {N:1} (category_attr.south);
+\end{tikzpicture}
+\caption{Sơ đồ ERD của Room Database}
+\end{figure}
+
+\textbf{Mô tả các quan hệ:}
+\begin{itemize}
+\item \textbf{expenses - categories (N:1):} Mỗi giao dịch thuộc về một danh mục. Một danh mục có thể có nhiều giao dịch.
+\item \textbf{budgets - categories (N:1):} Mỗi ngân sách được thiết lập cho một danh mục cụ thể theo tháng/năm.
+\item \textbf{recurring\_expenses - categories (N:1):} Mỗi chi tiêu định kỳ thuộc về một danh mục.
+\item \textbf{savings\_goals:} Độc lập, không có quan hệ với các bảng khác.
+\item \textbf{chat\_messages:} Độc lập, lưu lịch sử chat với AI.
+\end{itemize}
+
+\subsection{Sơ đồ Activity: Thêm giao dịch}
+
+Sơ đồ Activity mô tả luồng xử lý khi người dùng thêm một giao dịch mới.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.65, transform shape,
+    start/.style={circle, draw, fill=black, minimum size=0.5cm},
+    stop/.style={circle, draw, fill=black, minimum size=0.4cm, double, double distance=2pt},
+    activity/.style={rectangle, draw, rounded corners, fill=green!10, minimum width=3cm, minimum height=0.8cm, align=center, font=\small},
+    decision/.style={diamond, draw, fill=yellow!20, minimum width=2.5cm, minimum height=1.8cm, align=center, font=\small},
+    arrow/.style={->, >=stealth, thick, rounded corners}
+]
+% Start
+\node[start] (start) at (0,0) {};
+
+% Activities - Loose spacing
+\node[activity] (open) at (0,-2.0) {Mở màn hình\\Thêm giao dịch};
+\node[activity] (input) at (0,-4.5) {Nhập số tiền};
+\node[activity] (category) at (0,-7.0) {Chọn danh mục};
+\node[activity] (date) at (0,-9.5) {Chọn ngày tháng};
+\node[activity] (note) at (0,-12.0) {Nhập ghi chú\\(tùy chọn)};
+
+% Decision - Quét hóa đơn - Adjusted position
+\node[decision] (scan_decision) at (6,-4.5) {Quét\\hóa đơn?};
+\node[activity] (scan) at (6,-7.5) {Chụp ảnh\\hóa đơn};
+\node[activity] (ocr) at (6,-10.0) {OCR + AI\\parse};
+
+% Decision - Validate - Increased spacing
+\node[decision] (validate) at (0,-15.5) {Dữ liệu\\hợp lệ?};
+\node[activity] (error) at (6,-15.5) {Hiển thị lỗi};
+
+% Save - Increased spacing
+\node[activity] (save) at (0,-19.0) {Lưu vào\\Room DB};
+\node[decision] (sync_check) at (0,-22.0) {Đã đăng\\nhập?};
+\node[activity] (sync) at (6,-22.0) {Đồng bộ\\Firebase};
+\node[activity] (update) at (0,-25.0) {Cập nhật\\Dashboard};
+
+% End
+\node[stop] (stop) at (0,-27.5) {};
+
+% Arrows
+\draw[arrow] (start) -- (open);
+\draw[arrow] (open) -- (input);
+\draw[arrow] (input) -- (category);
+\draw[arrow] (category) -- (date);
+\draw[arrow] (date) -- (note);
+\draw[arrow] (note) -- (validate);
+
+% Scan flow
+\draw[arrow] (open) -| node[pos=0.3, above, font=\tiny] {} (scan_decision);
+\draw[arrow] (scan_decision) -- node[right, font=\tiny] {Có} (scan);
+\draw[arrow] (scan_decision.west) -- node[above, font=\tiny, xshift=-0.5cm] {Không} (input);
+\draw[arrow] (scan) -- (ocr);
+\draw[arrow] (ocr.south) |- (note);
+
+% Validate flow
+\draw[arrow] (validate) -- node[below, font=\tiny] {Không} (error);
+\draw[arrow] (error) |- (input);
+\draw[arrow] (validate) -- node[left, font=\tiny] {Có} (save);
+
+% Sync flow
+\draw[arrow] (save) -- (sync_check);
+\draw[arrow] (sync_check) -- node[above, font=\tiny] {Có} (sync);
+\draw[arrow] (sync_check) -- node[left, font=\tiny] {Không} (update);
+\draw[arrow] (sync) |- (update);
+\draw[arrow] (update) -- (stop);
+\end{tikzpicture}
+\caption{Activity Diagram: Luồng thêm giao dịch}
+\end{figure}
+
+\subsection{Sơ đồ Activity: Đồng bộ dữ liệu}
+
+Sơ đồ Activity mô tả luồng đồng bộ dữ liệu giữa thiết bị và Firebase Cloud. Hệ thống sử dụng cơ chế **Offline-First**, cho phép người dùng thao tác khi không có mạng và tự động đồng bộ hai chiều (Upload/Download) ngay khi kết nối Internet được khôi phục.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.65, transform shape,
+    start/.style={circle, draw, fill=black, minimum size=0.5cm},
+    stop/.style={circle, draw, fill=black, minimum size=0.4cm, double, double distance=2pt},
+    activity/.style={rectangle, draw, rounded corners, fill=blue!10, minimum width=3.2cm, minimum height=0.8cm, align=center, font=\small},
+    decision/.style={diamond, draw, fill=yellow!20, minimum width=2.5cm, minimum height=1.8cm, align=center, font=\small},
+    arrow/.style={->, >=stealth, thick, rounded corners},
+    fork/.style={rectangle, draw, fill=black, minimum width=5cm, minimum height=0.15cm}
+]
+% Start
+\node[start] (start) at (0,0) {};
+
+% Check login - Much larger spacing
+\node[decision] (login_check) at (0,-3.0) {Đã đăng\\nhập?};
+\node[activity] (login_prompt) at (6,-3.0) {Yêu cầu\\đăng nhập};
+
+% Check network - Much larger spacing
+\node[decision] (network) at (0,-7.0) {Có kết nối\\Internet?};
+\node[activity] (offline_msg) at (6,-7.0) {Thông báo\\offline};
+
+% Fork bar - parallel upload/download
+\node[fork] (fork1) at (0,-10.5) {};
+
+% Upload branch - Spaced out
+\node[activity] (get_unsynced) at (-4,-13.0) {Lấy dữ liệu\\chưa đồng bộ};
+\node[activity] (batch_upload) at (-4,-16.0) {WriteBatch\\upload Firestore};
+\node[activity] (mark_synced) at (-4,-19.0) {Đánh dấu\\isSynced = true};
+
+% Download branch - Spaced out
+\node[activity] (query_cloud) at (4,-13.0) {Query dữ liệu\\từ Firestore};
+\node[activity] (check_duplicate) at (4,-16.0) {Kiểm tra\\trùng lặp};
+\node[activity] (merge_local) at (4,-19.0) {Merge vào\\Room DB};
+
+% Join bar
+\node[fork] (fork2) at (0,-22.5) {};
+
+% Complete
+\node[activity] (notify) at (0,-25.0) {Thông báo\\hoàn thành};
+\node[activity] (refresh) at (0,-27.5) {Refresh\\UI};
+
+% End
+\node[stop] (stop) at (0,-30.0) {};
+
+% Arrows
+\draw[arrow] (start) -- (login_check);
+\draw[arrow] (login_check) -- node[above, font=\tiny] {Không} (login_prompt);
+\draw[arrow] (login_prompt) |- (stop);
+\draw[arrow] (login_check) -- node[left, font=\tiny, xshift=-0.2cm] {Có} (network);
+\draw[arrow] (network) -- node[above, font=\tiny] {Không} (offline_msg);
+\draw[arrow] (offline_msg) |- (stop);
+\draw[arrow] (network) -- node[left, font=\tiny, xshift=-0.2cm] {Có} (fork1);
+
+% Fork to parallel
+\draw[arrow] (fork1.south) -| (get_unsynced);
+\draw[arrow] (fork1.south) -| (query_cloud);
+\draw[arrow] (get_unsynced) -- (batch_upload);
+\draw[arrow] (batch_upload) -- (mark_synced);
+\draw[arrow] (query_cloud) -- (check_duplicate);
+\draw[arrow] (check_duplicate) -- (merge_local);
+
+% Join from parallel
+\draw[arrow] (mark_synced) |- (fork2);
+\draw[arrow] (merge_local) |- (fork2);
+
+\draw[arrow] (fork2) -- (notify);
+\draw[arrow] (notify) -- (refresh);
+\draw[arrow] (refresh) -- (stop);
+
+% Labels for parallel
+\node[font=\tiny\itshape] at (-4,-11.2) {Upload};
+\node[font=\tiny\itshape] at (4,-11.2) {Download};
+\end{tikzpicture}
+\caption{Activity Diagram: Luồng đồng bộ dữ liệu Firebase}
+\end{figure}
+
+%==============================================================
+\section{Phân công công việc}
+%==============================================================
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|l|c|}
+\hline
+\textbf{STT} & \textbf{Thành viên} & \textbf{Công việc thực hiện} & \textbf{Tỷ lệ} \\
+\hline
+1 & Đỗ Trần Minh Phúc & Kiến trúc MVVM, Database Room, AI Integration & 50\% \\
+  & (23120156) & Dashboard, Reports, Chat AI, Scan OCR & \\
+\hline
+2 & Hoàng Kim Trí & Firebase Auth/Sync, UI/UX Design & 50\% \\
+  & (23120098) & Budget, Savings, Settings, Dark Mode & \\
+\hline
+\end{tabular}
+\caption{Bảng phân công công việc}
+\end{table}
+
+\textbf{Chi tiết công việc:}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Đỗ Trần Minh Phúc:}
+\begin{itemize}
+    \item Thiết kế kiến trúc MVVM với Repository Pattern
+    \item Xây dựng database Room với 6 Entities và DAOs
+    \item Tích hợp AI Services (Gemini, Groq) với Strategy Pattern
+    \item Implement DashboardFragment với Pie Chart
+    \item Implement ReportsFragment với Bar Chart và date range
+    \item Implement ChatActivity và AI conversation
+    \item Implement ScanReceiptActivity với ML Kit OCR
+    \item Viết báo cáo kỹ thuật
+\end{itemize}
+
+\item \textbf{Hoàng Kim Trí:}
+\begin{itemize}
+    \item Thiết kế UI/UX theo Material Design 3
+    \item Implement Firebase Authentication (Email, Google)
+    \item Implement FirebaseSyncHelper cho đồng bộ cloud
+    \item Implement BudgetFragment với progress tracking
+    \item Implement SavingsGoalFragment
+    \item Implement RecurringExpenseFragment
+    \item Implement SettingsFragment với Dark Mode
+    \item Implement ReminderReceiver cho thông báo
+    \item Thiết kế layouts XML
+\end{itemize}
+\end{itemize}
+
+%==============================================================
+\section{Kiểm thử}
+%==============================================================
+
+\subsection{Phương pháp kiểm thử}
+
+Dự án áp dụng phương pháp kiểm thử thủ công (Manual Testing) trên các thiết bị thực và máy ảo Android, bao gồm:
+
+\begin{itemize}
+\item \textbf{Unit Testing:} Kiểm tra các phương thức trong Repository và ViewModel
+\item \textbf{Integration Testing:} Kiểm tra tích hợp Room Database và Firebase
+\item \textbf{UI Testing:} Kiểm tra giao diện và luồng người dùng
+\item \textbf{Compatibility Testing:} Kiểm tra trên nhiều phiên bản Android (7.0 - 14)
+\end{itemize}
+
+\subsection{Các Test Case chính}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{|c|p{2.8cm}|p{3.5cm}|p{3cm}|c|}
+\hline
+\textbf{ID} & \textbf{Mô tả} & \textbf{Bước thực hiện} & \textbf{Kết quả mong đợi} & \textbf{KQ} \\
+\hline
+TC01 & Thêm giao dịch chi tiêu & 1. Nhấn nút (+)\newline 2. Nhập 50000\newline 3. Chọn "Ăn uống"\newline 4. Nhấn Lưu & Giao dịch xuất hiện trong danh sách & Pass \\
+\hline
+TC02 & Xem Dashboard & 1. Mở ứng dụng\newline 2. Kiểm tra Pie Chart\newline 3. Kiểm tra danh sách & Biểu đồ và danh sách hiển thị đúng & Pass \\
+\hline
+TC03 & Quét hóa đơn & 1. Nhấn icon camera\newline 2. Chụp hóa đơn\newline 3. Đợi AI xử lý & Số tiền được tự động điền & Pass \\
+\hline
+TC04 & Chat với AI & 1. Mở Chat AI\newline 2. Gửi "Tư vấn ngân sách"\newline 3. Đợi phản hồi & AI trả lời phù hợp & Pass \\
+\hline
+TC05 & Đồng bộ Firebase & 1. Đăng nhập\newline 2. Nhấn Đồng bộ\newline 3. Kiểm tra Firestore & Dữ liệu xuất hiện trên cloud & Pass \\
+\hline
+TC06 & Dark Mode & 1. Vào Cài đặt\newline 2. Bật Dark Mode & Giao diện chuyển tối & Pass \\
+\hline
+TC07 & Thêm mục tiêu tiết kiệm & 1. Vào Mục tiêu\newline 2. Nhấn (+)\newline 3. Nhập tên và số tiền & Mục tiêu được tạo & Pass \\
+\hline
+TC08 & AI Fallback & 1. Disable Gemini\newline 2. Gửi tin nhắn AI & Tự động chuyển sang Groq & Pass \\
+\hline
+\end{tabular}
+\caption{Bảng Test Cases}
+\end{table}
+
+\subsection{Kết quả kiểm thử}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Loại kiểm thử} & \textbf{Tổng số} & \textbf{Pass} & \textbf{Tỷ lệ} \\
+\hline
+Functional Testing & 25 & 24 & 96\% \\
+\hline
+UI/UX Testing & 15 & 15 & 100\% \\
+\hline
+Compatibility Testing & 5 thiết bị & 5 & 100\% \\
+\hline
+AI Integration Testing & 10 & 9 & 90\% \\
+\hline
+\textbf{Tổng cộng} & \textbf{55} & \textbf{53} & \textbf{96.4\%} \\
+\hline
+\end{tabular}
+\caption{Tổng hợp kết quả kiểm thử}
+\end{table}
+
+\textbf{Các thiết bị đã kiểm thử:}
+\begin{itemize}
+\item Samsung Galaxy S21 (Android 13)
+\item Xiaomi Redmi Note 11 (Android 12)
+\item Google Pixel 4a (Android 14)
+\item Emulator API 24 (Android 7.0)
+\item Emulator API 34 (Android 14)
+\end{itemize}
+
+%==============================================================
+\section{Kết luận}
+%==============================================================
+
+\subsection{Kết quả đạt được}
+
+Dự án SmartBudget đã hoàn thành đầy đủ các mục tiêu đề ra:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Ứng dụng hoàn chỉnh:} 68 file Java, 20 file XML layout, kiến trúc MVVM chuyên nghiệp với 8 ViewModels, 5 Repositories, 6 Room Entities.
+
+\item \textbf{11 tính năng đầy đủ:} Ghi chép thu chi, Dashboard với Pie Chart, Báo cáo thống kê, Quản lý ngân sách, Mục tiêu tiết kiệm, Chi tiêu định kỳ, Chat AI, Quét hóa đơn OCR, Đồng bộ Firebase, Nhắc nhở, Dark Mode.
+
+\item \textbf{Tích hợp AI mạnh mẽ:} Strategy Pattern với dual providers (Gemini + Groq), fallback tự động, multi-model support. OCR kết hợp ML Kit và AI parsing.
+
+\item \textbf{Đồng bộ cloud:} Firebase Auth + Firestore với two-way sync, offline-first architecture.
+
+\item \textbf{Giao diện đẹp:} Material Design 3, Dark Mode, animation mượt mà.
+\end{itemize}
+
+\subsection{Hạn chế}
+
+\begin{itemize}
+\item Chỉ hỗ trợ VND, chưa multi-currency
+\item OCR chưa tốt với hóa đơn viết tay hoặc chất lượng kém
+\item Chưa có export PDF/Excel
+\item AI yêu cầu Internet, chưa có offline mode
+\end{itemize}
+
+\subsection{Hướng phát triển}
+
+\begin{itemize}
+\item Multi-currency với API tỷ giá
+\item Widget home screen
+\item ML dự báo chi tiêu
+\item Xác thực sinh trắc học
+\item Export PDF/Excel
+\item Chia sẻ ngân sách gia đình
+\end{itemize}
+
+%==============================================================
+\section{Tài liệu tham khảo}
+%==============================================================
+
+\begin{enumerate}
+\item Android Developers. \url{https://developer.android.com}
+\item Firebase Documentation. \url{https://firebase.google.com/docs}
+\item Room Persistence Library. \url{https://developer.android.com/training/data-storage/room}
+\item MPAndroidChart. \url{https://github.com/PhilJay/MPAndroidChart}
+\item Google ML Kit. \url{https://developers.google.com/ml-kit}
+\item Gemini AI. \url{https://ai.google.dev}
+\item Groq API. \url{https://console.groq.com/docs}
+\item Material Design 3. \url{https://m3.material.io}
+\end{enumerate}
+
+\end{document}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme (Material 3) -->
-    <style name="Theme.SmartBudget" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.SmartBudget" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Brand Colors -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
@@ -31,12 +31,12 @@
 
     <!-- UI Component Styles -->
 
-    <!-- Cards (Glassmorphism / Clean) -->
+    <!-- Cards (Glassmorphism / Neon) -->
     <style name="CardStyle" parent="Widget.Material3.CardView.Elevated">
-        <item name="cardBackgroundColor">@color/card_background</item>
-        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-        <item name="cardElevation">@dimen/elevation_card</item>
-        <item name="strokeColor">@android:color/transparent</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="android:background">@drawable/bg_glass_card</item>
     </style>
     
     <style name="HeroCardStyle" parent="CardStyle">
@@ -104,5 +104,13 @@
         <item name="itemTextColor">@color/primary</item>
         <item name="itemRippleColor">@color/primary_light</item>
         <item name="elevation">16dp</item>
+    </style>
+
+    <!-- Splash Screen Theme -->
+    <style name="Theme.SmartBudget.Splash" parent="Theme.SmartBudget">
+        <item name="android:windowBackground">@drawable/gradient_splash</item>
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+        <item name="android:navigationBarColor">@color/primary</item>
     </style>
 </resources>

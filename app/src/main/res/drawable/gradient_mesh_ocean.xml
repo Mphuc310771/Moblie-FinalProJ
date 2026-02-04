@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Ocean gradient mesh -->
+    <gradient
+        android:type="radial"
+        android:gradientRadius="400dp"
+        android:centerX="0.3"
+        android:centerY="0.3"
+        android:startColor="#00d2ff"
+        android:centerColor="#3a7bd5"
+        android:endColor="#667eea" />
+</shape>

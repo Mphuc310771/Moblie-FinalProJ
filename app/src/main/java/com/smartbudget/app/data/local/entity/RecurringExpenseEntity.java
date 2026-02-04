@@ -42,6 +42,7 @@ public class RecurringExpenseEntity {
         this.frequency = FREQ_MONTHLY;
     }
 
+    @androidx.room.Ignore
     public RecurringExpenseEntity(String name, double amount, int dayOfMonth) {
         this();
         this.name = name;

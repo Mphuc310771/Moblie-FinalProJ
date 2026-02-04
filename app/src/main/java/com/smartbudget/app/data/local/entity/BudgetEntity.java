@@ -6,7 +6,8 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "budgets", foreignKeys = @ForeignKey(entity = CategoryEntity.class, parentColumns = "id", childColumns = "categoryId", onDelete = ForeignKey.CASCADE), indices = {
-        @Index("categoryId") })
+        @Index("categoryId"),
+        @Index(value = {"categoryId", "month", "year"}, unique = true) })
 public class BudgetEntity {
 
     @PrimaryKey(autoGenerate = true)
@@ -21,6 +22,7 @@ public class BudgetEntity {
     public BudgetEntity() {
     }
 
+    @androidx.room.Ignore
     public BudgetEntity(Long categoryId, double limitAmount, int month, int year) {
         this.categoryId = categoryId;
         this.limitAmount = limitAmount;

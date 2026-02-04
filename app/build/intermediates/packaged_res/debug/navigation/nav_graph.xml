@@ -58,4 +58,10 @@
         android:label="Chi tiêu định kỳ"
         tools:layout="@layout/fragment_recurring_expense" />
 
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.smartbudget.app.presentation.transactions.TransactionsFragment"
+        android:label="Tất cả giao dịch"
+        tools:layout="@layout/fragment_transactions" />
+
 </navigation>

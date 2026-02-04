@@ -18,6 +18,14 @@ public interface BudgetDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(BudgetEntity budget);
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long insertIfNotExists(BudgetEntity budget);
+
+    @Query("SELECT id FROM budgets WHERE " +
+           "(categoryId IS NULL AND :categoryId IS NULL OR categoryId = :categoryId) " +
+           "AND month = :month AND year = :year")
+    Long findBudgetId(Long categoryId, int month, int year);
+
     @Update
     void update(BudgetEntity budget);
 
@@ -33,15 +41,19 @@ public interface BudgetDao {
     LiveData<List<BudgetEntity>> getBudgetsByMonthYear(int month, int year);
 
     @Query("SELECT b.id, b.categoryId, b.limitAmount, b.month, b.year, " +
-           "(SELECT COALESCE(SUM(amount), 0) FROM expenses e " +
-           "WHERE strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', :month) " +
+           "(SELECT COALESCE(SUM(e.amount), 0) FROM expenses e " +
+           "INNER JOIN categories c ON e.categoryId = c.id " +
+           "WHERE c.type = 0 " +  // Only expense categories, not income
+           "AND strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', :month) " +
            "AND strftime('%Y', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%d', :year)) as spentAmount " +
            "FROM budgets b WHERE b.categoryId IS NULL AND b.month = :month AND b.year = :year")
     BudgetEntity getTotalBudget(int month, int year);
 
     @Query("SELECT b.id, b.categoryId, b.limitAmount, b.month, b.year, " +
-           "(SELECT COALESCE(SUM(amount), 0) FROM expenses e " +
-           "WHERE strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', :month) " +
+           "(SELECT COALESCE(SUM(e.amount), 0) FROM expenses e " +
+           "INNER JOIN categories c ON e.categoryId = c.id " +
+           "WHERE c.type = 0 " +  // Only expense categories, not income
+           "AND strftime('%m', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%02d', :month) " +
            "AND strftime('%Y', datetime(e.date/1000, 'unixepoch', 'localtime')) = printf('%d', :year)) as spentAmount " +
            "FROM budgets b WHERE b.categoryId IS NULL AND b.month = :month AND b.year = :year")
     LiveData<BudgetEntity> getTotalBudgetLive(int month, int year);

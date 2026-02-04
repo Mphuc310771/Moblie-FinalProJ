@@ -2,44 +2,30 @@ package com.smartbudget.app.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import androidx.appcompat.app.AppCompatDelegate;
 
-/**
- * Manager class for handling Dark Mode preferences throughout the app.
- */
 public class ThemeManager {
     private static final String PREF_NAME = "theme_prefs";
-    private static final String KEY_DARK_MODE = "dark_mode_enabled";
+    private static final String KEY_THEME = "key_theme";
     
-    private final SharedPreferences prefs;
-    
-    public ThemeManager(Context context) {
-        prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+    public static final int THEME_SYSTEM = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+    public static final int THEME_LIGHT = AppCompatDelegate.MODE_NIGHT_NO;
+    public static final int THEME_DARK = AppCompatDelegate.MODE_NIGHT_YES;
+
+    public static void applyTheme(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        int themeMode = prefs.getInt(KEY_THEME, THEME_SYSTEM);
+        AppCompatDelegate.setDefaultNightMode(themeMode);
+    }
+
+    public static void saveThemePreference(Context context, int themeMode) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        prefs.edit().putInt(KEY_THEME, themeMode).apply();
+        AppCompatDelegate.setDefaultNightMode(themeMode);
     }
     
-    public boolean isDarkModeEnabled() {
-        return prefs.getBoolean(KEY_DARK_MODE, false);
-    }
-    
-    public void setDarkModeEnabled(boolean enabled) {
-        prefs.edit().putBoolean(KEY_DARK_MODE, enabled).apply();
-        applyTheme(enabled);
-    }
-    
-    public void applyTheme(boolean darkMode) {
-        if (darkMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-    }
-    
-    public void applyStoredTheme() {
-        applyTheme(isDarkModeEnabled());
-    }
-    
-    public static void init(Context context) {
-        new ThemeManager(context).applyStoredTheme();
+    public static int getStoredTheme(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return prefs.getInt(KEY_THEME, THEME_SYSTEM);
     }
 }

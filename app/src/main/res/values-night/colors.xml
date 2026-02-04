@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors - Neon Glass Theme (Dark Mode) -->
+    <color name="primary">#06B6D4</color> <!-- Electric Cyan -->
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryDark">#0891B2</color>
+    <color name="colorAccent">#EC4899</color> <!-- Neon Pink -->
+    <color name="primary_variant">#0E7490</color>
+    <color name="primary_light">#E0F7FA</color>
+    <color name="on_primary">#FFFFFF</color>
+    
+    <!-- Secondary Colors -->
+    <color name="secondary">#8B5CF6</color> <!-- Violet -->
+    <color name="secondary_variant">#7C3AED</color>
+    <color name="secondary_light">#F3E8FF</color>
+    <color name="on_secondary">#FFFFFF</color>
+    
+    <!-- Backgrounds (Deep Navy) -->
+    <color name="background">#0F172A</color> <!-- Dark Slate 900 -->
+    <color name="surface">#1E293B</color>     <!-- Dark Slate 800 -->
+    <color name="on_background">#F8FAFC</color> <!-- Slate 50 -->
+    <color name="on_surface">#F1F5F9</color>    <!-- Slate 100 -->
+    
+    <!-- Functional Colors -->
+    <color name="income_color">#10B981</color>  <!-- Emerald 500 -->
+    <color name="expense_color">#F43F5E</color> <!-- Rose 500 -->
+    <color name="warning_color">#F59E0B</color> <!-- Amber 500 -->
+    <color name="error">#EF4444</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="success">#10B981</color>
+    
+    <!-- Card & Containers -->
+    <color name="card_background">#1E293B</color>
+    <color name="card_stroke">#334155</color>
+    <color name="card_shadow">#000000</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color> <!-- Slate 400 -->
+    <color name="text_hint">#64748B</color>      <!-- Slate 500 -->
+    
+    <!-- Status Bar -->
+    <color name="status_bar">#0F172A</color>
+    
+    <!-- UI Elements -->
+    <color name="divider">#334155</color>
+    <color name="border">#334155</color>
+    
+    <!-- Gradients -->
+    <color name="gradient_start">#06B6D4</color>
+    <color name="gradient_end">#3B82F6</color>
+    
+    <!-- Functional Backgrounds (Dark Mode versions) -->
+    <color name="bg_ai_chat">#1E293B</color>
+    <color name="bg_scan">#064E3B</color>
+    <color name="bg_savings">#451A03</color>
+    <color name="bg_expense">#4C0519</color>
+
+    <!-- Chart Colors (Neon) -->
+    <color name="chart_1">#06B6D4</color> <!-- Cyan -->
+    <color name="chart_2">#10B981</color> <!-- Emerald -->
+    <color name="chart_3">#F59E0B</color> <!-- Amber -->
+    <color name="chart_4">#F43F5E</color> <!-- Rose -->
+    <color name="chart_5">#8B5CF6</color> <!-- Violet -->
+    <color name="chart_6">#EC4899</color> <!-- Pink -->
+    <color name="chart_7">#3B82F6</color> <!-- Blue -->
+    <color name="chart_8">#6366F1</color> <!-- Indigo -->
+    
+    <!-- Categories -->
+    <color name="cat_food">#F43F5E</color>
+    <color name="cat_transport">#3B82F6</color>
+    <color name="cat_shopping">#8B5CF6</color>
+    <color name="cat_health">#10B981</color>
+    <color name="cat_entertainment">#EC4899</color>
+    <color name="cat_education">#06B6D4</color>
+    <color name="cat_housing">#6366F1</color>
+    <color name="cat_utilities">#F59E0B</color>
+    <color name="cat_salary">#10B981</color>
+    <color name="cat_gift">#EC4899</color>
+    <color name="cat_investment">#8B5CF6</color>
+    <color name="cat_other">#64748B</color>
+    <color name="text_on_card">#FFFFFF</color> <!-- White for Dark Cyan Card -->
+</resources>

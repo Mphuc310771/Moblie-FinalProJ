@@ -59,8 +59,90 @@ public class DashboardFragment extends Fragment {
         setupRecyclerView();
         setupPieChart();
         setupQuickActions();
+        setupSwipeRefresh();
+        setupHeaderActions();
         updateGreeting();
         observeData();
+    }
+
+    private void setupHeaderActions() {
+        // Help button - shows feature guide
+        if (binding.ivHelp != null) {
+            binding.ivHelp.setOnClickListener(v -> showFeatureGuide());
+        }
+        
+        // Settings button (iv_notification uses settings icon)
+        if (binding.ivNotification != null) {
+            binding.ivNotification.setOnClickListener(v -> {
+                // Navigate to Settings tab
+                if (getActivity() != null) {
+                    com.google.android.material.bottomnavigation.BottomNavigationView bottomNav = 
+                        getActivity().findViewById(R.id.bottom_navigation);
+                    if (bottomNav != null) {
+                        bottomNav.setSelectedItemId(R.id.settingsFragment);
+                    }
+                }
+            });
+        }
+        
+        // See All button - navigate to full transactions list
+        if (binding.tvSeeAll != null) {
+            binding.tvSeeAll.setOnClickListener(v -> {
+                // Navigate to Transactions fragment
+                androidx.navigation.Navigation.findNavController(requireView())
+                    .navigate(R.id.transactionsFragment);
+            });
+        }
+    }
+
+    private void showFeatureGuide() {
+        com.google.android.material.bottomsheet.BottomSheetDialog dialog = 
+            new com.google.android.material.bottomsheet.BottomSheetDialog(requireContext());
+        View view = getLayoutInflater().inflate(R.layout.dialog_feature_guide, null);
+        dialog.setContentView(view);
+        
+        // Close button
+        view.findViewById(R.id.btn_close).setOnClickListener(v -> dialog.dismiss());
+        
+        dialog.show();
+    }
+
+    private void setupSwipeRefresh() {
+        if (binding.swipeRefresh == null) return;
+        
+        // Set refresh colors
+        binding.swipeRefresh.setColorSchemeResources(
+                R.color.income_color,
+                R.color.expense_color,
+                R.color.colorPrimary
+        );
+
+        binding.swipeRefresh.setOnRefreshListener(() -> {
+            // Haptic feedback
+            com.smartbudget.app.utils.HapticHelper.lightClick(binding.getRoot());
+            
+            // Refresh data - ViewModel LiveData will auto-update
+            // Just simulate delay for UX
+            binding.getRoot().postDelayed(() -> {
+                if (binding != null) {
+                    binding.swipeRefresh.setRefreshing(false);
+                    if (binding.pieChart != null) {
+                        com.smartbudget.app.utils.AnimationHelper.pulse(binding.pieChart);
+                    }
+                }
+            }, 1000);
+        });
+    }
+
+    /**
+     * Show confetti celebration.
+     * Call when user achieves a savings goal.
+     */
+    public void showCelebration() {
+        if (binding.konfettiView != null) {
+            com.smartbudget.app.utils.ConfettiHelper.celebrate(binding.konfettiView);
+            com.smartbudget.app.utils.HapticHelper.celebrate(requireContext());
+        }
     }
 
     private void updateGreeting() {
@@ -91,6 +173,33 @@ public class DashboardFragment extends Fragment {
                 binding.tvUserName.setText("Bạn");
             }
         }
+
+        // Update Streak Badge
+        updateStreakBadge();
+
+        // Update Motivational Quote
+        updateQuote();
+    }
+
+    private void updateStreakBadge() {
+        if (binding.tvStreakCount == null || binding.tvStreakEmoji == null) return;
+
+        int streak = com.smartbudget.app.utils.StreakHelper.updateStreak(requireContext());
+        binding.tvStreakCount.setText(String.valueOf(streak));
+        binding.tvStreakEmoji.setText(com.smartbudget.app.utils.StreakHelper.getStreakEmoji(streak));
+
+        // Animate badge on first load
+        com.smartbudget.app.utils.AnimationHelper.popIn(binding.streakBadge);
+
+        // Show celebration for milestone streaks
+        if (streak == 7 || streak == 14 || streak == 30 || streak == 100 || streak == 365) {
+            showCelebration();
+        }
+    }
+
+    private void updateQuote() {
+        if (binding.tvQuote == null) return;
+        binding.tvQuote.setText(com.smartbudget.app.utils.MotivationalQuotes.getQuoteOfTheDay());
     }
 
     /**
@@ -151,6 +260,65 @@ public class DashboardFragment extends Fragment {
 
         binding.rvTransactions.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvTransactions.setAdapter(expenseAdapter);
+
+        // Add staggered animation
+        binding.rvTransactions.setItemAnimator(new androidx.recyclerview.widget.DefaultItemAnimator());
+
+        // Setup swipe to delete
+        setupSwipeToDelete();
+    }
+
+    private void setupSwipeToDelete() {
+        new androidx.recyclerview.widget.ItemTouchHelper(new androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback(
+                0, androidx.recyclerview.widget.ItemTouchHelper.LEFT) {
+
+            @Override
+            public boolean onMove(@NonNull androidx.recyclerview.widget.RecyclerView recyclerView,
+                                  @NonNull androidx.recyclerview.widget.RecyclerView.ViewHolder viewHolder,
+                                  @NonNull androidx.recyclerview.widget.RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull androidx.recyclerview.widget.RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                com.smartbudget.app.data.local.entity.ExpenseEntity expense = expenseAdapter.getExpenseAt(position);
+
+                // Haptic feedback
+                com.smartbudget.app.utils.HapticHelper.confirm(requireContext());
+
+                // Delete expense
+                viewModel.deleteExpense(expense);
+
+                // Show undo snackbar
+                com.google.android.material.snackbar.Snackbar.make(
+                        binding.getRoot(),
+                        "Đã xóa giao dịch 🗑️",
+                        com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+                ).setAction("Hoàn tác", v -> {
+                    // Undo delete - re-insert
+                    viewModel.insertExpense(expense);
+                    com.smartbudget.app.utils.HapticHelper.success(requireContext());
+                }).show();
+            }
+
+            @Override
+            public void onChildDraw(@NonNull android.graphics.Canvas c,
+                                    @NonNull androidx.recyclerview.widget.RecyclerView recyclerView,
+                                    @NonNull androidx.recyclerview.widget.RecyclerView.ViewHolder viewHolder,
+                                    float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                // Draw red background with trash icon
+                new it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator.Builder(
+                        c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                        .addBackgroundColor(androidx.core.content.ContextCompat.getColor(requireContext(), R.color.expense_color))
+                        .addActionIcon(android.R.drawable.ic_menu_delete)
+                        .addCornerRadius(android.util.TypedValue.COMPLEX_UNIT_DIP, 12)
+                        .create()
+                        .decorate();
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        }).attachToRecyclerView(binding.rvTransactions);
     }
 
     private void setupPieChart() {
@@ -240,6 +408,28 @@ public class DashboardFragment extends Fragment {
         viewModel.getSpendingInsight().observe(getViewLifecycleOwner(), insight -> {
             if (binding.tvAiInsight != null) {
                 binding.tvAiInsight.setText(insight);
+            }
+        });
+
+        // Observe Income, Expense and Balance for balance card
+        viewModel.getTotalIncome().observe(getViewLifecycleOwner(), income -> {
+            if (binding.tvIncome != null) {
+                double value = income != null ? income : 0;
+                binding.tvIncome.setText("+" + CurrencyUtils.formatVND(value));
+            }
+        });
+
+        viewModel.getTotalExpense().observe(getViewLifecycleOwner(), expense -> {
+            if (binding.tvExpense != null) {
+                double value = expense != null ? expense : 0;
+                binding.tvExpense.setText("-" + CurrencyUtils.formatVND(value));
+            }
+        });
+
+        viewModel.getBalance().observe(getViewLifecycleOwner(), balance -> {
+            if (binding.tvTotalBalance != null) {
+                double value = balance != null ? balance : 0;
+                binding.tvTotalBalance.setText(CurrencyUtils.formatVND(value));
             }
         });
     }

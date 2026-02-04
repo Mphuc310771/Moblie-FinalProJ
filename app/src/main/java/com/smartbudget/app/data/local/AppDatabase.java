@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
         SavingsGoalEntity.class,
         ChatMessageEntity.class,
         RecurringExpenseEntity.class
-}, version = 4, exportSchema = false)
+}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract CategoryDao categoryDao();

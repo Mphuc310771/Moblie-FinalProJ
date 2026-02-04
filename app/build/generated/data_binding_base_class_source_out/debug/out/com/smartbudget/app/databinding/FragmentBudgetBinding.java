@@ -4,6 +4,7 @@ package com.smartbudget.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,9 @@ public final class FragmentBudgetBinding implements ViewBinding {
   private final NestedScrollView rootView;
 
   @NonNull
+  public final ImageButton btnAddCategoryBudget;
+
+  @NonNull
   public final MaterialButton btnSetBudget;
 
   @NonNull
@@ -30,6 +34,9 @@ public final class FragmentBudgetBinding implements ViewBinding {
 
   @NonNull
   public final RecyclerView rvBudgets;
+
+  @NonNull
+  public final TextView tvEmptyCategory;
 
   @NonNull
   public final TextView tvRemaining;
@@ -41,13 +48,16 @@ public final class FragmentBudgetBinding implements ViewBinding {
   public final TextView tvTotalBudget;
 
   private FragmentBudgetBinding(@NonNull NestedScrollView rootView,
-      @NonNull MaterialButton btnSetBudget, @NonNull LinearProgressIndicator progressTotal,
-      @NonNull RecyclerView rvBudgets, @NonNull TextView tvRemaining, @NonNull TextView tvSpent,
+      @NonNull ImageButton btnAddCategoryBudget, @NonNull MaterialButton btnSetBudget,
+      @NonNull LinearProgressIndicator progressTotal, @NonNull RecyclerView rvBudgets,
+      @NonNull TextView tvEmptyCategory, @NonNull TextView tvRemaining, @NonNull TextView tvSpent,
       @NonNull TextView tvTotalBudget) {
     this.rootView = rootView;
+    this.btnAddCategoryBudget = btnAddCategoryBudget;
     this.btnSetBudget = btnSetBudget;
     this.progressTotal = progressTotal;
     this.rvBudgets = rvBudgets;
+    this.tvEmptyCategory = tvEmptyCategory;
     this.tvRemaining = tvRemaining;
     this.tvSpent = tvSpent;
     this.tvTotalBudget = tvTotalBudget;
@@ -80,6 +90,12 @@ public final class FragmentBudgetBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_add_category_budget;
+      ImageButton btnAddCategoryBudget = ViewBindings.findChildViewById(rootView, id);
+      if (btnAddCategoryBudget == null) {
+        break missingId;
+      }
+
       id = R.id.btn_set_budget;
       MaterialButton btnSetBudget = ViewBindings.findChildViewById(rootView, id);
       if (btnSetBudget == null) {
@@ -95,6 +111,12 @@ public final class FragmentBudgetBinding implements ViewBinding {
       id = R.id.rv_budgets;
       RecyclerView rvBudgets = ViewBindings.findChildViewById(rootView, id);
       if (rvBudgets == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_empty_category;
+      TextView tvEmptyCategory = ViewBindings.findChildViewById(rootView, id);
+      if (tvEmptyCategory == null) {
         break missingId;
       }
 
@@ -116,8 +138,9 @@ public final class FragmentBudgetBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentBudgetBinding((NestedScrollView) rootView, btnSetBudget, progressTotal,
-          rvBudgets, tvRemaining, tvSpent, tvTotalBudget);
+      return new FragmentBudgetBinding((NestedScrollView) rootView, btnAddCategoryBudget,
+          btnSetBudget, progressTotal, rvBudgets, tvEmptyCategory, tvRemaining, tvSpent,
+          tvTotalBudget);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

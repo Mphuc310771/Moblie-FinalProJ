@@ -19,10 +19,24 @@ public class BudgetRepository {
         budgetDao = database.budgetDao();
     }
 
-    // Insert or Update
+    // Insert or Update - properly handle existing budgets
     public void insertOrUpdate(BudgetEntity budget) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
-            budgetDao.insert(budget);
+            // Find existing budget with same categoryId, month, year
+            Long existingId = budgetDao.findBudgetId(
+                    budget.getCategoryId(), 
+                    budget.getMonth(), 
+                    budget.getYear()
+            );
+            
+            if (existingId != null) {
+                // Update existing budget
+                budget.setId(existingId);
+                budgetDao.update(budget);
+            } else {
+                // Insert new budget
+                budgetDao.insert(budget);
+            }
         });
     }
 

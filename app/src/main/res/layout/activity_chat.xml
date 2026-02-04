@@ -47,6 +47,15 @@
                 android:alpha="0.8"
                 android:textSize="12sp" />
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_help"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_help"
+            android:contentDescription="Hướng dẫn sử dụng"
+            app:tint="@android:color/white" />
     </LinearLayout>
 
     <!-- Messages List -->

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Gradient mesh effect with multiple colors -->
+    <gradient
+        android:type="sweep"
+        android:centerX="0.5"
+        android:centerY="0.5"
+        android:startColor="#667eea"
+        android:centerColor="#764ba2"
+        android:endColor="#f953c6" />
+    <corners android:radius="24dp" />
+</shape>

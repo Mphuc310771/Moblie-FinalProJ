@@ -44,6 +44,9 @@ public class ChatActivity extends AppCompatActivity {
             return true;
         });
 
+        // Help button - shows AI guide
+        binding.btnHelp.setOnClickListener(v -> showAIGuide());
+
         // Setup RecyclerView
         chatAdapter = new ChatAdapter();
         binding.rvMessages.setLayoutManager(new LinearLayoutManager(this));
@@ -77,6 +80,17 @@ public class ChatActivity extends AppCompatActivity {
             askQuestion(getString(R.string.chat_suggestion_save)));
         binding.chipAnalyze.setOnClickListener(v -> 
             askQuestion(getString(R.string.chat_suggestion_analyze)));
+    }
+
+    private void showAIGuide() {
+        com.google.android.material.bottomsheet.BottomSheetDialog dialog = 
+            new com.google.android.material.bottomsheet.BottomSheetDialog(this);
+        android.view.View view = getLayoutInflater().inflate(R.layout.dialog_ai_guide, null);
+        dialog.setContentView(view);
+        
+        view.findViewById(R.id.btn_close).setOnClickListener(v -> dialog.dismiss());
+        
+        dialog.show();
     }
 
     private void observeViewModel() {

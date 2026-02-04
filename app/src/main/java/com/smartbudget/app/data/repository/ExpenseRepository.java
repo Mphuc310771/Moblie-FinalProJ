@@ -92,6 +92,11 @@ public class ExpenseRepository {
         return expenseDao.getExpenseTotalsByCategory(startDate, endDate);
     }
 
+    // Get total INCOME by date range
+    public LiveData<Double> getTotalIncomeByDateRange(long startDate, long endDate) {
+        return expenseDao.getTotalIncomeByDateRange(startDate, endDate);
+    }
+
     // Callback interface
     public interface OnExpenseInsertedListener {
         void onExpenseInserted(long id);

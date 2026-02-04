@@ -49,7 +49,13 @@ public final class FragmentSettingsBinding implements ViewBinding {
   public final LinearLayout settingBackup;
 
   @NonNull
+  public final LinearLayout settingBiometric;
+
+  @NonNull
   public final LinearLayout settingCurrency;
+
+  @NonNull
+  public final LinearLayout settingDarkMode;
 
   @NonNull
   public final LinearLayout settingExport;
@@ -73,6 +79,9 @@ public final class FragmentSettingsBinding implements ViewBinding {
   public final LinearLayout settingSync;
 
   @NonNull
+  public final SwitchMaterial switchBiometric;
+
+  @NonNull
   public final SwitchMaterial switchDarkMode;
 
   @NonNull
@@ -80,6 +89,9 @@ public final class FragmentSettingsBinding implements ViewBinding {
 
   @NonNull
   public final TextView tvAiModel;
+
+  @NonNull
+  public final TextView tvBiometricStatus;
 
   @NonNull
   public final TextView tvReminderSubtitle;
@@ -94,12 +106,14 @@ public final class FragmentSettingsBinding implements ViewBinding {
       @NonNull MaterialButton btnLogout, @NonNull CardView cardProfile,
       @NonNull LinearLayout layoutGuest, @NonNull LinearLayout layoutUser,
       @NonNull LinearLayout settingAiChat, @NonNull LinearLayout settingAiModel,
-      @NonNull LinearLayout settingBackup, @NonNull LinearLayout settingCurrency,
+      @NonNull LinearLayout settingBackup, @NonNull LinearLayout settingBiometric,
+      @NonNull LinearLayout settingCurrency, @NonNull LinearLayout settingDarkMode,
       @NonNull LinearLayout settingExport, @NonNull LinearLayout settingImport,
       @NonNull LinearLayout settingRecurring, @NonNull LinearLayout settingReminder,
       @NonNull LinearLayout settingSavingsGoals, @NonNull LinearLayout settingScanReceipt,
-      @NonNull LinearLayout settingSync, @NonNull SwitchMaterial switchDarkMode,
-      @NonNull SwitchMaterial switchReminder, @NonNull TextView tvAiModel,
+      @NonNull LinearLayout settingSync, @NonNull SwitchMaterial switchBiometric,
+      @NonNull SwitchMaterial switchDarkMode, @NonNull SwitchMaterial switchReminder,
+      @NonNull TextView tvAiModel, @NonNull TextView tvBiometricStatus,
       @NonNull TextView tvReminderSubtitle, @NonNull TextView tvSyncStatus,
       @NonNull TextView tvUserEmail) {
     this.rootView = rootView;
@@ -111,7 +125,9 @@ public final class FragmentSettingsBinding implements ViewBinding {
     this.settingAiChat = settingAiChat;
     this.settingAiModel = settingAiModel;
     this.settingBackup = settingBackup;
+    this.settingBiometric = settingBiometric;
     this.settingCurrency = settingCurrency;
+    this.settingDarkMode = settingDarkMode;
     this.settingExport = settingExport;
     this.settingImport = settingImport;
     this.settingRecurring = settingRecurring;
@@ -119,9 +135,11 @@ public final class FragmentSettingsBinding implements ViewBinding {
     this.settingSavingsGoals = settingSavingsGoals;
     this.settingScanReceipt = settingScanReceipt;
     this.settingSync = settingSync;
+    this.switchBiometric = switchBiometric;
     this.switchDarkMode = switchDarkMode;
     this.switchReminder = switchReminder;
     this.tvAiModel = tvAiModel;
+    this.tvBiometricStatus = tvBiometricStatus;
     this.tvReminderSubtitle = tvReminderSubtitle;
     this.tvSyncStatus = tvSyncStatus;
     this.tvUserEmail = tvUserEmail;
@@ -202,9 +220,21 @@ public final class FragmentSettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.setting_biometric;
+      LinearLayout settingBiometric = ViewBindings.findChildViewById(rootView, id);
+      if (settingBiometric == null) {
+        break missingId;
+      }
+
       id = R.id.setting_currency;
       LinearLayout settingCurrency = ViewBindings.findChildViewById(rootView, id);
       if (settingCurrency == null) {
+        break missingId;
+      }
+
+      id = R.id.setting_dark_mode;
+      LinearLayout settingDarkMode = ViewBindings.findChildViewById(rootView, id);
+      if (settingDarkMode == null) {
         break missingId;
       }
 
@@ -250,6 +280,12 @@ public final class FragmentSettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.switch_biometric;
+      SwitchMaterial switchBiometric = ViewBindings.findChildViewById(rootView, id);
+      if (switchBiometric == null) {
+        break missingId;
+      }
+
       id = R.id.switch_dark_mode;
       SwitchMaterial switchDarkMode = ViewBindings.findChildViewById(rootView, id);
       if (switchDarkMode == null) {
@@ -265,6 +301,12 @@ public final class FragmentSettingsBinding implements ViewBinding {
       id = R.id.tv_ai_model;
       TextView tvAiModel = ViewBindings.findChildViewById(rootView, id);
       if (tvAiModel == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_biometric_status;
+      TextView tvBiometricStatus = ViewBindings.findChildViewById(rootView, id);
+      if (tvBiometricStatus == null) {
         break missingId;
       }
 
@@ -287,10 +329,11 @@ public final class FragmentSettingsBinding implements ViewBinding {
       }
 
       return new FragmentSettingsBinding((ScrollView) rootView, btnLogin, btnLogout, cardProfile,
-          layoutGuest, layoutUser, settingAiChat, settingAiModel, settingBackup, settingCurrency,
-          settingExport, settingImport, settingRecurring, settingReminder, settingSavingsGoals,
-          settingScanReceipt, settingSync, switchDarkMode, switchReminder, tvAiModel,
-          tvReminderSubtitle, tvSyncStatus, tvUserEmail);
+          layoutGuest, layoutUser, settingAiChat, settingAiModel, settingBackup, settingBiometric,
+          settingCurrency, settingDarkMode, settingExport, settingImport, settingRecurring,
+          settingReminder, settingSavingsGoals, settingScanReceipt, settingSync, switchBiometric,
+          switchDarkMode, switchReminder, tvAiModel, tvBiometricStatus, tvReminderSubtitle,
+          tvSyncStatus, tvUserEmail);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

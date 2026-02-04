@@ -56,8 +56,13 @@ public class ChatRepository {
                 long endOfMonth = com.smartbudget.app.utils.DateUtils.getEndOfMonth(month, year);
 
                 double monthTotal = expenseDao.getTotalByDateRange(startOfMonth, endOfMonth);
-                contextBuilder.append("Current Month (").append(month).append("/").append(year).append(") Spending: ")
-                        .append(String.format("%,.0f", monthTotal)).append(" VND.\n");
+                double monthlyIncome = expenseDao.getTotalIncomeSync(startOfMonth, endOfMonth);
+                double balance = monthlyIncome - monthTotal;
+                
+                contextBuilder.append("Current Month (").append(month).append("/").append(year).append("):\n");
+                contextBuilder.append("- Total Income: ").append(String.format("%,.0f", monthlyIncome)).append(" VND\n");
+                contextBuilder.append("- Total Expense: ").append(String.format("%,.0f", monthTotal)).append(" VND\n");
+                contextBuilder.append("- Balance (Income - Expense): ").append(String.format("%,.0f", balance)).append(" VND\n");
 
                 // Get Budget Info
                 com.smartbudget.app.data.local.entity.BudgetEntity globalBudget = budgetDao.getTotalBudget(month, year);

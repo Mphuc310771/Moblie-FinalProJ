@@ -59,6 +59,11 @@ public class BudgetFragment extends Fragment {
 
     private void setupListeners() {
         binding.btnSetBudget.setOnClickListener(v -> showSetBudgetDialog());
+        
+        // Add category budget button
+        if (binding.btnAddCategoryBudget != null) {
+            binding.btnAddCategoryBudget.setOnClickListener(v -> showAddCategoryBudgetDialog());
+        }
     }
 
     private void observeData() {
@@ -88,12 +93,76 @@ public class BudgetFragment extends Fragment {
             }
         });
 
-        // Observe monthly budgets
+        // Observe monthly budgets (category budgets only - filter out null categoryId)
         viewModel.getCurrentMonthBudgets().observe(getViewLifecycleOwner(), budgets -> {
             if (budgets != null) {
-                budgetAdapter.submitList(budgets);
+                // Filter to get only category budgets (exclude total budget)
+                java.util.List<BudgetEntity> categoryBudgets = new java.util.ArrayList<>();
+                for (BudgetEntity b : budgets) {
+                    if (b.getCategoryId() != null) {
+                        categoryBudgets.add(b);
+                    }
+                }
+                budgetAdapter.submitList(categoryBudgets);
+                
+                // Show/hide empty state
+                if (binding.tvEmptyCategory != null) {
+                    binding.tvEmptyCategory.setVisibility(categoryBudgets.isEmpty() ? 
+                        android.view.View.VISIBLE : android.view.View.GONE);
+                }
             }
         });
+    }
+
+    private void showAddCategoryBudgetDialog() {
+        // Get list of expense categories
+        java.util.List<CategoryEntity> categories = new java.util.ArrayList<>(categoryMap.values());
+        if (categories.isEmpty()) {
+            Toast.makeText(requireContext(), "Chưa có danh mục chi tiêu", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String[] categoryNames = new String[categories.size()];
+        for (int i = 0; i < categories.size(); i++) {
+            categoryNames[i] = categories.get(i).getIcon() + " " + categories.get(i).getName();
+        }
+
+        final int[] selectedIndex = {0};
+
+        new AlertDialog.Builder(requireContext())
+            .setTitle("Chọn danh mục")
+            .setSingleChoiceItems(categoryNames, 0, (dialog, which) -> selectedIndex[0] = which)
+            .setPositiveButton("Tiếp tục", (dialog, which) -> {
+                CategoryEntity selectedCategory = categories.get(selectedIndex[0]);
+                showSetCategoryBudgetAmountDialog(selectedCategory);
+            })
+            .setNegativeButton("Hủy", null)
+            .show();
+    }
+
+    private void showSetCategoryBudgetAmountDialog(CategoryEntity category) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Ngân sách: " + category.getIcon() + " " + category.getName());
+
+        final EditText input = new EditText(requireContext());
+        input.setHint("Nhập số tiền");
+        input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
+
+        builder.setPositiveButton("Lưu", (dialog, which) -> {
+            String amountStr = input.getText().toString().trim();
+            double amount = CurrencyUtils.parseAmount(amountStr);
+            if (amount > 0) {
+                viewModel.saveCategoryBudget(category.getId(), amount);
+                Toast.makeText(requireContext(), "Đã lưu ngân sách " + category.getName(), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(requireContext(), "Vui lòng nhập số tiền hợp lệ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Hủy", (dialog, which) -> dialog.cancel());
+
+        builder.show();
     }
 
     private void showSetBudgetDialog() {

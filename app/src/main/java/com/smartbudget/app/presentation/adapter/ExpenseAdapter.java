@@ -30,6 +30,12 @@ public class ExpenseAdapter extends ListAdapter<ExpenseEntity, ExpenseAdapter.Ex
         void onItemClick(ExpenseEntity expense);
     }
 
+    public interface OnItemSwipeListener {
+        void onItemSwiped(ExpenseEntity expense, int position);
+    }
+
+    private OnItemSwipeListener swipeListener;
+
     public ExpenseAdapter(Map<Long, CategoryEntity> categoryMap) {
         super(DIFF_CALLBACK);
         this.categoryMap = categoryMap;
@@ -41,11 +47,20 @@ public class ExpenseAdapter extends ListAdapter<ExpenseEntity, ExpenseAdapter.Ex
     }
 
     public void updateExpenses(java.util.List<ExpenseEntity> expenses) {
-        submitList(expenses);
+        // Create new list to force DiffUtil to properly detect changes
+        submitList(expenses == null ? null : new java.util.ArrayList<>(expenses));
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
+    }
+
+    public void setOnItemSwipeListener(OnItemSwipeListener listener) {
+        this.swipeListener = listener;
+    }
+
+    public ExpenseEntity getExpenseAt(int position) {
+        return getItem(position);
     }
 
     private static final DiffUtil.ItemCallback<ExpenseEntity> DIFF_CALLBACK = new DiffUtil.ItemCallback<ExpenseEntity>() {
@@ -75,6 +90,9 @@ public class ExpenseAdapter extends ListAdapter<ExpenseEntity, ExpenseAdapter.Ex
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
         ExpenseEntity expense = getItem(position);
         holder.bind(expense, categoryMap, listener);
+        
+        // Add staggered animation
+        com.smartbudget.app.utils.AnimationHelper.animateListItem(holder, position);
     }
 
     static class ExpenseViewHolder extends RecyclerView.ViewHolder {

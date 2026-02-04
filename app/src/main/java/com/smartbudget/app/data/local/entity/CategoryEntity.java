@@ -112,6 +112,16 @@ public class CategoryEntity implements Serializable {
      * @param type Category type (TYPE_EXPENSE or TYPE_INCOME)
      * @param isCustom Whether this is a user-created category
      */
+    /**
+     * Full constructor for creating a category with all properties.
+     * 
+     * @param name Display name of the category
+     * @param icon Emoji or icon code
+     * @param color Hex color code (e.g., "#FF6B6B")
+     * @param type Category type (TYPE_EXPENSE or TYPE_INCOME)
+     * @param isCustom Whether this is a user-created category
+     */
+    @androidx.room.Ignore
     public CategoryEntity(String name, String icon, String color, int type, boolean isCustom) {
         this.name = name;
         this.icon = icon;
@@ -129,6 +139,16 @@ public class CategoryEntity implements Serializable {
      * @param color Hex color code
      * @param type Category type
      */
+    /**
+     * Convenience constructor for system default categories.
+     * Sets isCustom to false automatically.
+     * 
+     * @param name Display name of the category
+     * @param icon Emoji or icon code
+     * @param color Hex color code
+     * @param type Category type
+     */
+    @androidx.room.Ignore
     public CategoryEntity(String name, String icon, String color, int type) {
         this(name, icon, color, type, false);
     }

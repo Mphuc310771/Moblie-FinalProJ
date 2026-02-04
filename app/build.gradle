@@ -39,7 +39,6 @@ android {
     }
     
     compileOptions {
-        // Reverting to Java 8 to avoid jlink desugaring error with current setup
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -60,6 +59,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
     
     // Navigation
     implementation 'androidx.navigation:navigation-fragment:2.7.6'
@@ -97,8 +97,18 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     
+    // Biometric Authentication
+    implementation 'androidx.biometric:biometric:1.1.0'
+    
+    // Premium UI Libraries
+    implementation 'com.airbnb.android:lottie:6.3.0'  // Lottie animations
+    implementation 'nl.dionsegijn:konfetti-xml:2.0.4' // Confetti effects
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4' // Swipe decorations
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0' // Pull to refresh
+    
     // Testing
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.8.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

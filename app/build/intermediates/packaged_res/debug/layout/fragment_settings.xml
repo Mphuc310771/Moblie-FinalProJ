@@ -254,11 +254,13 @@
 
     <!-- Dark Mode -->
     <LinearLayout
+        android:id="@+id/setting_dark_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingVertical="@dimen/spacing_md">
+        android:paddingVertical="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackground">
 
         <TextView
             android:layout_width="0dp"
@@ -270,6 +272,48 @@
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch_dark_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- Biometric Lock -->
+    <LinearLayout
+        android:id="@+id/setting_biometric"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/spacing_md">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔐 Khóa vân tay"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_body" />
+            
+            <TextView
+                android:id="@+id/tv_biometric_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mở khóa bằng sinh trắc học"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption" />
+        </LinearLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_biometric"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

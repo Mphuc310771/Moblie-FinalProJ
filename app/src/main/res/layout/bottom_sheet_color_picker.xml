@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_sheet_handle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🎨 Chọn màu danh mục"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Color Grid -->
+    <GridLayout
+        android:id="@+id/grid_colors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="6"
+        android:rowCount="4"
+        android:alignmentMode="alignMargins"
+        android:useDefaultMargins="true"
+        android:layout_marginBottom="16dp">
+
+        <!-- Row 1: Reds/Pinks -->
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#F44336" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#E91E63" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#FF5722" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#FF9800" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#FFC107" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#FFEB3B" />
+
+        <!-- Row 2: Greens -->
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#4CAF50" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#8BC34A" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#CDDC39" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#009688" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#00BCD4" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#03A9F4" />
+
+        <!-- Row 3: Blues/Purples -->
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#2196F3" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#3F51B5" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#673AB7" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#9C27B0" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#795548" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#607D8B" />
+
+        <!-- Row 4: Grays/Black -->
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#9E9E9E" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#757575" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#424242" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#212121" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#000000" />
+        <View android:layout_width="40dp" android:layout_height="40dp" android:background="@drawable/color_circle" android:backgroundTint="#FFFFFF" />
+
+    </GridLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="✓ Xác nhận"
+        style="@style/PrimaryButton" />
+
+</LinearLayout>

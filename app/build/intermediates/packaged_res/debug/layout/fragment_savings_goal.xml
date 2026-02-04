@@ -108,11 +108,11 @@
             android:padding="@dimen/spacing_xl"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🎯"
-                android:textSize="48sp" />
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/img_savings_goal"
+                android:contentDescription="Savings Goal" />
 
             <TextView
                 android:layout_width="wrap_content"

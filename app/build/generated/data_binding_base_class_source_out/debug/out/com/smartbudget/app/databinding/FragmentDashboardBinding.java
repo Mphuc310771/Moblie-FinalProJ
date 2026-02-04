@@ -4,26 +4,29 @@ package com.smartbudget.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.github.mikephil.charting.charts.PieChart;
 import com.google.android.material.card.MaterialCardView;
 import com.smartbudget.app.R;
+import com.smartbudget.app.utils.GradientTextView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
+import nl.dionsegijn.konfetti.xml.KonfettiView;
 
 public final class FragmentDashboardBinding implements ViewBinding {
   @NonNull
-  private final NestedScrollView rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final MaterialCardView btnQuickAi;
@@ -38,16 +41,31 @@ public final class FragmentDashboardBinding implements ViewBinding {
   public final CardView cardAiInsight;
 
   @NonNull
+  public final CardView cardQuote;
+
+  @NonNull
   public final LinearLayout emptyState;
 
   @NonNull
+  public final ImageView ivHelp;
+
+  @NonNull
   public final ImageView ivNotification;
+
+  @NonNull
+  public final KonfettiView konfettiView;
 
   @NonNull
   public final PieChart pieChart;
 
   @NonNull
   public final RecyclerView rvTransactions;
+
+  @NonNull
+  public final LinearLayout streakBadge;
+
+  @NonNull
+  public final SwipeRefreshLayout swipeRefresh;
 
   @NonNull
   public final TextView tvAiInsight;
@@ -62,44 +80,65 @@ public final class FragmentDashboardBinding implements ViewBinding {
   public final TextView tvIncome;
 
   @NonNull
+  public final TextView tvQuote;
+
+  @NonNull
   public final TextView tvRecentExpensesTitle;
 
   @NonNull
   public final TextView tvSeeAll;
 
   @NonNull
+  public final TextView tvStreakCount;
+
+  @NonNull
+  public final TextView tvStreakEmoji;
+
+  @NonNull
   public final TextView tvThisMonth;
 
   @NonNull
-  public final TextView tvTotalBalance;
+  public final GradientTextView tvTotalBalance;
 
   @NonNull
   public final TextView tvUserName;
 
-  private FragmentDashboardBinding(@NonNull NestedScrollView rootView,
+  private FragmentDashboardBinding(@NonNull FrameLayout rootView,
       @NonNull MaterialCardView btnQuickAi, @NonNull MaterialCardView btnQuickSavings,
       @NonNull MaterialCardView btnQuickScan, @NonNull CardView cardAiInsight,
-      @NonNull LinearLayout emptyState, @NonNull ImageView ivNotification,
+      @NonNull CardView cardQuote, @NonNull LinearLayout emptyState, @NonNull ImageView ivHelp,
+      @NonNull ImageView ivNotification, @NonNull KonfettiView konfettiView,
       @NonNull PieChart pieChart, @NonNull RecyclerView rvTransactions,
+      @NonNull LinearLayout streakBadge, @NonNull SwipeRefreshLayout swipeRefresh,
       @NonNull TextView tvAiInsight, @NonNull TextView tvExpense, @NonNull TextView tvGreeting,
-      @NonNull TextView tvIncome, @NonNull TextView tvRecentExpensesTitle,
-      @NonNull TextView tvSeeAll, @NonNull TextView tvThisMonth, @NonNull TextView tvTotalBalance,
+      @NonNull TextView tvIncome, @NonNull TextView tvQuote,
+      @NonNull TextView tvRecentExpensesTitle, @NonNull TextView tvSeeAll,
+      @NonNull TextView tvStreakCount, @NonNull TextView tvStreakEmoji,
+      @NonNull TextView tvThisMonth, @NonNull GradientTextView tvTotalBalance,
       @NonNull TextView tvUserName) {
     this.rootView = rootView;
     this.btnQuickAi = btnQuickAi;
     this.btnQuickSavings = btnQuickSavings;
     this.btnQuickScan = btnQuickScan;
     this.cardAiInsight = cardAiInsight;
+    this.cardQuote = cardQuote;
     this.emptyState = emptyState;
+    this.ivHelp = ivHelp;
     this.ivNotification = ivNotification;
+    this.konfettiView = konfettiView;
     this.pieChart = pieChart;
     this.rvTransactions = rvTransactions;
+    this.streakBadge = streakBadge;
+    this.swipeRefresh = swipeRefresh;
     this.tvAiInsight = tvAiInsight;
     this.tvExpense = tvExpense;
     this.tvGreeting = tvGreeting;
     this.tvIncome = tvIncome;
+    this.tvQuote = tvQuote;
     this.tvRecentExpensesTitle = tvRecentExpensesTitle;
     this.tvSeeAll = tvSeeAll;
+    this.tvStreakCount = tvStreakCount;
+    this.tvStreakEmoji = tvStreakEmoji;
     this.tvThisMonth = tvThisMonth;
     this.tvTotalBalance = tvTotalBalance;
     this.tvUserName = tvUserName;
@@ -107,7 +146,7 @@ public final class FragmentDashboardBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public NestedScrollView getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -156,15 +195,33 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.card_quote;
+      CardView cardQuote = ViewBindings.findChildViewById(rootView, id);
+      if (cardQuote == null) {
+        break missingId;
+      }
+
       id = R.id.empty_state;
       LinearLayout emptyState = ViewBindings.findChildViewById(rootView, id);
       if (emptyState == null) {
         break missingId;
       }
 
+      id = R.id.iv_help;
+      ImageView ivHelp = ViewBindings.findChildViewById(rootView, id);
+      if (ivHelp == null) {
+        break missingId;
+      }
+
       id = R.id.iv_notification;
       ImageView ivNotification = ViewBindings.findChildViewById(rootView, id);
       if (ivNotification == null) {
+        break missingId;
+      }
+
+      id = R.id.konfetti_view;
+      KonfettiView konfettiView = ViewBindings.findChildViewById(rootView, id);
+      if (konfettiView == null) {
         break missingId;
       }
 
@@ -177,6 +234,18 @@ public final class FragmentDashboardBinding implements ViewBinding {
       id = R.id.rv_transactions;
       RecyclerView rvTransactions = ViewBindings.findChildViewById(rootView, id);
       if (rvTransactions == null) {
+        break missingId;
+      }
+
+      id = R.id.streak_badge;
+      LinearLayout streakBadge = ViewBindings.findChildViewById(rootView, id);
+      if (streakBadge == null) {
+        break missingId;
+      }
+
+      id = R.id.swipe_refresh;
+      SwipeRefreshLayout swipeRefresh = ViewBindings.findChildViewById(rootView, id);
+      if (swipeRefresh == null) {
         break missingId;
       }
 
@@ -204,6 +273,12 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_quote;
+      TextView tvQuote = ViewBindings.findChildViewById(rootView, id);
+      if (tvQuote == null) {
+        break missingId;
+      }
+
       id = R.id.tv_recent_expenses_title;
       TextView tvRecentExpensesTitle = ViewBindings.findChildViewById(rootView, id);
       if (tvRecentExpensesTitle == null) {
@@ -216,6 +291,18 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_streak_count;
+      TextView tvStreakCount = ViewBindings.findChildViewById(rootView, id);
+      if (tvStreakCount == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_streak_emoji;
+      TextView tvStreakEmoji = ViewBindings.findChildViewById(rootView, id);
+      if (tvStreakEmoji == null) {
+        break missingId;
+      }
+
       id = R.id.tv_this_month;
       TextView tvThisMonth = ViewBindings.findChildViewById(rootView, id);
       if (tvThisMonth == null) {
@@ -223,7 +310,7 @@ public final class FragmentDashboardBinding implements ViewBinding {
       }
 
       id = R.id.tv_total_balance;
-      TextView tvTotalBalance = ViewBindings.findChildViewById(rootView, id);
+      GradientTextView tvTotalBalance = ViewBindings.findChildViewById(rootView, id);
       if (tvTotalBalance == null) {
         break missingId;
       }
@@ -234,9 +321,10 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentDashboardBinding((NestedScrollView) rootView, btnQuickAi, btnQuickSavings,
-          btnQuickScan, cardAiInsight, emptyState, ivNotification, pieChart, rvTransactions,
-          tvAiInsight, tvExpense, tvGreeting, tvIncome, tvRecentExpensesTitle, tvSeeAll,
+      return new FragmentDashboardBinding((FrameLayout) rootView, btnQuickAi, btnQuickSavings,
+          btnQuickScan, cardAiInsight, cardQuote, emptyState, ivHelp, ivNotification, konfettiView,
+          pieChart, rvTransactions, streakBadge, swipeRefresh, tvAiInsight, tvExpense, tvGreeting,
+          tvIncome, tvQuote, tvRecentExpensesTitle, tvSeeAll, tvStreakCount, tvStreakEmoji,
           tvThisMonth, tvTotalBalance, tvUserName);
     }
     String missingId = rootView.getResources().getResourceName(id);

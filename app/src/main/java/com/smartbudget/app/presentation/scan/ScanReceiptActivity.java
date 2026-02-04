@@ -391,12 +391,34 @@ public class ScanReceiptActivity extends AppCompatActivity {
     }
 
     /**
-     * Hiển thị thông báo lỗi.
+     * Hiển thị thông báo lỗi với các tùy chọn khắc phục.
      * 
      * @param message Nội dung lỗi
      */
     private void showError(String message) {
         binding.progressBar.setVisibility(View.GONE);
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        
+        // Show error dialog with options
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("❌ Lỗi quét hóa đơn")
+            .setMessage(message + "\n\nBạn muốn làm gì tiếp?")
+            .setPositiveButton("🔄 Thử lại", (dialog, which) -> {
+                // Reset and let user take new photo
+                binding.ivReceipt.setVisibility(View.GONE);
+                binding.cardResult.setVisibility(View.GONE);
+            })
+            .setNegativeButton("✍️ Nhập thủ công", (dialog, which) -> {
+                // Return to previous screen with empty data - let user manually enter
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("manual_entry", true);
+                resultIntent.putExtra("amount", 0.0);
+                resultIntent.putExtra("merchant", "");
+                resultIntent.putExtra("note", "");
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            })
+            .setNeutralButton("Hủy", (dialog, which) -> finish())
+            .setCancelable(false)
+            .show();
     }
 }

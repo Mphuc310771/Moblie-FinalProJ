@@ -1,59 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools">
-    <color name="accent">#FFAB00</color>
-    <color name="accent_light">#FFF6E0</color>
-    <color name="background">#F4F6F8</color>
-    <color name="bg_ai_chat">#E8F0FE</color>
-    <color name="bg_expense">#FFEBEE</color>
-    <color name="bg_savings">#FFF8E1</color>
-    <color name="bg_scan">#E6FAEA</color>
-    <color name="border">#DEE2E6</color>
+    <color name="background">#F8FAFC</color>
+    <color name="bg_ai_chat">#F0F9FF</color>
+    <color name="bg_expense">#FFF1F2</color>
+    <color name="bg_savings">#FFFBEB</color>
+    <color name="bg_scan">#ECFDF5</color>
+    <color name="border">#CBD5E1</color>
     <color name="card_background">#FFFFFF</color>
-    <color name="card_shadow">#1A1A2E</color>
-    <color name="cat_education">#00B8D4</color>
-    <color name="cat_entertainment">#FF4081</color>
-    <color name="cat_food">#FF5252</color>
-    <color name="cat_gift">#FF4081</color>
-    <color name="cat_health">#00C853</color>
-    <color name="cat_housing">#2962FF</color>
-    <color name="cat_investment">#6200EA</color>
-    <color name="cat_other">#9E9E9E</color>
-    <color name="cat_salary">#00C853</color>
-    <color name="cat_shopping">#6200EA</color>
-    <color name="cat_transport">#0057FF</color>
-    <color name="cat_utilities">#FFAB00</color>
-    <color name="chart_1">#0057FF</color>
-    <color name="chart_2">#00C853</color>
-    <color name="chart_3">#FFAB00</color>
-    <color name="chart_4">#FF5252</color>
-    <color name="chart_5">#6200EA</color>
-    <color name="chart_6">#00B8D4</color>
-    <color name="chart_7">#FF4081</color>
-    <color name="chart_8">#2962FF</color>
-    <color name="divider">#E9ECEF</color>
-    <color name="error">#FF5252</color>
-    <color name="expense_color">#FF5252</color>
-    <color name="gradient_end">#00A8FF</color>
-    <color name="gradient_start">#0057FF</color>
-    <color name="income_color">#00C853</color>
-    <color name="on_background">#1A1A2E</color>
+    <color name="card_shadow">#94A3B8</color>
+    <color name="card_stroke">#E2E8F0</color>
+    <color name="cat_education">#0284C7</color>
+    <color name="cat_entertainment">#DB2777</color>
+    <color name="cat_food">#E11D48</color>
+    <color name="cat_gift">#DB2777</color>
+    <color name="cat_health">#059669</color>
+    <color name="cat_housing">#6366F1</color>
+    <color name="cat_investment">#7C3AED</color>
+    <color name="cat_other">#64748B</color>
+    <color name="cat_salary">#059669</color>
+    <color name="cat_shopping">#7C3AED</color>
+    <color name="cat_transport">#3B82F6</color>
+    <color name="cat_utilities">#D97706</color>
+    <color name="chart_1">#0284C7</color>
+    <color name="chart_2">#059669</color>
+    <color name="chart_3">#D97706</color>
+    <color name="chart_4">#E11D48</color>
+    <color name="chart_5">#7C3AED</color>
+    <color name="chart_6">#DB2777</color>
+    <color name="chart_7">#3B82F6</color>
+    <color name="chart_8">#6366F1</color>
+    <color name="colorAccent">#DB2777</color>
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryDark">#0369A1</color>
+    <color name="divider">#E2E8F0</color>
+    <color name="error">#DC2626</color>
+    <color name="expense_color">#E11D48</color>
+    <color name="gradient_end">#6366F1</color>
+    <color name="gradient_start">#0284C7</color>
+    <color name="income_color">#059669</color>
+    <color name="on_background">#0F172A</color>
     <color name="on_error">#FFFFFF</color>
     <color name="on_primary">#FFFFFF</color>
     <color name="on_secondary">#FFFFFF</color>
-    <color name="on_surface">#1A1A2E</color>
-    <color name="primary">#0057FF</color>
-    <color name="primary_light">#E6F0FF</color>
-    <color name="primary_variant">#003ECB</color>
-    <color name="secondary">#00C853</color>
-    <color name="secondary_light">#E6FAEA</color>
-    <color name="secondary_variant">#009624</color>
-    <color name="status_bar">#F4F6F8</color>
-    <color name="success">#00C853</color>
+    <color name="on_surface">#1E293B</color>
+    <color name="primary">#0284C7</color>
+    <color name="primary_light">#E0F2FE</color>
+    <color name="primary_variant">#0EA5E9</color>
+    <color name="secondary">#7C3AED</color>
+    <color name="secondary_light">#F3E8FF</color>
+    <color name="secondary_variant">#6D28D9</color>
+    <color name="status_bar">#F8FAFC</color>
+    <color name="success">#059669</color>
     <color name="surface">#FFFFFF</color>
-    <color name="text_hint">#ADB5BD</color>
-    <color name="text_primary">#1A1A2E</color>
-    <color name="text_secondary">#6C757D</color>
-    <color name="warning_color">#FFAB00</color>
+    <color name="text_hint">#94A3B8</color>
+    <color name="text_on_card">#0F172A</color>
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="warning_color">#D97706</color>
     <dimen name="balance_card_height">180dp</dimen>
     <dimen name="bottom_nav_height">64dp</dimen>
     <dimen name="button_corner_radius">12dp</dimen>
@@ -214,10 +217,10 @@
         <item name="elevation">16dp</item>
     </style>
     <style name="CardStyle" parent="Widget.Material3.CardView.Elevated">
-        <item name="cardBackgroundColor">@color/card_background</item>
-        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-        <item name="cardElevation">@dimen/elevation_card</item>
-        <item name="strokeColor">@android:color/transparent</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="android:background">@drawable/bg_glass_card</item>
     </style>
     <style name="FabStyle" parent="Widget.Material3.FloatingActionButton.Primary">
         <item name="backgroundTint">@color/primary</item>
@@ -264,7 +267,7 @@
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="Theme.SmartBudget" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.SmartBudget" parent="Theme.Material3.DayNight.NoActionBar">
         
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
@@ -290,5 +293,11 @@
 
         
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="Theme.SmartBudget.Splash" parent="Theme.SmartBudget">
+        <item name="android:windowBackground">@drawable/gradient_splash</item>
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar" ns1:targetApi="23">false</item>
+        <item name="android:navigationBarColor">@color/primary</item>
     </style>
 </resources>

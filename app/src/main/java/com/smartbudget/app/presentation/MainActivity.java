@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Check biometric lock before showing content
+        checkBiometricLock();
+        
         setupNavigation();
         setupFab();
 
@@ -32,6 +35,36 @@ public class MainActivity extends AppCompatActivity {
                 com.smartbudget.app.data.local.DatabaseSeeder.seed(MainActivity.this);
             }
         });
+    }
+    
+    private void checkBiometricLock() {
+        com.smartbudget.app.utils.BiometricHelper biometricHelper = 
+            new com.smartbudget.app.utils.BiometricHelper(this);
+        
+        if (biometricHelper.isBiometricEnabled() && biometricHelper.canAuthenticate()) {
+            // Hide content until authenticated
+            binding.getRoot().setVisibility(android.view.View.INVISIBLE);
+            
+            biometricHelper.authenticate(this, new com.smartbudget.app.utils.BiometricHelper.AuthCallback() {
+                @Override
+                public void onSuccess() {
+                    binding.getRoot().setVisibility(android.view.View.VISIBLE);
+                }
+
+                @Override
+                public void onError(String message) {
+                    android.widget.Toast.makeText(MainActivity.this, message, android.widget.Toast.LENGTH_SHORT).show();
+                    // Still allow access after error (user can try again in settings)
+                    binding.getRoot().setVisibility(android.view.View.VISIBLE);
+                }
+
+                @Override
+                public void onUsePassword() {
+                    // No password fallback implemented - just show content
+                    binding.getRoot().setVisibility(android.view.View.VISIBLE);
+                }
+            });
+        }
     }
 
     private void setupNavigation() {

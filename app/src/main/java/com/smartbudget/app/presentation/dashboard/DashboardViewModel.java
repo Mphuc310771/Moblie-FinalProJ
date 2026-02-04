@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.smartbudget.app.data.local.dao.ExpenseDao;
 import com.smartbudget.app.data.local.entity.CategoryEntity;
@@ -29,9 +28,10 @@ public class DashboardViewModel extends AndroidViewModel {
     private final LiveData<Double> previousMonthTotal;
     private final MediatorLiveData<String> spendingInsight = new MediatorLiveData<>();
 
-    private final MutableLiveData<Double> totalIncome = new MutableLiveData<>(0.0);
-    private final MutableLiveData<Double> totalExpense = new MutableLiveData<>(0.0);
-    private final MutableLiveData<Double> balance = new MutableLiveData<>(0.0);
+    // Income, Expense and Balance for Dashboard
+    private final LiveData<Double> monthlyIncome;
+    private final LiveData<Double> monthlyExpense;
+    private final MediatorLiveData<Double> balance = new MediatorLiveData<>();
 
     public DashboardViewModel(@NonNull Application application) {
         super(application);
@@ -63,7 +63,23 @@ public class DashboardViewModel extends AndroidViewModel {
         
         categoryTotals = expenseRepository.getExpenseTotalsByCategory(startOfMonth, endOfMonth);
         
+        // Income and Expense for Dashboard balance card
+        monthlyIncome = expenseRepository.getTotalIncomeByDateRange(startOfMonth, endOfMonth);
+        monthlyExpense = expenseRepository.getTotalExpenseByDateRange(startOfMonth, endOfMonth);
+        
+        // Calculate balance = income - expense
+        balance.addSource(monthlyIncome, income -> updateBalance());
+        balance.addSource(monthlyExpense, expense -> updateBalance());
+        
         setupInsight();
+    }
+    
+    private void updateBalance() {
+        Double income = monthlyIncome.getValue();
+        Double expense = monthlyExpense.getValue();
+        if (income == null) income = 0.0;
+        if (expense == null) expense = 0.0;
+        balance.setValue(income - expense);
     }
 
     public LiveData<List<ExpenseEntity>> getRecentExpenses() {
@@ -83,21 +99,15 @@ public class DashboardViewModel extends AndroidViewModel {
     }
 
     public LiveData<Double> getTotalIncome() {
-        return totalIncome;
+        return monthlyIncome;
     }
 
     public LiveData<Double> getTotalExpense() {
-        return totalExpense;
+        return monthlyExpense;
     }
 
     public LiveData<Double> getBalance() {
         return balance;
-    }
-
-    public void updateBalance(double income, double expense) {
-        totalIncome.setValue(income);
-        totalExpense.setValue(expense);
-        balance.setValue(income - expense);
     }
 
     private void setupInsight() {
@@ -136,5 +146,9 @@ public class DashboardViewModel extends AndroidViewModel {
 
     public void deleteExpense(ExpenseEntity expense) {
         expenseRepository.delete(expense);
+    }
+
+    public void insertExpense(ExpenseEntity expense) {
+        expenseRepository.insert(expense);
     }
 }

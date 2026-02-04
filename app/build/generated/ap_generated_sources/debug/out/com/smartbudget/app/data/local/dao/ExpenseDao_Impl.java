@@ -754,13 +754,54 @@ public final class ExpenseDao_Impl implements ExpenseDao {
 
   @Override
   public LiveData<Double> getTotalExpenseByDateRange(final long startDate, final long endDate) {
-    final String _sql = "SELECT SUM(amount) FROM expenses WHERE date >= ? AND date <= ?";
+    final String _sql = "SELECT SUM(e.amount) FROM expenses e INNER JOIN categories c ON e.categoryId = c.id WHERE c.type = 0 AND e.date >= ? AND e.date <= ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
     int _argIndex = 1;
     _statement.bindLong(_argIndex, startDate);
     _argIndex = 2;
     _statement.bindLong(_argIndex, endDate);
-    return __db.getInvalidationTracker().createLiveData(new String[] {"expenses"}, false, new Callable<Double>() {
+    return __db.getInvalidationTracker().createLiveData(new String[] {"expenses",
+        "categories"}, false, new Callable<Double>() {
+      @Override
+      @Nullable
+      public Double call() throws Exception {
+        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+        try {
+          final Double _result;
+          if (_cursor.moveToFirst()) {
+            final Double _tmp;
+            if (_cursor.isNull(0)) {
+              _tmp = null;
+            } else {
+              _tmp = _cursor.getDouble(0);
+            }
+            _result = _tmp;
+          } else {
+            _result = null;
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+        }
+      }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    });
+  }
+
+  @Override
+  public LiveData<Double> getTotalIncomeByDateRange(final long startDate, final long endDate) {
+    final String _sql = "SELECT SUM(e.amount) FROM expenses e INNER JOIN categories c ON e.categoryId = c.id WHERE c.type = 1 AND e.date >= ? AND e.date <= ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
+    int _argIndex = 1;
+    _statement.bindLong(_argIndex, startDate);
+    _argIndex = 2;
+    _statement.bindLong(_argIndex, endDate);
+    return __db.getInvalidationTracker().createLiveData(new String[] {"expenses",
+        "categories"}, false, new Callable<Double>() {
       @Override
       @Nullable
       public Double call() throws Exception {
@@ -820,7 +861,31 @@ public final class ExpenseDao_Impl implements ExpenseDao {
 
   @Override
   public double getTotalByDateRange(final long startDate, final long endDate) {
-    final String _sql = "SELECT SUM(amount) FROM expenses WHERE date >= ? AND date <= ?";
+    final String _sql = "SELECT SUM(e.amount) FROM expenses e INNER JOIN categories c ON e.categoryId = c.id WHERE c.type = 0 AND e.date >= ? AND e.date <= ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
+    int _argIndex = 1;
+    _statement.bindLong(_argIndex, startDate);
+    _argIndex = 2;
+    _statement.bindLong(_argIndex, endDate);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final double _result;
+      if (_cursor.moveToFirst()) {
+        _result = _cursor.getDouble(0);
+      } else {
+        _result = 0.0;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public double getTotalIncomeSync(final long startDate, final long endDate) {
+    final String _sql = "SELECT COALESCE(SUM(e.amount), 0) FROM expenses e INNER JOIN categories c ON e.categoryId = c.id WHERE c.type = 1 AND e.date >= ? AND e.date <= ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
     int _argIndex = 1;
     _statement.bindLong(_argIndex, startDate);
@@ -845,13 +910,14 @@ public final class ExpenseDao_Impl implements ExpenseDao {
   @Override
   public LiveData<List<ExpenseDao.CategoryTotal>> getExpenseTotalsByCategory(final long startDate,
       final long endDate) {
-    final String _sql = "SELECT categoryId, SUM(amount) as total FROM expenses WHERE date >= ? AND date <= ? GROUP BY categoryId";
+    final String _sql = "SELECT e.categoryId, SUM(e.amount) as total FROM expenses e INNER JOIN categories c ON e.categoryId = c.id WHERE c.type = 0 AND e.date >= ? AND e.date <= ? GROUP BY e.categoryId";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
     int _argIndex = 1;
     _statement.bindLong(_argIndex, startDate);
     _argIndex = 2;
     _statement.bindLong(_argIndex, endDate);
-    return __db.getInvalidationTracker().createLiveData(new String[] {"expenses"}, false, new Callable<List<ExpenseDao.CategoryTotal>>() {
+    return __db.getInvalidationTracker().createLiveData(new String[] {"expenses",
+        "categories"}, false, new Callable<List<ExpenseDao.CategoryTotal>>() {
       @Override
       @Nullable
       public List<ExpenseDao.CategoryTotal> call() throws Exception {
