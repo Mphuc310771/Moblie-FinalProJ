@@ -63,3 +63,68 @@ SmartBudget cung cấp giải pháp theo dõi thu chi toàn diện, giúp ngư�
 
 ---
 © 2026 SmartBudget Project.
+
+---
+
+# SmartBudget (English)
+
+A personal financial management application for Android, integrating Artificial Intelligence (AI) and Optical Character Recognition (OCR).
+
+## Overview
+
+SmartBudget provides a comprehensive income and expense tracking solution, helping users manage their budget effectively through an intuitive interface and automated tools.
+
+## Key Features
+
+### 1. Financial Management
+*   **Transaction Logging:** Add, edit, and delete income/expense records by category.
+*   **Budgeting:** Set spending limits for categories and receive alerts when over budget.
+*   **Savings:** Track progress towards specific financial goals.
+
+### 2. Automation & AI
+*   **OCR (Optical Character Recognition):** Scan and extract information (total amount, date, content) from paper receipts using Google ML Kit Vision.
+*   **AI Assistant:** Integrated Large Language Model (Gemini/Groq) to answer queries and provide financial advice (supports Multi-Model switching).
+*   **Data Analysis:** Visual statistical charts and detailed reports on consumption trends.
+
+### 3. System & Security
+*   **Authentication:** Login/Register via Email and Google (Firebase Auth).
+*   **Data Sync:** Real-time data storage on Firestore, ensuring synchronization across devices.
+*   **Biometric Security:** App lock support via fingerprint (BiometricPrompt).
+*   **UI/UX:** Supports Dark Mode and Light Mode with adaptive theming.
+
+## Tech Stack
+
+| Component | Technology / Library |
+|---|---|
+| **Language** | Java, Kotlin |
+| **Architecture** | MVVM (Model-View-ViewModel) |
+| **UI** | Material Design 3, XML Layouts |
+| **Database** | Room Database (Local), Firestore (Cloud) |
+| **Authentication** | Firebase Authentication |
+| **AI & ML** | Google Gemini API, Groq API, ML Kit (Text Recognition) |
+| **Charts** | MPAndroidChart |
+| **Concurrency** | Coroutines, LiveData |
+
+## Installation & Setup
+
+### Requirements
+*   Android Studio Hedgehog or later.
+*   Min SDK: 24 (Android 7.0).
+*   Target SDK: 34 (Android 14).
+*   JDK 17.
+
+### Steps
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/Mphuc310771/Moblie-FinalProJ.git
+    ```
+2.  Open the project in Android Studio.
+3.  Configure Firebase:
+    *   Download `google-services.json` from Firebase Console.
+    *   Place it in the `app/` directory.
+4.  Sync Gradle and run the application.
+
+## Author
+
+*   **Mphuc310771** - Application Developer
+
