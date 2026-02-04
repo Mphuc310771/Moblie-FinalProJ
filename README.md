@@ -1,82 +1,65 @@
-# SmartBudget Premium (v2.0) �
+# SmartBudget
 
-> **"Quản lý tài chính - Nâng tầm phong cách"**
+Ứng dụng quản lý tài chính cá nhân dành cho nền tảng Android, tích hợp Trí tuệ nhân tạo (AI) và công nghệ nhận diện quang học (OCR).
 
-SmartBudget là ứng dụng quản lý chi tiêu cá nhân thế hệ mới trên Android, kết hợp sức mạnh của **Trí tuệ nhân tạo (AI)** với ngôn ngữ thiết kế **Neon Glassmorphism** thời thượng.
+## Tổng Quan
 
----
+SmartBudget cung cấp giải pháp theo dõi thu chi toàn diện, giúp người dùng quản lý ngân sách hiệu quả thông qua giao diện trực quan và các công cụ tự động hóa.
 
-## � Tính Năng Nổi Bật (Version 2.0)
+## Tính Năng Chính
 
-### 1. Giao Diện "Oách Xà Lách" 🎨
-*   **Neon Glass Design:** Phong cách kính mờ hiện đại, kết hợp với đèn Neon Cyberpunk.
-*   **Adaptive Dark/Light Mode:** 
-    *   🌞 **Light Mode:** Sang trọng với màu *Titanium Silver*.
-    *   🌙 **Dark Mode:** Huyền bí với màu *Deep Navy & Cyan*.
-*   **Fluid Animations:** Hiệu ứng chuyển động mượt mà, Splash screen sống động như lò phản ứng.
+### 1. Quản Lý Thu Chi
+*   **Ghi chép giao dịch:** Thêm, sửa, xóa các khoản thu/chi theo danh mục.
+*   **Ngân sách:** Thiết lập hạn mức chi tiêu cho từng danh mục và nhận cảnh báo khi vượt mức.
+*   **Tiết kiệm:** Theo dõi tiến độ tích lũy cho các mục tiêu tài chính cụ thể.
 
-### 2. Trợ Lý Tài Chính AI 🤖
-*   **Smart Chat:** Trò chuyện trực tiếp với AI (tích hợp Gemini) để nhận lời khuyên tài chính.
-*   **Auto Insight:** Tự động phân tích xu hướng chi tiêu và đưa ra cảnh báo "Viên thuốc AI" trên màn hình chính.
-*   **Voice Input:** Nhập liệu bằng giọng nói tiếng Việt tự nhiên ("Chi 50k mua cà phê").
+### 2. Tự Động Hóa & AI
+*   **OCR (Optical Character Recognition):** Quét và trích xuất thông tin (tổng tiền, ngày tháng, nội dung) từ hóa đơn giấy bằng Google ML Kit Vision.
+*   **Trợ lý ảo:** Tích hợp mô hình ngôn ngữ lớn (LLM - Gemini) để giải đáp thắc mắc và đưa ra lời khuyên tài chính.
+*   **Phân tích dữ liệu:** Biểu đồ thống kê trực quan và các báo cáo chi tiết về xu hướng tiêu dùng.
 
-### 3. Nhập Liệu Thông Minh 📸
-*   **OCR Receipt Scanning:** Quét hóa đơn bằng Camera, tự động nhận diện Tổng tiền, Ngày tháng, Cửa hàng (Google ML Kit).
-*   **Quick Actions:** Menu truy cập nhanh các tính năng thường dùng.
+### 3. Hệ Thống & Bảo Mật
+*   **Xác thực:** Đăng nhập/Đăng ký qua Email và Google (Firebase Auth).
+*   **Đồng bộ dữ liệu:** Lưu trữ dữ liệu thời gian thực trên Firestore, đảm bảo đồng bộ giữa các thiết bị.
+*   **Bảo mật sinh trắc học:** Hỗ trợ khóa ứng dụng bằng vân tay (BiometricPrompt).
+*   **Giao diện:** Hỗ trợ Dark Mode (Chế độ tối) và Light Mode (Chế độ sáng).
 
-### 4. Quản Lý Toàn Diện 📊
-*   **Dashboard trực quan:** Biểu đồ PieChart, Thẻ tổng tiền phong cách Credit Card.
-*   **Ngân sách & Mục tiêu:** Đặt hạn mức chi tiêu, theo dõi tiết kiệm mua sắm.
-*   **Báo cáo:** Thống kê chi tiết theo tuần/tháng/năm.
+## Công Nghệ Sử Dụng
 
-### 5. An Toàn & Đồng Bộ ☁️
-*   **Firebase Cloud Sync:** Dữ liệu luôn an toàn và đồng bộ trên mọi thiết bị.
-*   **Bảo mật sinh trắc học:** Khóa vân tay/khuôn mặt bảo vệ sự riêng tư.
+| Thành Phần | Công Nghệ / Thư Viện |
+|---|---|
+| **Ngôn ngữ** | Java, Kotlin |
+| **Kiến trúc** | MVVM (Model-View-ViewModel) |
+| **Giao diện** | Material Design 3, XML Layouts |
+| **Cơ sở dữ liệu** | Room Database (Local), Firestore (Cloud) |
+| **Xác thực** | Firebase Authentication |
+| **AI & ML** | Google Gemini API, ML Kit (Text Recognition) |
+| **Biểu đồ** | MPAndroidChart |
+| **Xử lý bất đồng bộ** | Coroutines, LiveData |
+| **Tiện ích khác** | ViewBinding, SharedPreferences |
 
----
+## Cài Đặt & Hướng Dẫn
 
-## 🛠️ Công Nghệ Sử Dụng
+### Yêu cầu hệ thống
+*   Android Studio Hedgehog trở lên.
+*   Min SDK: 24 (Android 7.0).
+*   Target SDK: 34 (Android 14).
+*   JDK 17.
 
-| Lĩnh Vực | Công Nghệ | Ghi Chú |
-|:---|:---|:---|
-| **Language** | Java / Kotlin | Native Android Development |
-| **Architecture** | MVVM | Clean Architecture, ViewModel, LiveData |
-| **UI Framework** | Material Design 3 | Glassmorphism, Custom Views, Konfetti |
-| **Database** | Room SQLite | Local Caching |
-| **Backend** | Firebase | Auth, Firestore (Realtime Sync) |
-| **AI / ML** | Gemini API, Google ML Kit | Chatbot, Vision OCR |
-| **Charts** | MPAndroidChart | Visualization |
-
----
-
-## � Screenshots
-
-| Splash Screen | Dashboard (Light) | Dashboard (Dark) | AI Chat |
-|:---:|:---:|:---:|:---:|
-| <img src="art/splash_preview.png" width="200" /> | <img src="art/dashboard_light.png" width="200" /> | <img src="art/dashboard_dark.png" width="200" /> | <img src="art/ai_chat.png" width="200" /> |
-
-*(Lưu ý: Ảnh demo mang tính chất minh họa)*
-
----
-
-## 🚀 Cài Đặt & Chạy Demo
-
-1.  **Clone Project:**
+### Các bước cài đặt
+1.  Sao chép mã nguồn:
     ```bash
     git clone https://github.com/Mphuc310771/Moblie-FinalProJ.git
     ```
-2.  **Mở bằng Android Studio** (Khuyến nghị bản mới nhất).
-3.  **Cấu hình Firebase:** Thêm file `google-services.json` vào thư mục `app/`.
-4.  **Build:** Nhấn nút **Run** (▶️).
-    *   *Lưu ý:* Nếu không có `gradlew`, hãy dùng công cụ Build sẵn có của Android Studio.
+2.  Mở dự án trong Android Studio.
+3.  Cấu hình Firebase:
+    *   Tải file `google-services.json` từ Firebase Console.
+    *   Đặt file vào thư mục `app/`.
+4.  Đồng bộ Gradle và chạy ứng dụng.
+
+## Tác Giả
+
+*   **Mphuc310771** - Phát triển ứng dụng
 
 ---
-
-## 👨‍💻 Tác Giả
-
-**Mphuc310771**
-*   Project: Android Mobile Financial Application
-*   Focus: UI/UX Excellence & AI Integration
-
----
-*© 2026 SmartBudget Premium. All rights reserved.*
+© 2026 SmartBudget Project.
