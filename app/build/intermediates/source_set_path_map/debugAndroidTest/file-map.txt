@@ -1,0 +1,6 @@
+com.smartbudget.app.test.app-core-1.5.0-0 C:\Users\ADMIN\.gradle\caches\transforms-3\416ac747df7756cc69722f7df110a0df\transformed\core-1.5.0\res
+com.smartbudget.app.test.app-annotation-experimental-1.3.0-1 C:\Users\ADMIN\.gradle\caches\transforms-3\41a6c370bb16d5b7e6372c43733f8c44\transformed\annotation-experimental-1.3.0\res
+com.smartbudget.app.test.app-androidTest-2 D:\Code\ALL\Moblie\2\SmartBudget\app\build\generated\res\resValues\androidTest\debug
+com.smartbudget.app.test.app-mergeDebugAndroidTestResources-3 D:\Code\ALL\Moblie\2\SmartBudget\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.smartbudget.app.test.app-mergeDebugAndroidTestResources-4 D:\Code\ALL\Moblie\2\SmartBudget\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.smartbudget.app.test.app-merged_res-5 D:\Code\ALL\Moblie\2\SmartBudget\app\build\intermediates\merged_res\debugAndroidTest

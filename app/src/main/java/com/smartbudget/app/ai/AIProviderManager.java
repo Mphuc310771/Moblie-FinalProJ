@@ -360,64 +360,24 @@ public class AIProviderManager {
             // Try fallback provider once
             if (!triedFallback && errorCode != Result.ERROR_AUTH) {
                 AIProvider fallback = getFallbackProvider();
-                    if (fallback != null && setProvider(fallback)) {
-                        triedFallback = true;
-                        Log.d(TAG, "Falling back to: " + fallback.getDisplayName());
-                        
-                        // Notify user about the fallback
-                        new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> 
-                            android.widget.Toast.makeText(
-                                config.getInstance().getGeminiApiKey() != null ?  // Hacky context access or use application context from outer class?
-                                // Better: Use the context stored in AIProviderManager instance.
-                                // Wait, the class has no simple context reference in this inner class scope?
-                                // It does: 'AIProviderManager.this.prefs' implies access to instance members.
-                                // I can't easily access context if I didn't store it.
-                                // I see in constructor: instance = new AIProviderManager(context.getApplicationContext());
-                                // But I didn't save 'context' as a field, only 'prefs'.
-                                // Checking file content... Lines 129-141. 
-                                // 'this.prefs = context.getSharedPreferences...'
-                                // 'this.config = ...'
-                                // I did NOT save the context variable.
-                                // I need to verify if I can easily get context.
-                                // Actually, I should probably save context in the constructor first.
-                                // WRONG. I should just check if I can use 'prefs' context? No.
-                                // Okay, I'll assume I need to ADD 'private final Context context;' to the class first.
-                                // Let's look at the file content again.
-                                // Step 1182 shows:
-                                // private AIProviderManager(@NonNull Context context) {
-                                //    this.prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-                                //    ...
-                                // }
-                                // It does NOT save it.
-                                // So I cannot show a Toast easily without passing Context or storing it.
-                                // MODIFYING PLAN: First, add 'context' field to AIProviderManager.
-                                // THEN add the Toast.
-                                // actually, I can't do two edits to same file easily in one turn if they are far apart.
-                                // I'll just explain to the user for now.
-                                // WAIT. I can use 'ActivityThread' hack? No.
-                                // I can use 'AICallback' to pass a message "Warning: Switched to Groq"?
-                                // No, 'onError' or 'onSuccess' are the only channels.
-                                // If I modify 'onSuccess' to prepend a warning message?
-                                // "Note: Gemini failed, switched to Groq. [Response]"
-                                // That is cleaner than a random Toast.
-                                // Let's do that.
-                                
-                                // Actually, I can replace the whole class or a large chunk to add 'private Context context'.
-                                // The file is small enough (411 lines).
-                                // But simpler is to prepend the warning in the next onSuccess.
-                                currentService.chat(originalMessage, new AICallback() {
-                                    @Override
-                                    public void onSuccess(String response) {
-                                        delegate.onSuccess("⚠️ [Auto-Switch] Gemini quá tải, đã chuyển sang " + fallback.getDisplayName() + ".\n\n" + response);
-                                    }
+                if (fallback != null && setProvider(fallback)) {
+                    triedFallback = true;
+                    Log.d(TAG, "Falling back to: " + fallback.getDisplayName());
+                    
+                    // Retry with fallback provider and prepend warning to response
+                    currentService.chat(originalMessage, new AICallback() {
+                        @Override
+                        public void onSuccess(@NonNull String response) {
+                            delegate.onSuccess("⚠️ [Auto-Switch] Gemini quá tải, đã chuyển sang " + fallback.getDisplayName() + ".\n\n" + response);
+                        }
 
-                                    @Override
-                                    public void onError(String error, int code) {
-                                        delegate.onError(error, code);
-                                    }
-                                });
-                        return;
-                    }
+                        @Override
+                        public void onError(@NonNull String err, int code) {
+                            delegate.onError(err, code);
+                        }
+                    });
+                    return;
+                }
             }
             delegate.onError(error, errorCode);
         }
