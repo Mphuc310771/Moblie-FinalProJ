@@ -118,6 +118,8 @@ public class DashboardFragment extends Fragment {
         );
 
         binding.swipeRefresh.setOnRefreshListener(() -> {
+            if (binding == null) return;
+
             // Haptic feedback
             com.smartbudget.app.utils.HapticHelper.lightClick(binding.getRoot());
             

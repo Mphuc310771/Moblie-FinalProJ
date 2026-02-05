@@ -277,16 +277,11 @@ public class SettingsFragment extends Fragment {
         binding.btnLogout.setOnClickListener(v -> {
             new androidx.appcompat.app.AlertDialog.Builder(requireContext())
                 .setTitle("Đăng xuất")
-                .setMessage("Dữ liệu cục bộ sẽ bị xóa. Hãy đảm bảo đã đồng bộ dữ liệu lên cloud trước khi đăng xuất.")
+                .setMessage("Bạn có chắc chắn muốn đăng xuất? Dữ liệu của bạn SẼ ĐƯỢC GIỮ LẠI trên thiết bị này.")
                 .setPositiveButton("Đăng xuất", (d, w) -> {
-                    // Clear local database before signing out
-                    com.smartbudget.app.data.local.AppDatabase db = 
-                        com.smartbudget.app.data.local.AppDatabase.getInstance(requireContext());
-                    db.clearAllData();
-                    
-                    // Sign out from Firebase
+                    // Sign out from Firebase ONLY
                     com.google.firebase.auth.FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(requireContext(), "Đã đăng xuất và xóa dữ liệu cục bộ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Đã đăng xuất (Dữ liệu được giữ lại)", Toast.LENGTH_SHORT).show();
                     updateAuthUI();
                 })
                 .setNegativeButton("Hủy", null)

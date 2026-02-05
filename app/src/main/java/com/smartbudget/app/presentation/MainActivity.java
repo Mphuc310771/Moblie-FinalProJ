@@ -98,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
                 navController.navigate(R.id.addExpenseFragment);
             }
         });
+        
+        // Make FAB draggable
+        binding.fabAdd.setOnTouchListener(new com.smartbudget.app.utils.DraggableTouchListener());
 
         // Hide FAB when on add expense screen
         if (navController != null) {
