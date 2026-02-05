@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:85:9-93:20
+INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:91:9-99:20
 	android:grantUriPermissions
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:89:13-47
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:95:13-47
 	android:authorities
 		INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:87:13-64
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:93:13-64
 	android:exported
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:88:13-37
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:94:13-37
 	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:86:13-62
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:92:13-62
 manifest
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:2:1-97:12
-INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:2:1-97:12
-INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:2:1-97:12
-INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:2:1-97:12
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:2:1-103:12
+INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:2:1-103:12
+INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:2:1-103:12
+INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:2:1-103:12
 MERGED from [androidx.databinding:viewbinding:8.2.0] C:\Users\ADMIN\.gradle\caches\transforms-3\527c088a89e2dfddc903c723a74dda4d\transformed\viewbinding-8.2.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.navigation:navigation-common:2.7.6] C:\Users\ADMIN\.gradle\caches\transforms-3\0944e4f20a8cae9c02b66380c356814e\transformed\navigation-common-2.7.6\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.7.6] C:\Users\ADMIN\.gradle\caches\transforms-3\a48d9dcafb6d04f990beca279b0dee69\transformed\navigation-runtime-2.7.6\AndroidManifest.xml:17:1-22:12
@@ -177,8 +177,8 @@ ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:18:
 	android:name
 		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:19:9-47
 application
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:22:5-95:19
-INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:22:5-95:19
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:22:5-101:19
+INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:22:5-101:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\ADMIN\.gradle\caches\transforms-3\1af505152c8f3248dfd5456c8b67580a\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\ADMIN\.gradle\caches\transforms-3\1af505152c8f3248dfd5456c8b67580a\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ADMIN\.gradle\caches\transforms-3\91212d5cca1d3700988f9d71bb43e693\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -273,68 +273,76 @@ category#android.intent.category.LAUNCHER
 ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:40:17-77
 	android:name
 		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:40:27-74
+activity#com.smartbudget.app.presentation.onboarding.OnboardingActivity
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:45:9-48:56
+	android:exported
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:47:13-37
+	android:theme
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:48:13-53
+	android:name
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:46:13-71
 activity#com.smartbudget.app.presentation.MainActivity
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:44:9-47:56
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:50:9-53:56
 	android:exported
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:46:13-37
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:52:13-37
 	android:theme
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:47:13-53
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:53:13-53
 	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:45:13-54
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:51:13-54
 activity#com.smartbudget.app.presentation.scan.ScanReceiptActivity
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:51:9-54:56
-	android:exported
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:53:13-37
-	android:theme
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:54:13-53
-	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:52:13-66
-activity#com.smartbudget.app.presentation.chat.ChatActivity
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:57:9-61:58
-	android:windowSoftInputMode
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:61:13-55
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:57:9-60:56
 	android:exported
 		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:59:13-37
 	android:theme
 		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:60:13-53
 	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:58:13-59
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:58:13-66
+activity#com.smartbudget.app.presentation.chat.ChatActivity
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:63:9-67:58
+	android:windowSoftInputMode
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:67:13-55
+	android:exported
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:65:13-37
+	android:theme
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:66:13-53
+	android:name
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:64:13-59
 activity#com.smartbudget.app.presentation.auth.LoginActivity
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:64:9-67:56
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:70:9-73:56
 	android:exported
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:66:13-37
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:72:13-37
 	android:theme
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:67:13-53
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:73:13-53
 	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:65:13-60
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:71:13-60
 activity#com.smartbudget.app.presentation.auth.RegisterActivity
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:69:9-72:56
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:75:9-78:56
 	android:exported
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:71:13-37
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:77:13-37
 	android:theme
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:72:13-53
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:78:13-53
 	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:70:13-63
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:76:13-63
 receiver#com.smartbudget.app.utils.ReminderReceiver
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:75:9-82:20
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:81:9-88:20
 	android:enabled
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:77:13-35
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:83:13-35
 	android:exported
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:78:13-37
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:84:13-37
 	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:76:13-51
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:82:13-51
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:79:13-81:29
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:85:13-87:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:80:17-79
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:86:17-79
 	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:80:25-76
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:86:25-76
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:90:13-92:54
+ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:96:13-98:54
 	android:resource
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:92:17-51
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:98:17-51
 	android:name
-		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:91:17-67
+		ADDED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml:97:17-67
 uses-sdk
 INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Code\ALL\Moblie\2\SmartBudget\app\src\main\AndroidManifest.xml

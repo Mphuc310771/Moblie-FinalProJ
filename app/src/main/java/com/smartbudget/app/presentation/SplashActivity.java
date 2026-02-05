@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
+import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,9 +33,16 @@ public class SplashActivity extends AppCompatActivity {
         animateLogo();
         animateText();
 
-        // Navigate to MainActivity after delay
+        // Navigate to MainActivity or Onboarding after delay
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            startActivity(new Intent(this, MainActivity.class));
+            SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
+            boolean isOnboardingCompleted = prefs.getBoolean("onboarding_completed", false);
+
+            if (isOnboardingCompleted) {
+                startActivity(new Intent(this, MainActivity.class));
+            } else {
+                startActivity(new Intent(this, com.smartbudget.app.presentation.onboarding.OnboardingActivity.class));
+            }
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
         }, SPLASH_DURATION);
